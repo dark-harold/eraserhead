@@ -5,39 +5,17 @@
 set -euo pipefail
 
 # 😐 Dark Harold's paranoia: Validate environment
-if [[ -z "${GH_TOKEN_ENCRYPTED:-}" ]]; then
-    echo "😐 Error: GH_TOKEN_ENCRYPTED not provided"
+if [[ -z "${GH_TOKEN:-}" ]]; then
+    echo "😐 Error: GH_TOKEN not provided"
     echo "Harold cannot publish without authentication"
     exit 1
 fi
 
-if [[ -z "${ENCRYPTION_KEY:-}" ]]; then
-    echo "😐 Error: ENCRYPTION_KEY not provided"
-    echo "Harold demands secure token handling"
-    exit 1
-fi
+echo "😐 GitHub token received (ephemeral memory only)..."
 
-# 😐 Decrypt GitHub token in-memory only (never touch disk)
-echo "😐 Decrypting GitHub authentication token..."
-GH_TOKEN=$(echo "$GH_TOKEN_ENCRYPTED" | age -d -i <(echo "$ENCRYPTION_KEY") 2>/dev/null || true)
-
-if [[ -z "$GH_TOKEN" ]]; then
-    echo "😐 Error: Token decryption failed"
-    echo "Harold's paranoia was justified"
-    exit 1
-fi
-
-# 😐 Authenticate with gh CLI (in-memory)
-echo "$GH_TOKEN" | gh auth login --with-token 2>/dev/null
-
-# Verify authentication worked
-if ! gh auth status &>/dev/null; then
-    echo "😐 Error: GitHub authentication failed"
-    echo "Harold remains unpublished"
-    exit 1
-fi
-
-echo "😐 GitHub authentication successful (Harold smiles nervously)"
+# 😐 Authenticate gh CLI for API calls (optional, non-fatal if fails)
+echo "😐 Configuring GitHub CLI authentication..."
+echo "$GH_TOKEN" | gh auth login --with-token 2>/dev/null || echo "😐 Note: gh CLI auth skipped (token will be used directly in git URLs)"
 
 # 😐 Randomize git configuration to prevent fingerprinting
 RANDOM_NAMES=(
