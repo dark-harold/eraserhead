@@ -1,0 +1,130 @@
+models:
+  haiku:
+    id: "haiku"
+    cost_per_1m: 0.25
+    max_tokens: 50000
+  sonnet:
+    id: "sonnet"
+    cost_per_1m: 3.00
+    max_tokens: 200000
+  opus:
+    id: "opus"
+    cost_per_1m: 15.00
+    max_tokens: 1000000
+
+# 😐 Harold's model routing wisdom
+task_patterns:
+  simple:
+    keywords:
+      - "format"
+      - "lint"
+      - "typo"
+      - "rename"
+      - "simple"
+      - "quick"
+    model: haiku
+  
+  moderate:
+    keywords:
+      - "refactor"
+      - "test"
+      - "document"
+      - "integrate"
+      - "update"
+      - "fix bug"
+    model: sonnet
+  
+  complex:
+    keywords:
+      - "architecture"
+      - "design"
+      - "protocol"
+      - "system"
+      - "optimize"
+    model: opus
+    effort_level: medium
+
+# 😐 Dark Harold's security paranoia
+force_patterns:
+  always_opus:
+    - "security audit"
+    - "threat model"
+    - "cryptography"
+    - "encryption"
+    - "anonymization"
+    - "anemochory"
+    - "vulnerability"
+    - "attack"
+    - "crypto"
+    - "penetration test"
+    - "packet routing"
+    - "origin obfuscation"
+    - "multi-layer"
+    - "reverse engineer"
+    - "exploit"
+  
+  extended_context:
+    - "entire codebase"
+    - "full analysis"
+    - "comprehensive"
+    - "all files"
+    - "complete"
+
+# 😐 Language-specific routing
+language_rules:
+  cryptography:
+    keywords:
+      - "cryptography"
+      - "encryption"
+      - "hashing"
+      - "key derivation"
+    min_model: opus
+  
+  networking:
+    keywords:
+      - "socket"
+      - "packet"
+      - "network"
+      - "routing"
+      - "protocol"
+    min_model: sonnet
+  
+  testing:
+    keywords:
+      - "pytest"
+      - "test"
+      - "mock"
+      - "fixture"
+    min_model: haiku
+
+# Scoring thresholds (hardcoded in model_selector.py overrides these)
+scoring:
+  complexity_indicators:
+    keywords_weight: 40
+    context_size_weight: 20
+    reasoning_depth_weight: 30
+    code_analysis_weight: 10
+  thresholds:
+    haiku_max: 30
+    sonnet_max: 70
+    opus_min: 71
+
+# 😐 Effort levels for Opus tasks
+effort_levels:
+  low:
+    cost_multiplier: 0.8
+  medium:
+    cost_multiplier: 1.0
+  high:
+    cost_multiplier: 1.2
+
+context_windows:
+  standard: 200000
+  extended: 1000000
+
+# Harold's output preferences
+output:
+  show_selection: true
+  show_reasoning: false
+  show_cost_estimate: false
+  emoji: true

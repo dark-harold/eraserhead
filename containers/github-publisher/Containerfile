@@ -1,0 +1,43 @@
+# 😐 Alpine Linux Podman Container for Anonymized GitHub Publishing
+# Harold hides his identity like he hides his pain
+
+FROM alpine:latest
+
+LABEL description="Anonymized GitHub publisher - Harold's identity protection"
+LABEL maintainer="harold@hidethepain.local"
+
+# Install required packages
+RUN apk add --no-cache \
+    git \
+    github-cli \
+    gpg \
+    age \
+    bash \
+    openssh-client \
+    ca-certificates \
+    tzdata
+
+# 😐 Create non-root user with randomized naming
+RUN adduser -D -s /bin/bash publisher
+
+# 😐 Configure git with obfuscation-friendly defaults
+RUN git config --system init.defaultBranch main && \
+    git config --system core.autocrlf input && \
+    git config --system pull.rebase false
+
+# 😐 Clean up package cache (Harold leaves no traces)
+RUN rm -rf /var/cache/apk/*
+
+# Set working directory
+WORKDIR /workspace
+
+# Copy entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Switch to non-root user
+USER publisher
+
+# 😐 Entrypoint that handles token decryption and git config randomization
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["bash"]

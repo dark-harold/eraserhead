@@ -1,0 +1,90 @@
+# 😐 Pretending these secrets weren't committed before
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.virtualenv/
+
+# uv
+.uv/
+uv.lock
+
+# IDEs
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Models (don't commit large files)
+models/**/*.gguf
+models/**/*.bin
+models/**/*.safetensors
+*.gguf
+*.bin
+
+# Databases
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Tinyclaw state
+.tinyclaw/state/
+node_modules/
+
+# Secrets and tokens
+*.key
+*.pem
+*.token
+.env
+.env.local
+secrets/
+auth-state.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Harold originals (too powerful to commit)
+docs/memes/harold/originals/

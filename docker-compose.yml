@@ -1,0 +1,75 @@
+# 😐 Docker Compose for vLLM and tinyclaw services
+# Harold's distributed brain architecture
+
+version: '3.8'
+
+services:
+  # 😐 Harold's GPU Brain (vLLM inference server)
+  harold-brain-vllm:
+    image: vllm/vllm-openai:latest
+    container_name: harold-brain-vllm
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # Model will be set after research agent identifies best option
+      - MODEL_NAME=${VLLM_MODEL:-TBD}
+      - GPU_MEMORY_UTILIZATION=0.90
+      - MAX_MODEL_LEN=8192
+      - SERVED_MODEL_NAME=local-model
+    volumes:
+      - ./models:/models:ro
+      - vllm-cache:/root/.cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - eraserhead-net
+    # 😐 Dark Harold's security paranoia
+   labels:
+      - "com.eraserhead.service=vllm"
+      - "com.eraserhead.security=isolated"
+
+  # 😐 Harold's Memory (optional: separate tinyclaw gateway)
+  # Uncomment if running tinyclaw as a service (currently uses local install)
+  # harold-memory:
+  #   image: node:22-alpine
+  #   container_name: harold-memory
+  #   restart: unless-stopped
+  #   working_dir: /app
+  #   command: npx tinyclaw serve
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - tinyclaw-config:/root/.config/tinyclaw:rw
+  #     - ./TINYCLAW.md:/app/TINYCLAW.md:ro
+  #   environment:
+  #     - NODE_ENV=production
+  #   networks:
+  #     - eraserhead-net
+  #   depends_on:
+  #     - harold-brain-vllm
+
+volumes:
+  vllm-cache:
+    driver: local
+  tinyclaw-config:
+    driver: local
+
+networks:
+  eraserhead-net:
+    driver: bridge
+    # 😐 Harold's network isolation
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16

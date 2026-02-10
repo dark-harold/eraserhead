@@ -1,0 +1,85 @@
+[project]
+name = "eraserhead"
+version = "0.1.0"
+description = "Pragmatically erasing digital footprints while smiling through the pain 😐"
+readme = "README.md"
+requires-python = ">=3.14"
+license = { text = "MIT" }
+authors = [
+    { name = "Harold", email = "harold@hidethepain.local" }
+]
+keywords = [
+    "privacy", "anonymization", "osint-defense", "anemochory",
+    "social-media", "data-erasure", "network-obfuscation"
+]
+
+dependencies = [
+    "cryptography>=43.0.0",
+    "httpx>=0.27.0",
+    "trio>=0.27.0",
+    "pydantic>=2.9.0",
+    "typer>=0.12.0",
+    "pyyaml>=6.0.2",
+    "jinja2>=3.1.4",
+    "openai>=1.51.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-cov>=5.0.0",
+    "pytest-trio>=0.8.0",
+    "ruff>=0.7.0",
+    "bandit>=1.7.10",
+    "safety>=3.2.0",
+]
+
+llm = [
+    "llama-cpp-python>=0.3.0",
+]
+
+[project.scripts]
+eraserhead = "eraserhead.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/eraserhead", "src/anemochory"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]  # Harold smiles through long lines
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=src --cov-report=term-missing --cov-report=html --tb=short"
+trio_mode = "true"
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["*/tests/*", "*/__pycache__/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]
+fail_under = 80  # Harold demands quality while hiding pain
+
+[tool.bandit]
+exclude_dirs = ["tests", "venv", ".venv"]
+skips = ["B101"]  # assert usage in tests is fine
