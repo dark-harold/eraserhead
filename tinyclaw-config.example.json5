@@ -1,0 +1,100 @@
+// 😐 tinyclaw configuration
+// Harold's memory and model routing
+// Location: ~/.config/tinyclaw/config.json5
+
+{
+  agent: {
+    provider: "llamacpp",  // or "vllm" for GPU, "anthropic" for cloud
+    model: "qwen2.5-coder-7b",  // Local model
+    thinkingLevel: "medium",
+    fallbacks: [
+      "anthropic/claude-sonnet-4-5",
+      "anthropic/claude-opus-4-6"
+    ],
+    identity: {
+      name: "Harold",
+      emoji: "😐"
+    },
+    responsePrefix: ""
+  },
+
+  session: {
+    resetMode: "idle",
+    resetAtHour: 0,
+    idleMinutes: 120
+  },
+
+  memory: {
+    backend: "builtin",  // SQLite + FTS5 + sqlite-vec
+    embeddingProvider: "openai",  // or "local" when available
+    embeddingModel: "text-embedding-3-small"
+  },
+
+  // 😐 Local model providers
+  models: {
+    providers: {
+      llamacpp: {
+        baseUrl: "http://127.0.0.1:8080/v1",
+        api: "openai-completions",
+        models: [
+          {
+            id: "qwen2.5-coder-7b",
+            contextWindow: 8192,
+            maxTokens: 4096
+          }
+        ]
+      },
+      vllm: {
+        baseUrl: "http://127.0.0.1:8000/v1",
+        api: "openai-completions",
+        models: [
+          {
+            id: "qwen2.5-coder-7b",
+            contextWindow: 8192,
+            maxTokens: 4096
+          }
+        ]
+      }
+    }
+  },
+
+  // 😐 Dark Harold's security settings
+  security: {
+    toolPolicy: "auto",
+    ssrfProtection: true,
+    execApproval: "confirm",  // Require confirmation for shell execution
+    pairingRequired: false,
+    maxToolCallsPerTurn: 50
+  },
+
+  sandbox: {
+    enabled: false,  // Enable for untrusted code execution
+    image: "tinyclaw-sandbox",
+    networkMode: "none"
+  },
+
+  // 😐 Gateway configuration (optional remote access)
+  gateway: {
+    enabled: false,  // Set true to expose HTTP/WebSocket API
+    port: 3000,
+    bind: "127.0.0.1",  // Localhost only for security
+    auth: {
+      enabled: false
+    }
+  },
+
+  pipeline: {
+    inboundDebounceMs: 1500,
+    typingIndicator: true,
+    envelope: true,
+    collectMode: false,
+    chunkSize: {
+      min: 800,
+      max: 1200
+    }
+  },
+
+  plugins: {
+    enabled: true  // Load plugins from ~/.config/tinyclaw/plugins/
+  }
+}

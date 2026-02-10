@@ -1,5 +1,6 @@
-# 😐 Docker Compose for vLLM and tinyclaw services
+# 😐 Podman Compose for vLLM and tinyclaw services
 # Harold's distributed brain architecture
+# Use: podman-compose up -d
 
 version: '3.8'
 
@@ -12,31 +13,29 @@ services:
     ports:
       - "8000:8000"
     environment:
-      # Model will be set after research agent identifies best option
-      - MODEL_NAME=${VLLM_MODEL:-TBD}
+      # Model: Qwen2.5-Coder-7B-Instruct (selected for code generation)
+      - MODEL_NAME=${VLLM_MODEL:-Qwen/Qwen2.5-Coder-7B-Instruct}
       - GPU_MEMORY_UTILIZATION=0.90
       - MAX_MODEL_LEN=8192
-      - SERVED_MODEL_NAME=local-model
+      - SERVED_MODEL_NAME=qwen2.5-coder-7b
     volumes:
       - ./models:/models:ro
       - vllm-cache:/root/.cache
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+    devices:
+      - nvidia.com/gpu=all
+    security_opt:
+      - label=disable
+    shm_size: '8gb'
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/v1/models"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 60s
+      start_period: 120s
     networks:
       - eraserhead-net
     # 😐 Dark Harold's security paranoia
-   labels:
+    labels:
       - "com.eraserhead.service=vllm"
       - "com.eraserhead.security=isolated"
 

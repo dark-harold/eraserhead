@@ -170,7 +170,8 @@ Harold smiles confidently at this diagram while knowing the edge cases will be d
 - Python >=3.14
 - Node.js >=22.12.0 (for tinyclaw)
 - uv (Python package manager)
-- Podman or Docker (for anonymized publishing)
+- Podman (container runtime)
+- gitleaks (secret detection)
 - Optional: CUDA-capable GPU (for vLLM), otherwise llama.cpp uses CPU
 
 ### Installation
@@ -184,10 +185,18 @@ uv venv
 source .venv/bin/activate
 uv sync
 
+# 😐 Install gitleaks (secret protection)
+sudo apt install gitleaks  # or download from GitHub releases
+
 # 😐 Install tinyclaw globally
 npm install -g @mrcloudchase/tinyclaw
 
-# 😐 Download local models (determined by research agents)
+# 😐 Configure tinyclaw
+mkdir -p ~/.config/tinyclaw
+cp tinyclaw-config.example.json5 ~/.config/tinyclaw/config.json5
+# Edit config.json5 with your preferences
+
+# 😐 Download local models (Qwen2.5-Coder-7B-Instruct)
 ./scripts/download-models.sh
 
 # 😐 Start local inference (auto-detects CPU/GPU)
@@ -196,6 +205,9 @@ npm install -g @mrcloudchase/tinyclaw
 # 😐 Sync specs into tinyclaw memory
 ./scripts/sync-memory.sh
 
+# 😐 Verify everything works
+./scripts/model-health.sh
+
 # 😐 Run quality gates (Harold demands it)
 ./scripts/pre-commit.sh
 ```
@@ -203,8 +215,9 @@ npm install -g @mrcloudchase/tinyclaw
 ### Configuration
 
 **tinyclaw**: `~/.config/tinyclaw/config.json5`
-- Memory backend: `builtin` (SQLite + FTS5 + vectors)
-- Providers: local (llama.cpp/vLLM), anthropic, openai
+- Memory backend: `builtin` (SQLite + FTS5 + sqlite-vec)
+- Model: Qwen2.5-Coder-7B-Instruct (selected for code generation)
+- Providers: llamacpp (CPU), vllm (GPU), anthropic, openai
 - Fallback chain: local → sonnet → opus
 
 **Model routing**: `model-config.yml`
@@ -231,8 +244,12 @@ All quality control runs **locally**. No CI/CD. No GitHub Actions. Harold trusts
 ./scripts/pre-commit.sh       # 😐 All gates, blocks bad commits
 ./scripts/model-health.sh     # 😐 Check if Harold's brain works
 ./scripts/sync-memory.sh      # 😐 Index specs into tinyclaw
+./scripts/download-models.sh  # 😐 Download Qwen2.5-Coder GGUF
+./scripts/llm-start.sh        # 😐 Auto-detect and start inference
 ./scripts/publish-gh.sh       # 😐 Anonymized GitHub push via Podman
 ```
+
+**Note**: Git pre-commit hook at `.git/hooks/pre-commit` automatically runs gitleaks on every commit. Dark Harold blocks secrets at the source.
 
 ---
 
