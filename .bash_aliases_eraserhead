@@ -1,0 +1,75 @@
+# ============================================================
+# 😐 EraserHead Project Aliases - Harold's Shortcuts
+# ============================================================
+# Installation: Add to your ~/.bash_aliases or ~/.bashrc:
+#   source /home/kang/Documents/projects/radkit/eraserhead/.bash_aliases_eraserhead
+#
+# Or copy this content directly to ~/.bash_aliases
+# ============================================================
+
+# Project navigation
+alias eh='cd /home/kang/Documents/projects/radkit/eraserhead'
+
+# ---- tinyclaw commands ----
+alias tc='tinyclaw'
+alias tcm='tinyclaw memory'
+alias tcs='tinyclaw memory search'
+alias tcstore='tinyclaw memory store'
+
+# Quick agent access
+alias harold='tinyclaw'
+alias harold-plan='tinyclaw --agent harold-planner'
+alias harold-code='tinyclaw --agent harold-implementer'
+alias harold-secure='tinyclaw --agent harold-security'
+alias harold-test='tinyclaw --agent harold-tester'
+alias harold-doc='tinyclaw --agent harold-documenter'
+alias harold-research='tinyclaw --agent harold-researcher'
+
+# ---- Model management ----
+alias llm-start='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/llm-start.sh'
+alias llm-gpu='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/llm-start-gpu.sh'
+alias llm-cpu='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/llm-start-cpu.sh'
+alias llm-health='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/model-health.sh'
+alias llm-models='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/download-models.sh'
+
+# ---- Quality gates ----
+alias ehfmt='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/format.sh'
+alias ehlint='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/lint.sh'
+alias ehtest='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/test.sh'
+alias ehsec='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/security-scan.sh'
+alias ehqc='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/quality-check.sh'
+alias ehpc='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/pre-commit.sh'
+
+# ---- Memory sync ----
+alias ehsync='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/sync-memory.sh'
+
+# ---- Combined workflows ----
+alias ehcheck='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/quality-check.sh'
+alias ehship='cd /home/kang/Documents/projects/radkit/eraserhead && ./scripts/pre-commit.sh && git push'
+
+# ---- Quick edits ----
+alias ehconfig='$EDITOR ~/.config/tinyclaw/config.json5'
+alias ehspec='cd /home/kang/Documents/projects/radkit/eraserhead/specs'
+
+# ---- Memory queries (requires tinyclaw installed) ----
+alias harold-constitution='tinyclaw memory search "constitution principles"'
+alias harold-anemochory='tinyclaw memory search "anemochory protocol"'
+alias harold-routing='tinyclaw memory search "model routing"'
+
+# ---- System monitoring (RAM/CPU for tinyclaw workflows) ----
+alias ehram='free -h && echo "---" && ps aux | grep -E "llama|vllm|tinyclaw" | head -10'
+alias ehcpu='top -b -n1 | head -20'
+alias ehres='echo "😐 System Resources:" && free -h && echo "---" && echo "CPU Cores: $(nproc)" && echo "Load: $(uptime | awk -F"load average:" '\''{print $2}'\'')"'
+
+# ============================================================
+# 😐 Usage examples:
+#   tc memory search "crypto primitives"
+#   harold-plan  # Start planning session
+#   ehqc         # Run full quality check
+#   ehcheck      # CD to project and run quality check
+#   ehram        # Check memory usage
+# ============================================================
+
+# 🌑 Dark Harold's reminder: These aliases make you productive.
+# Productivity means shipping code faster. Shipping faster means
+# more surface area for bugs. Test everything. Trust nothing. 😐

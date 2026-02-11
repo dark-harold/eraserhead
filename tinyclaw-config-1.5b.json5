@@ -1,0 +1,228 @@
+// 😐 tinyclaw configuration for EraserHead
+// Optimized for CPU inference with 1.5b model (low RAM, privacy-first)
+// Location: ~/.config/tinyclaw/config.json5
+// 
+// 🌑 Dark Harold's setup notes:
+//   - 1.5b model: ~2GB RAM, fast CPU inference
+//   - Security reviews: ALWAYS Opus 4.6 (no compromise)
+//   - 90% local target, <$50/month cloud budget
+//   - Memory: SQLite + FTS5 + sqlite-vec (local, private)
+
+{
+  agent: {
+    // 😐 Auto-select best available: llamacpp (CPU) preferred for 1.5b
+    provider: "auto",
+    model: "qwen2.5-coder-1.5b-instruct",  // Primary model (CPU-friendly)
+    thinkingLevel: "medium",
+    fallbacks: [
+      "qwen2.5-coder-3b-instruct",  // If 1.5b insufficient
+      "anthropic/claude-sonnet-4-5",  // Cloud for complex tasks
+      "anthropic/claude-opus-4-6"  // Security/crypto ONLY
+    ],
+    identity: {
+      name: "Harold",
+      emoji: "😐"
+    },
+    responsePrefix: "",
+    localFirst: true,  // 😐 Privacy over convenience
+    gpuAcceleration: false  // CPU-only for this config
+  },
+
+  session: {
+    resetMode: "idle",
+    resetAtHour: 0,
+    idleMinutes: 120
+  },
+
+  memory: {
+    backend: "builtin",  // SQLite + FTS5 + sqlite-vec
+    embeddingProvider: "openai",  // Set to "local" when local embeddings available
+    embeddingModel: "text-embedding-3-small"
+  },
+
+  // 😐 Model providers for EraserHead development
+  models: {
+    providers: {
+      // llama.cpp for CPU - PRIMARY for 1.5b model
+      llamacpp: {
+        baseUrl: "http://127.0.0.1:8080/v1",
+        api: "openai-completions",
+        priority: 1,  // HIGHEST priority (CPU-optimized workflow)
+        requiresGpu: false,
+        models: [
+          {
+            id: "qwen2.5-coder-1.5b-instruct",
+            contextWindow: 32768,
+            maxTokens: 4096,  // Conservative for CPU
+            temperature: 0.7,
+            description: "Primary model: scoped tasks, clear criteria"
+          },
+          {
+            id: "qwen2.5-coder-3b-instruct",
+            contextWindow: 32768,
+            maxTokens: 8192,
+            temperature: 0.7,
+            description: "Fallback: moderate complexity"
+          },
+          {
+            id: "qwen2.5-coder-0.5b-instruct",
+            contextWindow: 32768,
+            maxTokens: 4096,
+            temperature: 0.7,
+            description: "Minimal: format, lint, simple edits"
+          }
+        ]
+      },
+      
+      // vLLM for GPU (disabled by default, enable if GPU available)
+      vllm: {
+        baseUrl: "http://127.0.0.1:8000/v1",
+        api: "openai-completions",
+        priority: 2,  // Lower priority than CPU (not always available)
+        requiresGpu: true,
+        enabled: false,  // Set true if you start vLLM server
+        models: [
+          {
+            id: "qwen2.5-coder-7b-instruct",
+            contextWindow: 32768,
+            maxTokens: 8192,
+            temperature: 0.7,
+            description: "Complex tasks if GPU available"
+          },
+          {
+            id: "qwen2.5-coder-3b-instruct",
+            contextWindow: 32768,
+            maxTokens: 8192,
+            temperature: 0.7
+          }
+        ]
+      },
+      
+      // Cloud providers (security reviews and complex planning)
+      anthropic: {
+        apiKey: "${ANTHROPIC_API_KEY}",
+        priority: 99,  // Only when explicitly needed
+        models: [
+          {
+            id: "claude-opus-4-6",
+            contextWindow: 200000,
+            maxTokens: 16384,
+            description: "🌑 Security/crypto ONLY - Dark Harold requires this"
+          },
+          {
+            id: "claude-sonnet-4-5",
+            contextWindow: 200000,
+            maxTokens: 8192,
+            description: "Complex planning, architecture decisions"
+          }
+        ]
+      }
+    },
+    
+    // Agent-specific overrides (harold-security ALWAYS uses Opus)
+    agentOverrides: {
+      "harold-security": {
+        provider: "anthropic",
+        model: "claude-opus-4-6",
+        // 🌑 No fallback. Security reviews must use maximum capability.
+        fallbacks: []
+      },
+      "harold-planner": {
+        provider: "auto",
+        model: "qwen2.5-coder-3b-instruct",  // Planning needs more capability
+        fallbacks: ["anthropic/claude-opus-4-6"]
+      },
+      "harold-implementer": {
+        provider: "llamacpp",
+        model: "qwen2.5-coder-1.5b-instruct",  // Scoped implementation
+        fallbacks: ["qwen2.5-coder-3b-instruct"]
+      },
+      "harold-tester": {
+        provider: "llamacpp",
+        model: "qwen2.5-coder-1.5b-instruct"  // Test generation
+      },
+      "harold-documenter": {
+        provider: "llamacpp",
+        model: "qwen2.5-coder-1.5b-instruct"  // Documentation
+      },
+      "harold-researcher": {
+        provider: "auto",
+        model: "qwen2.5-coder-3b-instruct",  // Research benefits from more context
+        fallbacks: ["anthropic/claude-sonnet-4-5"]
+      }
+    }
+  },
+
+  // 😐 Dark Harold's security settings
+  security: {
+    toolPolicy: "auto",
+    ssrfProtection: true,
+    execApproval: "confirm",  // Require confirmation for shell execution
+    pairingRequired: false,
+    maxToolCallsPerTurn: 50
+  },
+
+  sandbox: {
+    enabled: false,  // Enable for untrusted code execution
+    image: "tinyclaw-sandbox",
+    networkMode: "none"
+  },
+
+  // 😐 Gateway configuration (disabled for security)
+  gateway: {
+    enabled: false,  // Local CLI only, no remote access
+    port: 3000,
+    bind: "127.0.0.1",
+    auth: {
+      enabled: false
+    }
+  },
+
+  pipeline: {
+    inboundDebounceMs: 1500,
+    typingIndicator: true,
+    envelope: true,
+    collectMode: false,
+    chunkSize: {
+      min: 800,
+      max: 1200
+    }
+  },
+
+  plugins: {
+    enabled: true  // Load plugins from ~/.config/tinyclaw/plugins/
+  }
+}
+
+// 😐 Harold's Configuration Notes:
+//
+// Task Sizing for 1.5b Model:
+//   ✅ Single function implementation (clear interface)
+//   ✅ Test generation (given function signature)
+//   ✅ Documentation (narrative style)
+//   ✅ Refactoring (isolated scope)
+//   ✅ Bug fixes (well-defined issue)
+//   ❌ Architecture design (use harold-plan → cloud)
+//   ❌ Security review (use harold-secure → Opus 4.6)
+//   ❌ Complex multi-file refactors (break into smaller tasks)
+//
+// Workflow Pattern:
+//   1. Memory search: tcs "relevant spec"
+//   2. Plan (if complex): harold-plan
+//   3. Implement (scoped): harold-code "implement X with Y"
+//   4. Test immediately: ehtest -k module
+//   5. Security review (crypto): harold-secure
+//   6. Document: harold-doc
+//   7. Quality gates: ehpc
+//   8. Sync memory: ehsync
+//
+// Cost Optimization:
+//   - 90% tasks: Local (1.5b-3b models)
+//   - 8% tasks: Sonnet (complex planning)
+//   - 2% tasks: Opus (security/crypto only)
+//   - Target: <$50/month (mostly security audits)
+//
+// 🌑 Dark Harold's Warning:
+//   Small models make mistakes. Test everything.
+//   When crypto is involved, harold-security reviews with Opus.
+//   No exceptions. No compromises. Privacy demands paranoia.

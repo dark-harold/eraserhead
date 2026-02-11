@@ -46,6 +46,7 @@ class EncryptionError(CryptographicError):
 
     😐 This shouldn't happen unless you're doing something wrong.
     """
+
     pass
 
 
@@ -55,6 +56,7 @@ class DecryptionError(CryptographicError):
     🌑 Dark Harold: Authentication failure means tampering.
         Drop the packet. Log the event. Suspect compromise.
     """
+
     pass
 
 
@@ -131,9 +133,7 @@ class ChaCha20Engine:
         🌑 Dark Harold: One key per layer. Never reuse keys.
         """
         if len(layer_key) != KEY_SIZE:
-            raise ValueError(
-                f"Layer key must be {KEY_SIZE} bytes, got {len(layer_key)}"
-            )
+            raise ValueError(f"Layer key must be {KEY_SIZE} bytes, got {len(layer_key)}")
 
         self._cipher = ChaCha20Poly1305(layer_key)
         # 😐 Note: layer_key is NOT stored (cipher stores it internally)
@@ -179,7 +179,7 @@ class ChaCha20Engine:
             ciphertext_with_tag = self._cipher.encrypt(
                 nonce=nonce,
                 data=plaintext,
-                associated_data=None  # 🌑 Could add packet metadata here
+                associated_data=None,  # 🌑 Could add packet metadata here
             )
 
             return (nonce, ciphertext_with_tag)
@@ -211,9 +211,7 @@ class ChaCha20Engine:
             Log the event. Investigate the source. Suspect everything.
         """
         if len(nonce) != NONCE_SIZE:
-            raise ValueError(
-                f"Nonce must be {NONCE_SIZE} bytes, got {len(nonce)}"
-            )
+            raise ValueError(f"Nonce must be {NONCE_SIZE} bytes, got {len(nonce)}")
 
         if len(ciphertext) < AUTH_TAG_SIZE:
             raise DecryptionError(
@@ -223,17 +221,11 @@ class ChaCha20Engine:
 
         try:
             # Decrypt + verify authentication tag
-            return self._cipher.decrypt(
-                nonce=nonce,
-                data=ciphertext,
-                associated_data=None
-            )
+            return self._cipher.decrypt(nonce=nonce, data=ciphertext, associated_data=None)
 
         except InvalidTag as e:
             # 🌑 Authentication failed: packet was tampered with
-            raise DecryptionError(
-                "Authentication failed: packet tampered or corrupted"
-            ) from e
+            raise DecryptionError("Authentication failed: packet tampered or corrupted") from e
         except Exception as e:
             # 😐 Other decryption errors
             raise DecryptionError(f"ChaCha20-Poly1305 decryption failed: {e}") from e
@@ -272,9 +264,7 @@ def derive_layer_key(master_key: bytes, layer_index: int, total_layers: int) -> 
         disappointed. Which is worse than being found.
     """
     if layer_index >= total_layers:
-        raise ValueError(
-            f"layer_index ({layer_index}) must be < total_layers ({total_layers})"
-        )
+        raise ValueError(f"layer_index ({layer_index}) must be < total_layers ({total_layers})")
 
     # Context info binds key to specific layer and hop count
     # 😐 Including total_layers prevents layer confusion attacks
@@ -375,7 +365,7 @@ def unpad_packet(padded: bytes) -> bytes:
         )
 
     # Extract original data (skip 2-byte prefix, take data_length bytes)
-    return padded[2:2 + data_length]
+    return padded[2 : 2 + data_length]
 
 
 # 😐 harold-implementer's closing thoughts:

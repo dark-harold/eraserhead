@@ -1,0 +1,25 @@
+{
+  "model_name": "0.5b",
+  "model_file": "qwen2.5-coder-0.5b-instruct-q4_k_m.gguf",
+  "model_size_mb": 469,
+  "performance": {
+    "load_time_seconds": 0.44,
+    "generation_time_seconds": 6.05,
+    "total_time_seconds": 6.49,
+    "model_memory_mb": 588.0,
+    "peak_memory_mb": 648.0,
+    "prompt_tokens": 134,
+    "completion_tokens": 226,
+    "tokens_per_second": 37.3
+  },
+  "quality": {
+    "has_docstring": true,
+    "has_type_hints": true,
+    "has_harold_emoji": false,
+    "has_raises": true,
+    "has_function_def": true,
+    "code_length": 1041,
+    "score": 4
+  },
+  "generated_code": "```python\nfrom typing import *\nfrom collections import *\n\ndef validate_layer_count(layers: int, min_layers: int = 3, max_layers: int = 7) -> bool:\n    \"\"\"\n    Validates the layer count of a layer stack.\n\n    Parameters:\n    layers (int): The number of layers in the stack.\n    min_layers (int): The minimum number of layers allowed.\n    max_layers (int): The maximum number of layers allowed.\n\n    Returns:\n    bool: True if layers is between min_layers and max_layers (inclusive), False otherwise.\n    Raises ValueError with a message if layers is invalid.\n    \"\"\"\n    if not isinstance(layers, int):\n        raise ValueError(\"Layers must be an integer.\")\n    if layers < min_layers or layers > max_layers:\n        raise ValueError(f\"Layers must be between {min_layers} and {max_layers} inclusive.\")\n    return True\n```\n\nThis function checks if the provided `layers` parameter is within the specified range (inclusive) and raises a `ValueError` if it is not. The function also includes type hints for better type checking and documentation."
+}

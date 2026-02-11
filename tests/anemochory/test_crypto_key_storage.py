@@ -197,7 +197,7 @@ class TestEncryptedFileBackend:
             try:
                 mode = expected_path.stat().st_mode & 0o777
                 assert mode == 0o700
-            except (OSError, AssertionError):
+            except OSError, AssertionError:
                 pass  # Best-effort
 
 
@@ -614,7 +614,7 @@ class TestEdgeCases:
             backend = EncryptedFileBackend(tmpdir)
             manager = _fast_manager(backend)
 
-            future_backup = b"\xFF" + secrets.token_bytes(100)  # Version 255
+            future_backup = b"\xff" + secrets.token_bytes(100)  # Version 255
 
             with pytest.raises(ValueError, match="Unsupported backup version"):
                 manager.import_key_backup(future_backup, "recovery", "new")

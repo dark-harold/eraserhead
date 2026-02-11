@@ -1,0 +1,81 @@
+# 😐 .pre-commit-config.yaml
+# Harold's Local Quality Gates (No Cloud CI/CD)
+#
+# Install: pip install pre-commit && pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  # 😐 Ruff: Harold's all-in-one formatter and linter
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.7.0
+    hooks:
+      # Format code (auto-fix)
+      - id: ruff-format
+        name: "😐 Ruff Format"
+        
+      # Lint (auto-fix when possible)
+      - id: ruff
+        name: "😐 Ruff Lint"
+        args: [--fix, --exit-non-zero-on-fix]
+
+  # 😐 MyPy: Type checking (Harold's type safety paranoia)
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.13.0
+    hooks:
+      - id: mypy
+        name: "😐 MyPy Type Check"
+        args: [--strict, --config-file=pyproject.toml]
+        additional_dependencies:
+          - pydantic>=2.9.0
+          - cryptography>=43.0.0
+          - httpx>=0.27.0
+          - trio>=0.27.0
+
+  # 😐 Bandit: Security linting (Dark Harold's paranoia)
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.10
+    hooks:
+      - id: bandit
+        name: "😐 Bandit Security Scan"
+        args: [-c, pyproject.toml, -r, src/]
+
+  # 😐 gitleaks: Secret scanning (no secrets shall pass)
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.0
+    hooks:
+      - id: gitleaks
+        name: "😐 Gitleaks Secret Scan"
+
+  # 😐 Standard pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+        name: "😐 Trim Trailing Whitespace"
+      - id: end-of-file-fixer
+        name: "😐 Fix EOF"
+      - id: check-yaml
+        name: "😐 Check YAML"
+      - id: check-toml
+        name: "😐 Check TOML"
+      - id: check-json
+        name: "😐 Check JSON"
+      - id: check-added-large-files
+        name: "😐 Check Large Files"
+        args: [--maxkb=1000]
+      - id: check-merge-conflict
+        name: "😐 Check Merge Conflicts"
+      - id: debug-statements
+        name: "😐 Debug Statements (Harold forgot one)"
+
+  # 😐 Interrogate: Docstring coverage
+  - repo: https://github.com/econchick/interrogate
+    rev: 1.7.0
+    hooks:
+      - id: interrogate
+        name: "😐 Interrogate Docstrings"
+        args: [-vv, --fail-under=70, src/]
+
+# 😐 Harold's Commentary:
+# "These hooks will catch issues before they reach the repo.
+# Dark Harold still expects things to break in production." 😐

@@ -48,9 +48,7 @@ LAYER_OVERHEAD = NONCE_SIZE + ROUTING_INFO_SIZE + AUTH_TAG_SIZE  # 72 bytes per 
 # Protocol limits
 MIN_HOPS = 3  # Minimum path length for anonymity
 MAX_HOPS = 7  # Maximum path length (conservative limit)
-MAX_PAYLOAD_SIZE = INNER_PACKET_SIZE - (
-    LAYER_OVERHEAD * (MAX_HOPS - 1)
-)  # 512 bytes for 7-hop
+MAX_PAYLOAD_SIZE = INNER_PACKET_SIZE - (LAYER_OVERHEAD * (MAX_HOPS - 1))  # 512 bytes for 7-hop
 
 # Security constraints
 MAX_PACKET_AGE_SECONDS = 60  # Replay protection window
@@ -159,17 +157,13 @@ class LayerRoutingInfo:
     def __post_init__(self):
         """Validate routing info fields."""
         if len(self.next_hop_address) != 16:
-            raise ValueError(
-                f"Invalid address length: {len(self.next_hop_address)} (expected 16)"
-            )
+            raise ValueError(f"Invalid address length: {len(self.next_hop_address)} (expected 16)")
         if not 0 <= self.next_hop_port <= 65535:
             raise ValueError(f"Invalid port: {self.next_hop_port}")
         if not 0 <= self.sequence_number < 2**64:
             raise ValueError(f"Invalid sequence_number: {self.sequence_number}")
         if len(self.session_id) != 16:
-            raise ValueError(
-                f"Invalid session_id length: {len(self.session_id)} (expected 16)"
-            )
+            raise ValueError(f"Invalid session_id length: {len(self.session_id)} (expected 16)")
         if not 0 <= self.padding_length < INNER_PACKET_SIZE:
             raise ValueError(f"Invalid padding_length: {self.padding_length}")
 
@@ -331,9 +325,7 @@ def _generate_unique_nonce(seen_nonces: set[bytes]) -> bytes:
         if nonce not in seen_nonces:
             seen_nonces.add(nonce)
             return nonce
-    raise CryptographicError(
-        "Nonce collision after 10 attempts - RNG may be compromised"
-    )
+    raise CryptographicError("Nonce collision after 10 attempts - RNG may be compromised")
 
 
 # ============================================================================
@@ -401,9 +393,7 @@ def decrypt_layer(
 
     packet_age = current_time - header.timestamp
     if packet_age > MAX_PACKET_AGE_SECONDS:
-        raise ReplayError(
-            f"Packet too old: {packet_age:.1f}s (max {MAX_PACKET_AGE_SECONDS}s)"
-        )
+        raise ReplayError(f"Packet too old: {packet_age:.1f}s (max {MAX_PACKET_AGE_SECONDS}s)")
     if packet_age < -MAX_CLOCK_SKEW_SECONDS:
         raise ReplayError(
             f"Packet from future: {-packet_age:.1f}s (max skew {MAX_CLOCK_SKEW_SECONDS}s)"
@@ -427,9 +417,7 @@ def decrypt_layer(
     ciphertext_with_tag = encrypted_content[NONCE_SIZE:]
 
     # Reconstruct associated data (layer_index binds to position)
-    associated_data = struct.pack(
-        ">BBL", header.layer_index, header.hop_count, header.timestamp
-    )
+    associated_data = struct.pack(">BBL", header.layer_index, header.hop_count, header.timestamp)
 
     # Decrypt with ChaCha20-Poly1305
     cipher = ChaCha20Poly1305(layer_key)

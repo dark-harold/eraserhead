@@ -12,7 +12,55 @@ models:
     cost_per_1m: 15.00
     max_tokens: 1000000
 
+  # 😐 Local models (Harold's privacy-first brain)
+  qwen2_3-coder-0_5b:
+    id: "qwen2.3-coder-0.5b-instruct"
+    cost_per_1m: 0.0  # Local = free (just electricity and Harold's suffering)
+    max_tokens: 32768
+    context_window: 32768
+    quantization: "q4_k_m"
+    size_gb: 0.4
+    use_case: "Simple refactoring, formatting, quick fixes"
+    provider: "llamacpp"
+    
+  qwen2_3-coder-1_5b:
+    id: "qwen2.3-coder-1.5b-instruct"
+    cost_per_1m: 0.0
+    max_tokens: 32768
+    context_window: 32768
+    quantization: "q4_k_m"
+    size_gb: 1.1
+    use_case: "Testing, documentation, moderate complexity code"
+    provider: "llamacpp"
+    
+  qwen2_3-coder-3b:
+    id: "qwen2.3-coder-3b-instruct"
+    cost_per_1m: 0.0
+    max_tokens: 32768
+    context_window: 32768
+    quantization: "q4_k_m"
+    size_gb: 2.2
+    use_case: "Implementation, refactoring, code review"
+    provider: "llamacpp"
+    
+  qwen2_3-coder-7b:
+    id: "qwen2.3-coder-7b-instruct"
+    cost_per_1m: 0.0
+    max_tokens: 32768
+    context_window: 32768
+    quantization: "q4_k_m"
+    size_gb: 4.9
+    use_case: "Complex implementation, architecture, security analysis"
+    provider: "llamacpp"  # or vllm when GPU available
+
 # 😐 Harold's model routing wisdom
+# Local-first for privacy, cloud for complex reasoning
+local_first:
+  enabled: true  # Prefer local models when available
+  gpu_model: "qwen2_3-coder-7b"  # vLLM when GPU detected
+  cpu_model: "qwen2_3-coder-3b"  # llama.cpp fallback
+  fallback_cloud: true  # Use cloud for truly complex tasks
+
 task_patterns:
   simple:
     keywords:
@@ -22,7 +70,8 @@ task_patterns:
       - "rename"
       - "simple"
       - "quick"
-    model: haiku
+    model: qwen2_3-coder-0_5b  # Harold's fastest local brain
+    fallback: haiku
   
   moderate:
     keywords:
@@ -32,7 +81,8 @@ task_patterns:
       - "integrate"
       - "update"
       - "fix bug"
-    model: sonnet
+    model: qwen2_3-coder-3b  # Harold's capable local brain
+    fallback: sonnet
   
   complex:
     keywords:
@@ -40,7 +90,8 @@ task_patterns:
       - "design"
       - "protocol"
       - "system"
-      - "optimize"
+      - "opqwen2_3-coder-7b  # Harold's most powerful local brain
+    fallback: timize"
     model: opus
     effort_level: medium
 

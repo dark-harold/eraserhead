@@ -39,8 +39,8 @@ echo ""
 echo "🔍 Python security analysis (bandit)..."
 if command -v bandit &> /dev/null; then
     cd "$PROJECT_ROOT"
-    if bandit -r src/ -ll -f text 2>&1; then
-        echo -e "${GREEN}✓${NC} No high/medium issues found. Harold smiles nervously."
+    if bandit -r src/ -c pyproject.toml --quiet; then
+        echo -e "${GREEN}✓${NC} No security issues found. Harold smiles nervously."
     else
         echo -e "${RED}✗${NC} Security issues detected! Dark Harold predicted this."
         EXIT_CODE=1
@@ -55,7 +55,23 @@ echo ""
 echo "🔍 Dependency vulnerability scan (safety)..."
 if command -v safety &> /dev/null; then
     cd "$PROJECT_ROOT"
-    if safety check --json 2>&1 | tee /tmp/safety.log; then
+    if safety scan --json; then
+        echo -e "${GREEN}✓${NC} No vulnerable dependencies. Harold is cautiously relieved."
+    else
+        echo -e "${YELLOW}⚠${NC} Vulnerable dependencies found. Harold adds them to the tech debt list."
+        # Don't fail on dependency issues, just warn
+    fi
+else
+    echo -e "${YELLOW}⚠${NC} safety not installed. Harold worries about what he can't see."
+fi
+
+echo ""
+
+# 😐 Additional dependency check (safety strict mode)
+echo "🔍 Strict dependency vulnerability scan (safety)..."
+if command -v safety &> /dev/null; then
+    cd "$PROJECT_ROOT"
+    if safety scan --json 2>&1 | tee /tmp/safety.log; then
         echo -e "${GREEN}✓${NC} No known vulnerabilities. Harold remains cautiously optimistic."
     else
         echo -e "${RED}✗${NC} Vulnerable dependencies found! Harold's concern deepens."

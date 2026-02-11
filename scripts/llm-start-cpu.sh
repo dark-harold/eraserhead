@@ -7,7 +7,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 MODELS_DIR="$PROJECT_ROOT/models/llama-cpp"
-MODEL_FILE="qwen2.5-coder-7b-instruct-q4_k_m.gguf"
+MODEL_FILE="${MODEL_FILE:-qwen2.5-coder-1.5b-instruct-q4_k_m.gguf}"  # 😐 1.5b: Best balance of quality and speed
 
 # Colors
 GREEN='\033[0;32m'

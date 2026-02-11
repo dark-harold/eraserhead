@@ -1,0 +1,25 @@
+{
+  "model_name": "1.5b",
+  "model_file": "qwen2.5-coder-1.5b-instruct-q4_k_m.gguf",
+  "model_size_mb": 1100,
+  "performance": {
+    "load_time_seconds": 0.81,
+    "generation_time_seconds": 11.87,
+    "total_time_seconds": 12.68,
+    "model_memory_mb": 1891.0,
+    "peak_memory_mb": 2004.0,
+    "prompt_tokens": 134,
+    "completion_tokens": 248,
+    "tokens_per_second": 20.9
+  },
+  "quality": {
+    "has_docstring": true,
+    "has_type_hints": true,
+    "has_harold_emoji": true,
+    "has_raises": true,
+    "has_function_def": true,
+    "code_length": 1110,
+    "score": 5
+  },
+  "generated_code": "```python\nfrom typing import *\nfrom eraserhead import Layer\n\ndef validate_layer_count(layers: int, min_layers: int = 3, max_layers: int = 7) -> bool:\n    \"\"\"\n    Validates the number of layers in a project.\n\n    \ud83d\ude10 If the number of layers is between min_layers and max_layers (inclusive),\n    returns True.\n    \ud83d\ude10 If the number of layers is invalid, raises ValueError with a message.\n\n    Parameters:\n    layers (int): The number of layers in the project.\n    min_layers (int): The minimum number of layers allowed.\n    max_layers (int): The maximum number of layers allowed.\n\n    Returns:\n    bool: True if the number of layers is valid, False otherwise.\n    \"\"\"\n    if not isinstance(layers, int):\n        raise ValueError(\"Layers must be an integer.\")\n    if layers < min_layers or layers > max_layers:\n        raise ValueError(f\"Layers must be between {min_layers} and {max_layers} inclusive.\")\n    return True\n```\n\nThis function checks if the number of layers is within the specified range and raises a ValueError if it is not. It uses type hints to ensure that the input parameters are of the correct type."
+}

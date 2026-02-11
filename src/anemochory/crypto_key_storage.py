@@ -195,9 +195,7 @@ class EncryptedFileBackend:
 
     def list_keys(self) -> list[str]:
         """List all key IDs in storage directory."""
-        return [
-            f.stem for f in self._storage_path.glob("*.key")
-        ]
+        return [f.stem for f in self._storage_path.glob("*.key")]
 
 
 class MasterKeyManager:
@@ -592,8 +590,8 @@ class MasterKeyManager:
 
         Raises: Exception if passphrase wrong or ciphertext tampered.
         """
-        nonce = encrypted_blob[:self.AES_NONCE_SIZE]
-        ciphertext = encrypted_blob[self.AES_NONCE_SIZE:]
+        nonce = encrypted_blob[: self.AES_NONCE_SIZE]
+        ciphertext = encrypted_blob[self.AES_NONCE_SIZE :]
         associated_data = f"{self._app_name}-mk-{key_id}".encode()
 
         aesgcm = AESGCM(mek)
@@ -627,7 +625,7 @@ class MasterKeyManager:
                 result = libc.mlock(addr, size)
                 if result != 0:
                     pass  # Failed, but non-fatal
-        except (AttributeError, OSError):
+        except AttributeError, OSError:
             # mlock unavailable or insufficient permissions
             # 😐 Harold: "We tried. Attackers with root have bigger problems."
             pass

@@ -179,9 +179,7 @@ class SecureSession:
         Never serialize or persist it.
         """
         if self._state != SessionState.CREATED:
-            raise SessionStateError(
-                f"Cannot initiate key exchange in state {self._state.name}"
-            )
+            raise SessionStateError(f"Cannot initiate key exchange in state {self._state.name}")
 
         self._keypair = self._fs_manager.generate_session_keypair()
         self._state = SessionState.KEY_EXCHANGE
@@ -205,9 +203,7 @@ class SecureSession:
         The shared secret is immediately consumed by HKDF - never stored.
         """
         if self._state != SessionState.KEY_EXCHANGE:
-            raise SessionStateError(
-                f"Cannot complete key exchange in state {self._state.name}"
-            )
+            raise SessionStateError(f"Cannot complete key exchange in state {self._state.name}")
 
         if self._keypair is None:
             raise SessionStateError("No keypair generated - call initiate_key_exchange() first")
@@ -221,9 +217,7 @@ class SecureSession:
             # 🌑 Derive deterministic session binding from both public keys
             # Both sides sort keys identically → same HKDF input
             keys_sorted = sorted([self._keypair.public_key, peer_public_key])
-            shared_session_id = hashlib.sha256(
-                keys_sorted[0] + keys_sorted[1]
-            ).digest()
+            shared_session_id = hashlib.sha256(keys_sorted[0] + keys_sorted[1]).digest()
 
             # Derive session master key (binds to shared session_id)
             session_master_key = self._fs_manager.derive_session_master_key(
@@ -264,9 +258,7 @@ class SecureSession:
         🌑 Less secure than ECDH - no forward secrecy guarantee.
         """
         if self._state != SessionState.CREATED:
-            raise SessionStateError(
-                f"Cannot establish with shared key in state {self._state.name}"
-            )
+            raise SessionStateError(f"Cannot establish with shared key in state {self._state.name}")
 
         if len(shared_key) != 32:
             raise ValueError(f"Shared key must be 32 bytes, got {len(shared_key)}")
@@ -295,9 +287,7 @@ class SecureSession:
         4. Auto-rotates key if threshold reached
         """
         if self._state != SessionState.ESTABLISHED:
-            raise SessionStateError(
-                f"Cannot encrypt in state {self._state.name}"
-            )
+            raise SessionStateError(f"Cannot encrypt in state {self._state.name}")
 
         if self._rotation_manager is None:
             raise SessionStateError("Session not properly established")
@@ -336,9 +326,7 @@ class SecureSession:
         3. Records nonce as seen
         """
         if self._state != SessionState.ESTABLISHED:
-            raise SessionStateError(
-                f"Cannot decrypt in state {self._state.name}"
-            )
+            raise SessionStateError(f"Cannot decrypt in state {self._state.name}")
 
         if self._rotation_manager is None:
             raise SessionStateError("Session not properly established")
@@ -346,9 +334,7 @@ class SecureSession:
         # Check for replay attack
         if self._replay_manager.is_nonce_seen(nonce, self._session_id):
             self._replay_blocks += 1
-            raise SessionError(
-                "🌑 Replay attack detected: duplicate nonce"
-            )
+            raise SessionError("🌑 Replay attack detected: duplicate nonce")
 
         # Decrypt (tries current key + grace period keys)
         plaintext = self._rotation_manager.decrypt(nonce, ciphertext)
@@ -382,11 +368,7 @@ class SecureSession:
         Returns:
             SessionStats with current metrics
         """
-        rotation_stats = (
-            self._rotation_manager.get_stats()
-            if self._rotation_manager
-            else {}
-        )
+        rotation_stats = self._rotation_manager.get_stats() if self._rotation_manager else {}
 
         return SessionStats(
             session_id=self._session_id.hex(),
