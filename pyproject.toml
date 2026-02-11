@@ -3,7 +3,7 @@ name = "eraserhead"
 version = "0.1.0"
 description = "Pragmatically erasing digital footprints while smiling through the pain 😐"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.13"  # 😐 Adjusted for development (3.14 preferred)
 license = { text = "MIT" }
 authors = [
     { name = "Harold", email = "harold@hidethepain.local" }
@@ -29,13 +29,41 @@ dev = [
     "pytest>=8.3.0",
     "pytest-cov>=5.0.0",
     "pytest-trio>=0.8.0",
+    "pytest-xdist>=3.6.0",  # Parallel test execution
+    "pytest-timeout>=2.3.0",  # Test timeouts
+    "pytest-mock>=3.14.0",  # Enhanced mocking
     "ruff>=0.7.0",
-    "bandit>=1.7.10",
-    "safety>=3.2.0",
+    "mypy>=1.13.0",  # Static type checking
+    "bandit>=1.7.10",  # Security linting
+    "safety>=3.2.0",  # Dependency vulnerability scanning
+    "pyright>=1.1.380",  # Additional type checker
+    "vulture>=2.11.0",  # Dead code detection
+    "radon>=6.0.1",  # Code complexity metrics
+    "interrogate>=1.7.0",  # Docstring coverage
+    "pre-commit>=4.0.0",  # Git hooks
 ]
 
 llm = [
     "llama-cpp-python>=0.3.0",
+    "vllm>=0.6.0;platform_machine=='x86_64'",  # vLLM for GPU (x86_64 only)
+]
+
+# 😐 Harold's security paranoia toolkit
+security = [
+    "bandit>=1.7.10",
+    "safety>=3.2.0",
+    "gitleaks>=8.18.0;platform_system=='Linux'",  # Secret scanning
+    "pip-audit>=2.7.0",  # Audit Python packages for known vulnerabilities
+]
+
+# 😐 Dark Harold's code quality obsession
+quality = [
+    "ruff>=0.7.0",
+    "mypy>=1.13.0",
+    "pyright>=1.1.380",
+    "vulture>=2.11.0",
+    "radon>=6.0.1",
+    "interrogate>=1.7.0",
 ]
 
 [project.scripts]
@@ -51,10 +79,67 @@ packages = ["src/eraserhead", "src/anemochory"]
 [tool.ruff]
 line-length = 100
 target-version = "py314"
+src = ["src", "tests"]
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "*.pyc",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".ruff_cache",
+    "build",
+    "dist",
+]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
-ignore = ["E501"]  # Harold smiles through long lines
+# 😐 Harold's opinionated rule selection
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort (import sorting)
+    "N",      # pep8-naming
+    "UP",     # pyupgrade (Python 3.14 idioms)
+    "B",      # flake8-bugbear (likely bugs)
+    "C4",     # flake8-comprehensions
+    "SIM",    # flake8-simplify
+    "RUF",    # Ruff-specific rules
+    "S",      # flake8-bandit (security)
+    "A",      # flake8-builtins (shadowing builtins)
+    "DTZ",    # flake8-datetimez (timezone-aware datetime)
+    "T20",    # flake8-print (no print statements)
+    "PT",     # flake8-pytest-style
+    "Q",      # flake8-quotes
+    "RET",    # flake8-return (return statement consistency)
+    "TCH",    # flake8-type-checking (TYPE_CHECKING blocks)
+    "ARG",    # flake8-unused-arguments
+    "PTH",    # flake8-use-pathlib (pathlib over os.path)
+    "ERA",    # eradicate (commented-out code)
+    "PL",     # Pylint
+    "PERF",   # Perflint (performance anti-patterns)
+]
+
+ignore = [
+    "E501",    # Line too long (handled by formatter)
+    "S101",    # assert usage (fine in tests)
+    "PLR0913", # Too many arguments (sometimes necessary)
+    "PLR2004", # Magic value (not always bad)
+]
+
+# 😐 Per-file ignores
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106", "PLR2004", "ARG001"]  # Allow asserts, hardcoded passwords, magic values, unused args
+"__init__.py" = ["F401"]  # Allow unused imports in __init__.py
+
+[tool.ruff.lint.isort]
+known-first-party = ["eraserhead", "anemochory"]
+force-single-line = false
+lines-after-imports = 2
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"  # Harold narrates in Google style
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -83,3 +168,61 @@ fail_under = 80  # Harold demands quality while hiding pain
 [tool.bandit]
 exclude_dirs = ["tests", "venv", ".venv"]
 skips = ["B101"]  # assert usage in tests is fine
+
+# 😐 Harold's type checking paranoia
+[tool.mypy]
+python_version = "3.14"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_calls = true
+no_implicit_optional = true
+strict_equality = true
+warn_unreachable = true
+show_error_codes = true
+enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false  # Tests can be less strict
+
+[[tool.mypy.overrides]]
+module = [
+    "llama_cpp.*",
+    "trio.*",
+    "httpx.*",
+]
+ignore_missing_imports = true
+
+# 😐 Pyright additional type checking
+[tool.pyright]
+pythonVersion = "3.14"
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+reportUnknownMemberType = false
+reportUnknownArgumentType = false
+reportUnknownVariableType = false
+exclude = [
+    "**/__pycache__",
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+]
+
+# 😐 Dead code detection (Dark Harold finds all the bodies)
+[tool.vulture]
+min_confidence = 80
+paths = ["src"]
+exclude = ["tests/", ".venv/", "venv/"]
+
+# 😐 Code complexity metrics (Harold measures the pain)
+[tool.radon]
+exclude = "tests/*,venv/*,.venv/*"
+cc_min = "B"  # Minimum complexity grade
+mi_min = 65   # Maintainability index minimum
