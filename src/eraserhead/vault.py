@@ -257,7 +257,9 @@ class CredentialVault:
             result: dict[str, Any] = json.loads(decrypted.decode())
             return result
         except InvalidToken as exc:
-            raise VaultCorruptedError("Decryption failed — wrong passphrase or corrupted vault") from exc
+            raise VaultCorruptedError(
+                "Decryption failed — wrong passphrase or corrupted vault"
+            ) from exc
         except (json.JSONDecodeError, OSError) as e:
             raise VaultCorruptedError(f"Vault data corrupted: {e}") from e
 

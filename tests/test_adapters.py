@@ -130,9 +130,7 @@ class TestAdapterLifecycle:
 class TestDeletion:
     """😐 Delete all the things (with permission)."""
 
-    async def test_delete_existing_resource(
-        self, twitter_data, twitter_creds, make_task
-    ) -> None:
+    async def test_delete_existing_resource(self, twitter_data, twitter_creds, make_task) -> None:
         adapter = TwitterAdapter(twitter_data)
         await adapter.authenticate(twitter_creds)
 
@@ -159,9 +157,7 @@ class TestDeletion:
         assert result.success is False
         assert "not authenticated" in result.error_message.lower()
 
-    async def test_delete_updates_stats(
-        self, twitter_data, twitter_creds, make_task
-    ) -> None:
+    async def test_delete_updates_stats(self, twitter_data, twitter_creds, make_task) -> None:
         adapter = TwitterAdapter(twitter_data)
         await adapter.authenticate(twitter_creds)
 
@@ -181,9 +177,7 @@ class TestDeletion:
 class TestVerification:
     """🌑 Trust, but verify. Then verify again."""
 
-    async def test_verify_deleted_resource(
-        self, twitter_data, twitter_creds, make_task
-    ) -> None:
+    async def test_verify_deleted_resource(self, twitter_data, twitter_creds, make_task) -> None:
         adapter = TwitterAdapter(twitter_data)
         await adapter.authenticate(twitter_creds)
 
@@ -193,9 +187,7 @@ class TestVerification:
         status = await adapter.verify_deletion(task)
         assert status == VerificationStatus.CONFIRMED
 
-    async def test_verify_existing_resource(
-        self, twitter_data, twitter_creds, make_task
-    ) -> None:
+    async def test_verify_existing_resource(self, twitter_data, twitter_creds, make_task) -> None:
         adapter = TwitterAdapter(twitter_data)
         await adapter.authenticate(twitter_creds)
 
@@ -217,18 +209,14 @@ class TestVerification:
 class TestListResources:
     """😐 Cataloguing Harold's digital footprint."""
 
-    async def test_list_resources(
-        self, twitter_data, twitter_creds
-    ) -> None:
+    async def test_list_resources(self, twitter_data, twitter_creds) -> None:
         adapter = TwitterAdapter(twitter_data)
         await adapter.authenticate(twitter_creds)
 
         posts = await adapter.list_resources(ResourceType.POST)
         assert len(posts) == 2
 
-    async def test_list_empty_type(
-        self, twitter_data, twitter_creds
-    ) -> None:
+    async def test_list_empty_type(self, twitter_data, twitter_creds) -> None:
         adapter = TwitterAdapter(twitter_data)
         await adapter.authenticate(twitter_creds)
 
@@ -305,9 +293,7 @@ class TestPlatformAdapters:
         data.add_resource(ResourceType.POST, "fb-post-1")
         adapter = FacebookAdapter(data)
 
-        creds = PlatformCredentials(
-            platform=Platform.FACEBOOK, username="harold", auth_token="tok"
-        )
+        creds = PlatformCredentials(platform=Platform.FACEBOOK, username="harold", auth_token="tok")
         await adapter.authenticate(creds)
 
         task = DeletionTask(

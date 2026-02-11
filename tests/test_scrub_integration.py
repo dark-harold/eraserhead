@@ -9,8 +9,9 @@ The complete arc of Harold's deletion journey.
 
 from __future__ import annotations
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from eraserhead.adapters.platforms import (
     FacebookAdapter,
@@ -138,9 +139,7 @@ class TestDryRunPipeline:
         data.add_resource(ResourceType.POST, "precious-tweet")
 
         adapter = TwitterAdapter(data)
-        creds = PlatformCredentials(
-            platform=Platform.TWITTER, username="harold", auth_token="tok"
-        )
+        creds = PlatformCredentials(platform=Platform.TWITTER, username="harold", auth_token="tok")
         await adapter.authenticate(creds)
 
         engine = ScrubEngine(EngineConfig(dry_run=True))
@@ -170,9 +169,7 @@ class TestQueuePersistence:
         data.add_resource(ResourceType.POST, "t2")
 
         adapter = TwitterAdapter(data)
-        creds = PlatformCredentials(
-            platform=Platform.TWITTER, username="harold", auth_token="tok"
-        )
+        creds = PlatformCredentials(platform=Platform.TWITTER, username="harold", auth_token="tok")
         await adapter.authenticate(creds)
 
         # Run first batch
@@ -204,17 +201,13 @@ class TestVerificationPipeline:
         data.add_resource(ResourceType.POST, "t2")
 
         adapter = TwitterAdapter(data)
-        creds = PlatformCredentials(
-            platform=Platform.TWITTER, username="harold", auth_token="tok"
-        )
+        creds = PlatformCredentials(platform=Platform.TWITTER, username="harold", auth_token="tok")
         await adapter.authenticate(creds)
 
         # Run engine (deletes resources)
         engine = ScrubEngine(EngineConfig(verify_after_delete=False))
         engine.register_adapter(adapter)
-        tasks = engine.add_tasks(
-            Platform.TWITTER, ResourceType.POST, ["t1", "t2"]
-        )
+        tasks = engine.add_tasks(Platform.TWITTER, ResourceType.POST, ["t1", "t2"])
 
         await engine.run()
 
@@ -235,9 +228,7 @@ class TestVerificationPipeline:
         data.add_resource(ResourceType.POST, "stubborn-tweet")
 
         adapter = TwitterAdapter(data)
-        creds = PlatformCredentials(
-            platform=Platform.TWITTER, username="harold", auth_token="tok"
-        )
+        creds = PlatformCredentials(platform=Platform.TWITTER, username="harold", auth_token="tok")
         await adapter.authenticate(creds)
 
         # Create task but don't actually delete
@@ -274,24 +265,16 @@ class TestPriorityPipeline:
             data.add_resource(ResourceType.POST, f"t{i}")
 
         adapter = TwitterAdapter(data)
-        creds = PlatformCredentials(
-            platform=Platform.TWITTER, username="harold", auth_token="tok"
-        )
+        creds = PlatformCredentials(platform=Platform.TWITTER, username="harold", auth_token="tok")
         await adapter.authenticate(creds)
 
         engine = ScrubEngine()
         engine.register_adapter(adapter)
 
         # Add in reverse priority order
-        engine.add_tasks(
-            Platform.TWITTER, ResourceType.POST, ["t0"], TaskPriority.BACKGROUND
-        )
-        engine.add_tasks(
-            Platform.TWITTER, ResourceType.POST, ["t1"], TaskPriority.URGENT
-        )
-        engine.add_tasks(
-            Platform.TWITTER, ResourceType.POST, ["t2"], TaskPriority.STANDARD
-        )
+        engine.add_tasks(Platform.TWITTER, ResourceType.POST, ["t0"], TaskPriority.BACKGROUND)
+        engine.add_tasks(Platform.TWITTER, ResourceType.POST, ["t1"], TaskPriority.URGENT)
+        engine.add_tasks(Platform.TWITTER, ResourceType.POST, ["t2"], TaskPriority.STANDARD)
 
         results = await engine.run()
         assert len(results) == 3

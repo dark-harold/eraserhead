@@ -5,16 +5,17 @@ Smiling while encrypting secrets. What could go wrong.
 
 from __future__ import annotations
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from eraserhead.models import Platform, PlatformCredentials
 from eraserhead.vault import (
-    CredentialVault,
-    VaultLockedError,
-    VaultCorruptedError,
-    CredentialNotFoundError,
     SALT_SIZE,
+    CredentialNotFoundError,
+    CredentialVault,
+    VaultCorruptedError,
+    VaultLockedError,
 )
 
 
@@ -113,9 +114,7 @@ class TestVaultLifecycle:
 class TestVaultCRUD:
     """😐 Store, retrieve, remove, list credentials."""
 
-    def test_store_and_get(
-        self, vault: CredentialVault, sample_creds: PlatformCredentials
-    ) -> None:
+    def test_store_and_get(self, vault: CredentialVault, sample_creds: PlatformCredentials) -> None:
         vault.store(sample_creds)
         retrieved = vault.get(Platform.TWITTER, "dark_harold")
         assert retrieved.platform == Platform.TWITTER
@@ -161,15 +160,15 @@ class TestVaultCRUD:
         assert vault.list_platforms() == []
 
     def test_list_platforms_multiple(self, vault: CredentialVault) -> None:
-        vault.store(PlatformCredentials(
-            platform=Platform.TWITTER, username="user1", auth_token="t1"
-        ))
-        vault.store(PlatformCredentials(
-            platform=Platform.FACEBOOK, username="user2", auth_token="t2"
-        ))
-        vault.store(PlatformCredentials(
-            platform=Platform.INSTAGRAM, username="user3", auth_token="t3"
-        ))
+        vault.store(
+            PlatformCredentials(platform=Platform.TWITTER, username="user1", auth_token="t1")
+        )
+        vault.store(
+            PlatformCredentials(platform=Platform.FACEBOOK, username="user2", auth_token="t2")
+        )
+        vault.store(
+            PlatformCredentials(platform=Platform.INSTAGRAM, username="user3", auth_token="t3")
+        )
 
         platforms = vault.list_platforms()
         assert len(platforms) == 3
@@ -188,9 +187,9 @@ class TestVaultLocked:
     def test_store_locked(self, vault_dir: Path) -> None:
         vault = CredentialVault(vault_dir)
         with pytest.raises(VaultLockedError):
-            vault.store(PlatformCredentials(
-                platform=Platform.TWITTER, username="x", auth_token="y"
-            ))
+            vault.store(
+                PlatformCredentials(platform=Platform.TWITTER, username="x", auth_token="y")
+            )
 
     def test_get_locked(self, vault_dir: Path) -> None:
         vault = CredentialVault(vault_dir)
@@ -225,9 +224,7 @@ class TestVaultCorruption:
         with pytest.raises(VaultCorruptedError):
             vault.unlock("passphrase")
 
-    def test_corrupted_ciphertext(
-        self, vault_dir: Path, sample_creds: PlatformCredentials
-    ) -> None:
+    def test_corrupted_ciphertext(self, vault_dir: Path, sample_creds: PlatformCredentials) -> None:
         """Tampered ciphertext must be detected."""
         vault = CredentialVault(vault_dir)
         vault.unlock("passphrase")
@@ -238,7 +235,7 @@ class TestVaultCorruption:
         vault_file = vault_dir / "credentials.vault"
         raw = vault_file.read_bytes()
         # Flip a byte in the ciphertext (after salt)
-        tampered = raw[:SALT_SIZE] + bytes([raw[SALT_SIZE] ^ 0xFF]) + raw[SALT_SIZE + 1:]
+        tampered = raw[:SALT_SIZE] + bytes([raw[SALT_SIZE] ^ 0xFF]) + raw[SALT_SIZE + 1 :]
         vault_file.write_bytes(tampered)
 
         vault2 = CredentialVault(vault_dir)
@@ -289,16 +286,14 @@ class TestVaultEdgeCases:
         assert not retrieved.api_key
         assert not retrieved.api_secret
 
-    def test_multiple_accounts_same_platform(
-        self, vault: CredentialVault
-    ) -> None:
+    def test_multiple_accounts_same_platform(self, vault: CredentialVault) -> None:
         """Multiple accounts on the same platform."""
-        vault.store(PlatformCredentials(
-            platform=Platform.TWITTER, username="harold1", auth_token="t1"
-        ))
-        vault.store(PlatformCredentials(
-            platform=Platform.TWITTER, username="harold2", auth_token="t2"
-        ))
+        vault.store(
+            PlatformCredentials(platform=Platform.TWITTER, username="harold1", auth_token="t1")
+        )
+        vault.store(
+            PlatformCredentials(platform=Platform.TWITTER, username="harold2", auth_token="t2")
+        )
 
         c1 = vault.get(Platform.TWITTER, "harold1")
         c2 = vault.get(Platform.TWITTER, "harold2")

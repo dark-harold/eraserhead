@@ -257,17 +257,20 @@ class ScrubEngine:
             failed = sum(1 for t in tasks if t.status == TaskStatus.FAILED)
             verified = sum(1 for t in tasks if t.status == TaskStatus.VERIFIED)
             pending = sum(
-                1 for t in tasks
+                1
+                for t in tasks
                 if t.status in (TaskStatus.PENDING, TaskStatus.RETRYING, TaskStatus.RUNNING)
             )
 
-            progress_list.append(ScrubProgress(
-                platform=p,
-                total_tasks=len(tasks),
-                completed=completed,
-                failed=failed,
-                verified=verified,
-                pending=pending,
-            ))
+            progress_list.append(
+                ScrubProgress(
+                    platform=p,
+                    total_tasks=len(tasks),
+                    completed=completed,
+                    failed=failed,
+                    verified=verified,
+                    pending=pending,
+                )
+            )
 
         return progress_list

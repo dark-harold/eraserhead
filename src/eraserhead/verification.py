@@ -127,9 +127,7 @@ class VerificationService:
 
         return result
 
-    async def scan(
-        self, tasks: list[DeletionTask]
-    ) -> list[VerificationResult]:
+    async def scan(self, tasks: list[DeletionTask]) -> list[VerificationResult]:
         """
         Batch verification scan.
 

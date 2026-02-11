@@ -272,9 +272,7 @@ class PlatformAdapter(ABC):
         except Exception:
             return VerificationStatus.NOT_VERIFIED
 
-    async def list_resources(
-        self, resource_type: ResourceType
-    ) -> list[dict[str, str]]:
+    async def list_resources(self, resource_type: ResourceType) -> list[dict[str, str]]:
         """
         List resources of a given type on the platform.
 
@@ -296,9 +294,7 @@ class PlatformAdapter(ABC):
     # ========================================================================
 
     @abstractmethod
-    async def _do_authenticate(
-        self, credentials: PlatformCredentials
-    ) -> bool:
+    async def _do_authenticate(self, credentials: PlatformCredentials) -> bool:
         """Platform-specific authentication."""
         ...
 
@@ -313,9 +309,7 @@ class PlatformAdapter(ABC):
         ...
 
     @abstractmethod
-    async def _do_list_resources(
-        self, resource_type: ResourceType
-    ) -> list[dict[str, str]]:
+    async def _do_list_resources(self, resource_type: ResourceType) -> list[dict[str, str]]:
         """Platform-specific resource listing."""
         ...
 

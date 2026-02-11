@@ -74,8 +74,13 @@ def vault_store(
     token: Annotated[str, typer.Option("--token", help="Auth token")] = "",
     api_key: Annotated[str, typer.Option("--api-key", help="API key")] = "",
     api_secret: Annotated[str, typer.Option("--api-secret", help="API secret")] = "",
-    passphrase: Annotated[str, typer.Option("--passphrase", "-p", help="Vault passphrase", prompt=True, hide_input=True)] = "",
-    vault_dir: Annotated[Path, typer.Option("--vault-dir", help="Vault directory")] = DEFAULT_VAULT_DIR,
+    passphrase: Annotated[
+        str,
+        typer.Option("--passphrase", "-p", help="Vault passphrase", prompt=True, hide_input=True),
+    ] = "",
+    vault_dir: Annotated[
+        Path, typer.Option("--vault-dir", help="Vault directory")
+    ] = DEFAULT_VAULT_DIR,
 ) -> None:
     """Store credentials for a platform."""
     try:
@@ -106,8 +111,13 @@ def vault_store(
 
 @vault_app.command("list")
 def vault_list(
-    passphrase: Annotated[str, typer.Option("--passphrase", "-p", help="Vault passphrase", prompt=True, hide_input=True)] = "",
-    vault_dir: Annotated[Path, typer.Option("--vault-dir", help="Vault directory")] = DEFAULT_VAULT_DIR,
+    passphrase: Annotated[
+        str,
+        typer.Option("--passphrase", "-p", help="Vault passphrase", prompt=True, hide_input=True),
+    ] = "",
+    vault_dir: Annotated[
+        Path, typer.Option("--vault-dir", help="Vault directory")
+    ] = DEFAULT_VAULT_DIR,
 ) -> None:
     """List stored credentials."""
     vault = CredentialVault(vault_dir)
@@ -133,8 +143,13 @@ def vault_list(
 def vault_remove(
     platform: Annotated[str, typer.Argument(help="Platform name")],
     username: Annotated[str, typer.Argument(help="Account username")],
-    passphrase: Annotated[str, typer.Option("--passphrase", "-p", help="Vault passphrase", prompt=True, hide_input=True)] = "",
-    vault_dir: Annotated[Path, typer.Option("--vault-dir", help="Vault directory")] = DEFAULT_VAULT_DIR,
+    passphrase: Annotated[
+        str,
+        typer.Option("--passphrase", "-p", help="Vault passphrase", prompt=True, hide_input=True),
+    ] = "",
+    vault_dir: Annotated[
+        Path, typer.Option("--vault-dir", help="Vault directory")
+    ] = DEFAULT_VAULT_DIR,
 ) -> None:
     """Remove stored credentials."""
     try:
@@ -167,12 +182,23 @@ def vault_remove(
 @app.command("scrub")
 def scrub(
     platform: Annotated[str, typer.Argument(help="Platform to scrub")],
-    resource_type: Annotated[str, typer.Option("--type", "-t", help="Resource type (post, comment, like, photo, etc.)")] = "post",
-    resource_ids: Annotated[str | None, typer.Option("--ids", help="Comma-separated resource IDs")] = None,
+    resource_type: Annotated[
+        str, typer.Option("--type", "-t", help="Resource type (post, comment, like, photo, etc.)")
+    ] = "post",
+    resource_ids: Annotated[
+        str | None, typer.Option("--ids", help="Comma-separated resource IDs")
+    ] = None,
     dry_run: Annotated[bool, typer.Option("--dry-run", help="Preview without deleting")] = False,
-    priority: Annotated[str, typer.Option("--priority", help="Task priority (urgent/high/standard/low/background)")] = "standard",
-    passphrase: Annotated[str, typer.Option("--passphrase", "-p", help="Vault passphrase", prompt=True, hide_input=True)] = "",
-    vault_dir: Annotated[Path, typer.Option("--vault-dir", help="Vault directory")] = DEFAULT_VAULT_DIR,
+    priority: Annotated[
+        str, typer.Option("--priority", help="Task priority (urgent/high/standard/low/background)")
+    ] = "standard",
+    passphrase: Annotated[
+        str,
+        typer.Option("--passphrase", "-p", help="Vault passphrase", prompt=True, hide_input=True),
+    ] = "",
+    vault_dir: Annotated[
+        Path, typer.Option("--vault-dir", help="Vault directory")
+    ] = DEFAULT_VAULT_DIR,
 ) -> None:
     """
     😐 Scrub resources from a platform.
@@ -263,7 +289,9 @@ def scrub(
 
 @app.command("status")
 def status(
-    queue_path: Annotated[Path, typer.Option("--queue", help="Queue file path")] = DEFAULT_QUEUE_PATH,
+    queue_path: Annotated[
+        Path, typer.Option("--queue", help="Queue file path")
+    ] = DEFAULT_QUEUE_PATH,
 ) -> None:
     """Show current queue status."""
     from eraserhead.queue import QueueError, TaskQueue

@@ -5,8 +5,9 @@ Testing failure modes is the most honest work Harold does.
 
 from __future__ import annotations
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from eraserhead.models import (
     DeletionTask,
@@ -16,12 +17,12 @@ from eraserhead.models import (
     TaskStatus,
 )
 from eraserhead.queue import (
-    TaskQueue,
+    BASE_RETRY_DELAY_SECONDS,
+    MAX_RETRY_DELAY_SECONDS,
     DuplicateTaskError,
     QueueEmptyError,
     QueueError,
-    BASE_RETRY_DELAY_SECONDS,
-    MAX_RETRY_DELAY_SECONDS,
+    TaskQueue,
 )
 
 

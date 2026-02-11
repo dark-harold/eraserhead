@@ -258,8 +258,16 @@ class KeyRotationManager:
         # Derive next key via ratcheting
         new_key = self._derive_next_key(self._current_session_key)
 
-        # TODO: Securely wipe old key from memory (requires ctypes memset)
-        # For now, Python GC will eventually collect it
+        # 😐 Securely wipe old key from memory
+        # 🌑 Without this, old keys linger in Python heap until GC collects them.
+        #    An attacker with memory access could extract expired session keys.
+        try:
+            from .crypto_memory import secure_zero_memory
+
+            old_key_buf = bytearray(self._current_session_key)
+            secure_zero_memory(old_key_buf)
+        except Exception:
+            pass  # 😐 Best effort; ctypes may not be available on all platforms
 
         # Update state
         self._current_session_key = new_key

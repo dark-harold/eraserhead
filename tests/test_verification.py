@@ -16,7 +16,7 @@ from eraserhead.models import (
     TaskStatus,
     VerificationStatus,
 )
-from eraserhead.verification import VerificationService, VerificationResult
+from eraserhead.verification import VerificationResult, VerificationService
 
 
 # ============================================================================
@@ -31,9 +31,7 @@ def twitter_verified():
     data.add_resource(ResourceType.POST, "still-here")
     # "deleted-tweet" not in data = simulates successful deletion
     adapter = TwitterAdapter(data)
-    creds = PlatformCredentials(
-        platform=Platform.TWITTER, username="harold", auth_token="tok"
-    )
+    creds = PlatformCredentials(platform=Platform.TWITTER, username="harold", auth_token="tok")
     return adapter, creds
 
 
@@ -66,9 +64,7 @@ def make_completed_task():
 class TestVerifySingle:
     """🌑 One check at a time."""
 
-    async def test_verify_confirmed(
-        self, twitter_verified, make_completed_task
-    ) -> None:
+    async def test_verify_confirmed(self, twitter_verified, make_completed_task) -> None:
         adapter, creds = twitter_verified
         await adapter.authenticate(creds)
 
@@ -80,9 +76,7 @@ class TestVerifySingle:
         assert result.status == VerificationStatus.CONFIRMED
         assert task.status == TaskStatus.VERIFIED
 
-    async def test_verify_still_exists(
-        self, twitter_verified, make_completed_task
-    ) -> None:
+    async def test_verify_still_exists(self, twitter_verified, make_completed_task) -> None:
         adapter, creds = twitter_verified
         await adapter.authenticate(creds)
 
@@ -100,9 +94,7 @@ class TestVerifySingle:
         assert result.status == VerificationStatus.NOT_VERIFIED
         assert "No adapter" in result.error
 
-    async def test_verify_unauthenticated(
-        self, twitter_verified, make_completed_task
-    ) -> None:
+    async def test_verify_unauthenticated(self, twitter_verified, make_completed_task) -> None:
         adapter, _ = twitter_verified
         # Don't authenticate
         service = VerificationService()
@@ -121,9 +113,7 @@ class TestVerifySingle:
 class TestBatchScan:
     """😐 Bulk verification for the thorough."""
 
-    async def test_scan_completed_tasks(
-        self, twitter_verified, make_completed_task
-    ) -> None:
+    async def test_scan_completed_tasks(self, twitter_verified, make_completed_task) -> None:
         adapter, creds = twitter_verified
         await adapter.authenticate(creds)
 
@@ -142,9 +132,7 @@ class TestBatchScan:
         assert len(confirmed) == 1
         assert len(failed) == 1
 
-    async def test_scan_skips_pending_tasks(
-        self, twitter_verified, make_completed_task
-    ) -> None:
+    async def test_scan_skips_pending_tasks(self, twitter_verified, make_completed_task) -> None:
         adapter, creds = twitter_verified
         await adapter.authenticate(creds)
 
@@ -171,9 +159,7 @@ class TestBatchScan:
 class TestVerificationStats:
     """😐 Metrics for Harold's verification anxiety."""
 
-    async def test_stats_after_scans(
-        self, twitter_verified, make_completed_task
-    ) -> None:
+    async def test_stats_after_scans(self, twitter_verified, make_completed_task) -> None:
         adapter, creds = twitter_verified
         await adapter.authenticate(creds)
 
@@ -188,9 +174,7 @@ class TestVerificationStats:
         assert stats["confirmed"] == 1
         assert stats["failed"] == 1
 
-    async def test_history_tracked(
-        self, twitter_verified, make_completed_task
-    ) -> None:
+    async def test_history_tracked(self, twitter_verified, make_completed_task) -> None:
         adapter, creds = twitter_verified
         await adapter.authenticate(creds)
 
@@ -226,16 +210,13 @@ class TestVerificationEdgeCases:
         assert len(results) == 1
         assert results[0].status == VerificationStatus.CONFIRMED
 
-    async def test_verify_exception_in_adapter(
-        self, make_completed_task
-    ) -> None:
+    async def test_verify_exception_in_adapter(self, make_completed_task) -> None:
         """Adapter that raises during verify should be handled gracefully.
-        
+
         The adapter's verify_deletion catches all exceptions and returns
         NOT_VERIFIED. The error detail is swallowed at the adapter layer.
         """
-        from eraserhead.adapters import PlatformAdapter
-        from eraserhead.adapters import RateLimitConfig
+        from eraserhead.adapters import PlatformAdapter, RateLimitConfig
 
         class BrokenAdapter(PlatformAdapter):
             def __init__(self):
@@ -280,9 +261,7 @@ class TestVerificationEdgeCases:
         assert stats["confirmed"] == 0
         assert stats["failed"] == 0
 
-    async def test_scan_mixed_statuses(
-        self, twitter_verified, make_completed_task
-    ) -> None:
+    async def test_scan_mixed_statuses(self, twitter_verified, make_completed_task) -> None:
         """Scan skips PENDING, RUNNING, FAILED, CANCELLED tasks."""
         adapter, creds = twitter_verified
         await adapter.authenticate(creds)
@@ -291,8 +270,12 @@ class TestVerificationEdgeCases:
         service.register_adapter(adapter)
 
         tasks = []
-        for status_val in [TaskStatus.PENDING, TaskStatus.RUNNING,
-                           TaskStatus.FAILED, TaskStatus.CANCELLED]:
+        for status_val in [
+            TaskStatus.PENDING,
+            TaskStatus.RUNNING,
+            TaskStatus.FAILED,
+            TaskStatus.CANCELLED,
+        ]:
             t = DeletionTask(
                 task_id=f"task-{status_val}",
                 platform=Platform.TWITTER,

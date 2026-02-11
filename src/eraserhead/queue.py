@@ -139,9 +139,7 @@ class TaskQueue:
         """
         resource_key = f"{platform}:{resource_type}:{resource_id}"
         if resource_key in self._resource_index:
-            raise DuplicateTaskError(
-                f"Resource already queued: {resource_key}"
-            )
+            raise DuplicateTaskError(f"Resource already queued: {resource_key}")
 
         task = DeletionTask(
             task_id=secrets.token_hex(8),
@@ -169,9 +167,7 @@ class TaskQueue:
 
         resource_key = f"{task.platform}:{task.resource_type}:{task.resource_id}"
         if resource_key in self._resource_index:
-            raise DuplicateTaskError(
-                f"Resource already queued: {resource_key}"
-            )
+            raise DuplicateTaskError(f"Resource already queued: {resource_key}")
 
         self._tasks[task.task_id] = task
         self._resource_index.add(resource_key)
@@ -191,8 +187,7 @@ class TaskQueue:
             QueueEmptyError: If no pending tasks
         """
         pending = [
-            t for t in self._tasks.values()
-            if t.status in (TaskStatus.PENDING, TaskStatus.RETRYING)
+            t for t in self._tasks.values() if t.status in (TaskStatus.PENDING, TaskStatus.RETRYING)
         ]
 
         if not pending:
@@ -278,8 +273,7 @@ class TaskQueue:
     def iter_pending(self) -> Iterator[DeletionTask]:
         """Iterate pending tasks in priority order."""
         pending = [
-            t for t in self._tasks.values()
-            if t.status in (TaskStatus.PENDING, TaskStatus.RETRYING)
+            t for t in self._tasks.values() if t.status in (TaskStatus.PENDING, TaskStatus.RETRYING)
         ]
         pending.sort(key=lambda t: (t.priority, t.created_at))
         yield from pending

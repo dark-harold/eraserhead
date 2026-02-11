@@ -5,15 +5,16 @@ Orchestrating deletion with confidence and mild existential dread.
 
 from __future__ import annotations
 
-import pytest
 from pathlib import Path
 
+import pytest
+
 from eraserhead.adapters.platforms import (
+    FacebookAdapter,
     SimulatedPlatformData,
     TwitterAdapter,
-    FacebookAdapter,
 )
-from eraserhead.engine import ScrubEngine, EngineConfig
+from eraserhead.engine import EngineConfig, ScrubEngine
 from eraserhead.models import (
     Platform,
     PlatformCredentials,
@@ -38,9 +39,7 @@ def twitter_setup():
     data.add_resource(ResourceType.POST, "tweet-3")
     data.add_resource(ResourceType.COMMENT, "reply-1")
     adapter = TwitterAdapter(data)
-    creds = PlatformCredentials(
-        platform=Platform.TWITTER, username="harold", auth_token="tok"
-    )
+    creds = PlatformCredentials(platform=Platform.TWITTER, username="harold", auth_token="tok")
     return adapter, creds, data
 
 
@@ -51,9 +50,7 @@ def facebook_setup():
     data.add_resource(ResourceType.POST, "fb-1")
     data.add_resource(ResourceType.PHOTO, "fb-photo-1")
     adapter = FacebookAdapter(data)
-    creds = PlatformCredentials(
-        platform=Platform.FACEBOOK, username="harold", auth_token="tok"
-    )
+    creds = PlatformCredentials(platform=Platform.FACEBOOK, username="harold", auth_token="tok")
     return adapter, creds, data
 
 
@@ -223,9 +220,7 @@ class TestRetryAndFailure:
 class TestMultiPlatform:
     """😐 Deleting across platforms simultaneously."""
 
-    async def test_multi_platform_run(
-        self, twitter_setup, facebook_setup
-    ) -> None:
+    async def test_multi_platform_run(self, twitter_setup, facebook_setup) -> None:
         tw_adapter, tw_creds, tw_data = twitter_setup
         fb_adapter, fb_creds, fb_data = facebook_setup
         await tw_adapter.authenticate(tw_creds)
