@@ -26,6 +26,7 @@ from anemochory.packet import (
 from anemochory.routing import PathSelector, RoutingPath
 from anemochory.transport import PacketSender, TransportError
 
+
 logger = logging.getLogger(__name__)
 
 

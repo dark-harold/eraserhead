@@ -281,8 +281,7 @@ class PathSelector:
         """
         master_secret = ChaCha20Engine.generate_key()
         path.layer_keys = [
-            derive_layer_key(master_secret, i, path.hop_count)
-            for i in range(path.hop_count)
+            derive_layer_key(master_secret, i, path.hop_count) for i in range(path.hop_count)
         ]
 
     def _generate_routing_info(self, path: RoutingPath) -> None:

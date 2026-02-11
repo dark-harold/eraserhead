@@ -207,9 +207,7 @@ class TestEndToEnd:
 
         payload = b"should never arrive"
         session_id = generate_session_id()
-        packet = build_onion_packet(
-            payload, path.build_packet_path(), session_id
-        )
+        packet = build_onion_packet(payload, path.build_packet_path(), session_id)
 
         # Entry node with WRONG key
         wrong_key = ChaCha20Engine.generate_key()
@@ -231,9 +229,7 @@ class TestEndToEnd:
 
         payload = b"constant size!"
         session_id = generate_session_id()
-        packet = build_onion_packet(
-            payload, path.build_packet_path(), session_id
-        )
+        packet = build_onion_packet(payload, path.build_packet_path(), session_id)
         assert len(packet) == PACKET_SIZE
 
         current = packet
@@ -255,9 +251,7 @@ class TestEndToEnd:
 
         payload = b"exit me safely"
         session_id = generate_session_id()
-        packet = build_onion_packet(
-            payload, path.build_packet_path(), session_id
-        )
+        packet = build_onion_packet(payload, path.build_packet_path(), session_id)
 
         # Process through entry and relay
         current = packet
@@ -296,9 +290,7 @@ class TestEndToEnd:
         sizes = []
         for msg in [b"a", b"hello world", b"x" * 100]:
             path = selector.select_path()
-            packet = build_onion_packet(
-                msg, path.build_packet_path(), session_id
-            )
+            packet = build_onion_packet(msg, path.build_packet_path(), session_id)
             sizes.append(len(packet))
 
         assert all(s == PACKET_SIZE for s in sizes)
@@ -313,9 +305,7 @@ class TestEndToEnd:
 
         payload = b"replay me"
         session_id = generate_session_id()
-        packet = build_onion_packet(
-            payload, path.build_packet_path(), session_id
-        )
+        packet = build_onion_packet(payload, path.build_packet_path(), session_id)
 
         entry = AnemochoryNode(
             path.nodes[0],
@@ -349,9 +339,7 @@ class TestEndToEnd:
 
         payload = b"jittery"
         session_id = generate_session_id()
-        packet = build_onion_packet(
-            payload, path.build_packet_path(), session_id
-        )
+        packet = build_onion_packet(payload, path.build_packet_path(), session_id)
 
         entry = AnemochoryNode(
             path.nodes[0],

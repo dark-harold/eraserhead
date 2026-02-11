@@ -16,13 +16,13 @@ from unittest.mock import AsyncMock, patch
 import pytest
 import trio
 
-from anemochory.models import NODE_ID_SIZE, NodeCapability, NodeInfo, NodePool
 from anemochory.client import (
-    AnemochoryClient,
     DEFAULT_HOP_COUNT,
     MAX_RETRIES,
+    AnemochoryClient,
     SendResult,
 )
+from anemochory.models import NODE_ID_SIZE, NodeCapability, NodeInfo, NodePool
 from anemochory.transport import TransportError
 
 

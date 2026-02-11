@@ -20,6 +20,7 @@ import trio
 from anemochory.node import AnemochoryNode, PacketAction, ProcessedPacket
 from anemochory.packet import PACKET_SIZE
 
+
 logger = logging.getLogger(__name__)
 
 

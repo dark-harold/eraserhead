@@ -28,6 +28,7 @@ from anemochory.packet import (
     decrypt_layer,
 )
 
+
 logger = logging.getLogger(__name__)
 
 
@@ -209,9 +210,7 @@ class AnemochoryNode:
 
         # Step 3: Decrypt one layer
         try:
-            header, routing_info, inner_data = decrypt_layer(
-                packet, layer_key, current_time
-            )
+            header, routing_info, inner_data = decrypt_layer(packet, layer_key, current_time)
         except ReplayError as e:
             self._stats.replay_attempts += 1
             self._stats.packets_dropped += 1
@@ -231,9 +230,7 @@ class AnemochoryNode:
         # Step 4: Check replay using nonce from the decrypted data
         # Use header timestamp + session_id as replay identifier
         replay_id = (
-            header.timestamp.to_bytes(4, "big")
-            + session_id
-            + header.layer_index.to_bytes(1, "big")
+            header.timestamp.to_bytes(4, "big") + session_id + header.layer_index.to_bytes(1, "big")
         )
         if self._replay_manager.is_nonce_seen(replay_id, session_id):
             self._stats.replay_attempts += 1

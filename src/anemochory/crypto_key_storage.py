@@ -625,7 +625,7 @@ class MasterKeyManager:
                 result = libc.mlock(addr, size)
                 if result != 0:
                     pass  # Failed, but non-fatal
-        except (AttributeError, OSError):
+        except AttributeError, OSError:
             # mlock unavailable or insufficient permissions
             # 😐 Harold: "We tried. Attackers with root have bigger problems."
             pass
