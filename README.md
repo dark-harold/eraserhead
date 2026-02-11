@@ -1,336 +1,255 @@
-# 😐 EraserHead: The Confident Return of Hide the Pain Harold to Digital Privacy
+# 😐 EraserHead: Digital Privacy Through Origin Obfuscation
 
-*A narrative documentary of one engineer's journey to erase the internet's memory while the internet remembers everything*
+*Pragmatically erasing digital footprints while smiling through the pain*
 
----
+**EraserHead** is a Python platform for systematically erasing your internet presence and providing truly anonymized network access through the **Anemochory Protocol** — multi-layer origin obfuscation that goes beyond mere VPNs.
 
-## The Problem: Your Data is Everywhere (And Harold Knows)
+🌱 **Anemochory**: Like seeds dispersed by wind, your packets travel untraceable paths through the network, their origin obscured by encryption layers and pseudo-random routing.
 
-Like Harold confidently smiling for stock photography while internally questioning every life choice, your digital footprint smiles back at you from countless databases, data brokers, and social media platforms. The internet never forgets. But Harold has a plan.
-
-**EraserHead** is a Python 3.14 platform for systematically erasing your internet presence and social media footprint while providing truly anonymized access to platforms through the **Anemochory Protocol** — origin obfuscation that goes far beyond mere VPNs.
-
-Think of it as Harold finally getting to delete those embarrassing stock photos. Except it's your data. And it actually works (probably).
+**Status**: Planning Phase (Week 4 — Forward Secrecy & Replay Protection Complete)  
+**License**: MIT  
+**Python**: >=3.14 required
 
 ---
 
-## Anemochory: How Seeds Hide Their Origin (And So Will You)
+## Core Capabilities
 
-In nature, **anemochory** is seed dispersal by wind — seeds travel unpredictable paths, their origin obscured by wind currents, arriving at destinations with no traceable route back to the parent plant. 
+### 🌱 Anemochory Protocol
+Multi-layer network anonymization through:
+- **Nested encryption**: ChaCha20-Poly1305 per routing hop
+- **Pseudo-random routing**: Non-deterministic paths prevent timing attacks
+- **Origin obfuscation**: 3-7 hop routing with forward secrecy
+- **Replay protection**: Timestamp validation + per-session nonce tracking
 
-The **Anemochory Protocol** applies this concept to network traffic:
+### 🧹 Scrubbing Engine *(Planned)*
+Automated digital footprint erasure:
+- Social media account deletion workflows
+- Data broker removal requests (GDPR/CCPA)
+- Platform API integration for content purging
 
-- **Multi-layer encryption**: Like Harold's emotional layers, packets are wrapped in nested encryption, each layer peeled at routing hops
-- **Pseudo-random routing**: Traffic follows non-deterministic paths through cooperating nodes, preventing timing attacks
-- **Instruction layers**: Each encrypted layer contains routing instructions for the next hop, then drops that data
-- **Origin obfuscation**: By the time packets reach their destination, the source is hidden behind layers of hops that can't reconstruct the path
-- **Network storm prevention**: Smart TTL and hop limiting prevents routing loops while maintaining anonymity
+### 🤖 Multi-Agent Architecture
+Six specialized AI agents orchestrated by **tinyclaw**:
+- **harold-planner**: System design & threat modeling
+- **harold-implementer**: Pragmatic code delivery
+- **harold-security**: Paranoid security audits
+- **harold-researcher**: Library evaluation & protocol research
+- **harold-tester**: Comprehensive test generation
+- **harold-documenter**: Narrative documentation
 
-It's like VPN onion routing had a baby with mixnets, raised by paranoid cryptographers, and Harold is smiling nervously through the whole process.
-
----
-
-## Harold's Brain: A Multi-Model Architecture Story
-
-### The Inference Stack (Or: How Harold Thinks Through The Pain)
-
-EraserHead uses a **hybrid multi-model architecture** orchestrated by **tinyclaw**, with shared memory/RAG across all providers:
-
-```
-┌─────────────────────────────────────────────────────────┐
-│ Shared Context: tinyclaw Memory System                  │
-│ SQLite + FTS5 (keyword) + sqlite-vec (embeddings)       │
-│ • Hybrid search: 0.7 * cosine + 0.3 * BM25             │
-│ • 512-token chunks, 64-token overlap                    │
-│ • ALL providers read from this single source            │
-└──────────────────────┬──────────────────────────────────┘
-                       │
-        ┌──────────────┼──────────────┐
-        │              │              │
-┌───────▼───────┐ ┌────▼─────┐ ┌────▼────────┐
-│ Local Models  │ │  Claude  │ │   Copilot   │
-│ llama.cpp CPU │ │ Opus 4.6 │ │ via VS Code │
-│ vLLM GPU      │ │ Sonnet   │ │ grok-fast-1 │
-│ (this box)    │ │ Haiku    │ │             │
-└───────────────┘ └──────────┘ └─────────────┘
-```
-
-**Routing Strategy**:
-- **Local-first**: Privacy-sensitive work uses CPU (llama.cpp) or GPU (vLLM) models
-- **Opus 4.6**: Planning, architecture, security, crypto review (cloud, when needed)
-- **grok-code-fast-1**: Implementation, refactoring (cloud, via Copilot)
-- **Sonnet/Haiku**: Moderate/simple tasks (cloud, cost-optimized)
-
-All models share the same RAG context via tinyclaw's memory system. Harold's brain is distributed, cost-optimized, and deeply paranoid.
+All agents share unified context via local SQLite memory (hybrid BM25 + vector search).
 
 ---
 
-## The Agents: Six Specialists Who Hide Their Pain
-
-Each agent embodies a blend of:
-- ✅ **Highly Effective Developer**: Ships working code, tests rigorously, manages scope pragmatically
-- 😐 **Hide the Pain Harold**: Acknowledges complexity with dry humor, confident exterior with realistic concern
-- 📺 **Internet Historian**: Narrative documentation, dry wit about software disasters, engaging storytelling
-- 🌑 **Dark Harold**: Cynical realism about edge cases, security paranoia, worst-case scenario thinking
-
-### The Team
-
-1. **harold-planner** (The Architect)
-   - *"Designs elegant systems while internally documenting what will inevitably go wrong"*
-   - Role: System design, threat modeling, protocol architecture
-   - Model: Opus 4.6 / local tinyclaw
-   - Output: Narrative ADRs, cautionary architectural tales
-
-2. **harold-implementer** (The Coder)
-   - *"Ships pragmatic code with a smile. Documents tech debt like a crime scene investigator"*
-   - Role: Implementation, refactoring, optimization
-   - Model: grok-code-fast-1 / llama.cpp
-   - Output: Working code with sarcastic comments
-
-3. **harold-security** (The Paranoid)
-   - *"Assumes everything is compromised. Reviews code as forensic analysis of future breaches"*
-   - Role: Security audits, crypto validation, threat hunting
-   - Model: Always Opus 4.6
-   - Output: Exhaustive security reviews with gallows humor
-
-4. **harold-researcher** (The Historian)
-   - *"Documents library choices like Internet Historian covering software industry disasters"*
-   - Role: Library evaluation, compatibility research, documentation archaeology
-   - Model: Opus 4.6 / local tinyclaw
-   - Output: Research reports as cautionary tales
-
-5. **harold-tester** (The Destroyer)
-   - *"Smiles while breaking code in creative ways. Documents failures like disaster documentaries"*
-   - Role: Test generation, edge case discovery, chaos engineering
-   - Model: Sonnet / local tinyclaw
-   - Output: Comprehensive tests with failure commentary
-
-6. **harold-documenter** (The Narrator)
-   - *"Explains encryption protocols like Internet Historian covering internet culture"*
-   - Role: Documentation, tutorials, API guides, post-mortems
-   - Model: Sonnet / local tinyclaw
-   - Output: Engaging narrative documentation
-
----
-
-## Memory: Harold Never Forgets (Neither Does tinyclaw)
-
-The **tinyclaw memory system** provides unified context for all AI providers:
-
-- **Storage**: SQLite database at `~/.config/tinyclaw/memory/memory.db`
-- **Search**: Hybrid BM25 (keyword) + cosine similarity (embeddings)
-- **Chunking**: 512 tokens with 64-token overlap for context preservation
-- **RAG Integration**: All models query the same memory before responding
-- **Auto-sync**: Spec-kit artifacts (specs, plans, constitution) automatically indexed
-
-This means Harold's six personalities share a single memory. It's both efficient and mildly concerning.
-
----
-
-## Architecture: What Could Possibly Go Wrong? (Everything)
-
-```
-┌─────────────────────────────────────────────────────────┐
-│ User Applications                                        │
-│ • Mobile App (React Native/Flutter/Kivy)                │
-│ • Web App (FastAPI backend)                             │
-└───────────────┬─────────────────────────────────────────┘
-                │
-┌───────────────▼─────────────────────────────────────────┐
-│ Anemochory Protocol Layer                               │
-│ • Multi-layer packet encryption                         │
-│ • Pseudo-random routing                                 │
-│ • Origin obfuscation                                    │
-└───────────────┬─────────────────────────────────────────┘
-                │
-┌───────────────▼─────────────────────────────────────────┐
-│ Scrubbing Engine                                         │
-│ • Social media account deletion                         │
-│ • Data broker removal requests                          │
-│ • GDPR right-to-erasure automation                      │
-│ • Platform API integration                              │
-└───────────────┬─────────────────────────────────────────┘
-                │
-┌───────────────▼─────────────────────────────────────────┐
-│ Agent Orchestration (tinyclaw)                          │
-│ • 6 specialized agents                                  │
-│ • Shared memory/RAG                                     │
-│ • Multi-model routing                                   │
-└─────────────────────────────────────────────────────────┘
-```
-
-Harold smiles confidently at this diagram while knowing the edge cases will be discovered at 3am.
-
----
-
-## Setup: Installation and Configuration
+## Quick Start
 
 ### Prerequisites
 
 - Python >=3.14
-- Node.js >=22.12.0 (for tinyclaw)
-- uv (Python package manager)
-- Podman (container runtime)
-- gitleaks (secret detection)
-- Optional: CUDA-capable GPU (for vLLM), otherwise llama.cpp uses CPU
+- uv (package manager)
+- Node.js >=22 (for tinyclaw)
+- gitleaks (secret scanning)
+- *Optional*: CUDA GPU for faster local inference
 
 ### Installation
 
 ```bash
-# 😐 Clone the repo (assuming you can find it)
-cd /home/kang/Documents/projects/radkit/eraserhead
+# Clone repository
+cd /path/to/eraserhead
 
-# 😐 Setup Python environment
-uv venv
-source .venv/bin/activate
+# Create virtual environment
+uv venv && source .venv/bin/activate
+
+# Install dependencies
 uv sync
+uv pip install 'llama-cpp-python[server]' psutil
 
-# 😐 Install gitleaks (secret protection)
-sudo apt install gitleaks  # or download from GitHub releases
-
-# 😐 Install tinyclaw globally
+# Install tinyclaw globally
 npm install -g @mrcloudchase/tinyclaw
 
-# 😐 Configure tinyclaw
-mkdir -p ~/.config/tinyclaw
+# Configure tinyclaw
 cp tinyclaw-config.example.json5 ~/.config/tinyclaw/config.json5
-# Edit config.json5 with your preferences
+# Edit config: set memory backend to "builtin"
 
-# 😐 Download local models (Qwen2.5-Coder-7B-Instruct)
-./scripts/download-models.sh
+# Download local models (Qwen2.5-Coder-7B recommended)
+./scripts/download-models.sh 7b
 
-# 😐 Start local inference (auto-detects CPU/GPU)
+# Start local inference
 ./scripts/llm-start.sh
 
-# 😐 Sync specs into tinyclaw memory
+# Sync specifications to memory
 ./scripts/sync-memory.sh
 
-# 😐 Verify everything works
+# Verify setup
 ./scripts/model-health.sh
-
-# 😐 Run quality gates (Harold demands it)
-./scripts/pre-commit.sh
 ```
-
-### Configuration
-
-**tinyclaw**: `~/.config/tinyclaw/config.json5`
-- Memory backend: `builtin` (SQLite + FTS5 + sqlite-vec)
-- Model: Qwen2.5-Coder-7B-Instruct (selected for code generation)
-- Providers: llamacpp (CPU), vllm (GPU), anthropic, openai
-- Fallback chain: local → sonnet → opus
-
-**Model routing**: `model-config.yml`
-- Simple tasks → Haiku / local
-- Moderate → Sonnet / local
-- Complex/security → Opus 4.6
-- Implementation → grok-code-fast-1
-
-**VS Code Copilot**: `.vscode/settings.json`
-- Slash commands enabled via `.github/agents/`
-- Planning → Opus 4.6
-- Implementation → grok-code-fast-1
-
----
-
-## Scripts: Harold's Local Quality Gates
-
-All quality control runs **locally**. No CI/CD. No GitHub Actions. Harold trusts no cloud.
-
-```bash
-./scripts/security-scan.sh   # 😐 gitleaks, bandit, safety
-./scripts/test.sh             # 😐 pytest with >80% coverage
-./scripts/format.sh           # 😐 ruff format + lint
-./scripts/pre-commit.sh       # 😐 All gates, blocks bad commits
-./scripts/model-health.sh     # 😐 Check if Harold's brain works
-./scripts/sync-memory.sh      # 😐 Index specs into tinyclaw
-./scripts/download-models.sh  # 😐 Download Qwen2.5-Coder GGUF
-./scripts/llm-start.sh        # 😐 Auto-detect and start inference
-./scripts/publish-gh.sh       # 😐 Anonymized GitHub push via Podman
-```
-
-**Note**: Git pre-commit hook at `.git/hooks/pre-commit` automatically runs gitleaks on every commit. Dark Harold blocks secrets at the source.
-
----
-
-## Anonymized Publishing: Harold Hides His Identity
-
-Publishing to GitHub without revealing host machine identity:
-
-```bash
-# 😐 Podman container with Alpine Linux
-./scripts/publish-gh.sh
-
-# Prompts for gh CLI auth (interactive, secure)
-# Encrypts token (never plaintext on disk)
-# Container obfuscates: hostname, timezone, git config
-# Pushes to private repo under separate user
-# Cleans up fingerprints after session
-```
-
-Harold publishes code like he publishes stock photos: with a smile, and no one knowing where it came from.
-
----
-
-## Contributing: Smile Locally, Ship Pragmatically, Document Cynically 😐
-
-1. **Smile Locally**: All development on local branches, no cloud dependencies
-2. **Ship Pragmatically**: Working code over perfect plans. Harold ships.
-3. **Document Cynically**: Internet Historian style. Assume future disasters.
-4. **Test Paranoidly**: Dark Harold expects everything to break. Prove him wrong (you can't).
-5. **Commit Narratively**: Commit messages tell stories. Harold approves.
 
 ### Development Workflow
 
 ```bash
-# 😐 Create new feature spec
-/speckit.specify "feature description"
+# Run quality gates before committing
+./scripts/pre-commit.sh
 
-# 😐 Plan with Dark Harold paranoia
-/speckit.plan
+# Run tests with coverage
+./scripts/test.sh
 
-# 😐 Break down tasks
-/speckit.tasks
-
-# 😐 Implement with effective pragmatism
-/speckit.implement
-
-# 😐 Security review (always)
-/eraserhead.security-review
-
-# 😐 Publish anonymously
+# Publish anonymously via container
 ./scripts/publish-gh.sh
+```
+
+😐 All development happens locally. No CI/CD. Harold trusts no cloud.
+
+---
+
+## Architecture
+
+```
+┌─────────────────────────────────────────┐
+│ User Applications                        │
+│ • Mobile (React Native/Flutter)         │
+│ • Web (FastAPI backend)                 │
+└────────────┬────────────────────────────┘
+             │
+┌────────────▼────────────────────────────┐
+│ Anemochory Protocol Layer               │
+│ • Multi-layer encryption                │
+│ • Pseudo-random routing                 │
+│ • Origin obfuscation (3-7 hops)         │
+│ • Forward secrecy + replay protection   │
+└────────────┬────────────────────────────┘
+             │
+┌────────────▼────────────────────────────┐
+│ Scrubbing Engine                         │
+│ • Social media deletion                 │
+│ • Data broker removal                   │
+│ • GDPR/CCPA automation                  │
+└────────────┬────────────────────────────┘
+             │
+┌────────────▼────────────────────────────┐
+│ Multi-Agent System (tinyclaw)           │
+│ • Local models (llama.cpp/vLLM)         │
+│ • Cloud models (Opus/Sonnet/grok)       │
+│ • Shared memory (SQLite + FTS5 + vec)   │
+└─────────────────────────────────────────┘
 ```
 
 ---
 
-## License
+## Security Modules (Completed)
 
-MIT License. Harold approves of permissive licenses while nervously smiling about corporate exploitation.
+### ✅ Forward Secrecy (`crypto_forward_secrecy.py`)
+- **Algorithm**: X25519 ECDH + HKDF-SHA256
+- **Properties**: Ephemeral keys, session binding, timestamp binding
+- **Coverage**: 94% (15 tests)
+- **Status**: Production-ready
+
+### ✅ Replay Protection (`crypto_replay.py`)
+- **Mechanism**: 60-second time window + per-session nonce tracking
+- **Memory**: ~4MB for 100k nonces (LRU eviction)
+- **Coverage**: 100% (24 tests)
+- **Status**: Production-ready
+
+**Remaining** (Week 4-5):
+- Key rotation (automatic re-keying)
+- Master key storage (OS keychain integration)
+
+---
+
+## Documentation
+
+All detailed documentation has been moved out of the root README for cleanliness:
+
+- **[AGENTS.md](AGENTS.md)** - Multi-agent architecture, model routing, tinyclaw integration
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Development workflow, quality gates, local-first philosophy
+- **[CONSTITUTION.md](CONSTITUTION.md)** - Guiding principles, security policies, governance
+- **[docs/memes/harold/emoji-reference.md](docs/memes/harold/emoji-reference.md)** - Official Harold emoji lexicon
+
+**Specifications**:
+- [specs/001-anemochory-protocol/](specs/001-anemochory-protocol/) - Network anonymization protocol
+- [specs/002-scrubbing-engine/](specs/002-scrubbing-engine/) - Digital footprint erasure
+- [specs/003-agent-architecture/](specs/003-agent-architecture/) - Multi-agent system design
+
+---
+
+## Scripts
+
+All quality control runs locally:
+
+```bash
+./scripts/security-scan.sh    # gitleaks, bandit, safety
+./scripts/test.sh              # pytest with >80% coverage
+./scripts/format.sh            # ruff format + lint
+./scripts/pre-commit.sh        # all gates (blocks bad commits)
+./scripts/model-health.sh      # verify local inference
+./scripts/sync-memory.sh       # index specs into tinyclaw
+./scripts/download-models.sh   # download GGUF models
+./scripts/llm-start.sh         # auto-detect CPU/GPU and start
+./scripts/publish-gh.sh        # anonymized git push (Podman)
+```
+
+---
+
+## Project Status
+
+```
+Phase 0: Infrastructure ✅
+├── uv-managed virtual environment
+├── Local model inference (llama.cpp)
+├── tinyclaw memory system
+├── Quality gates (gitleaks, bandit, ruff, mypy)
+└── Anonymized publishing (Podman container)
+
+Phase 1: Anemochory Protocol 🚧
+├── Forward secrecy ✅ (94% coverage)
+├── Replay protection ✅ (100% coverage)
+├── Key rotation ⏳ (Week 4-5)
+├── Master key storage ⏳ (Week 4)
+├── Packet format 📝 (spec complete, implementation pending)
+└── Multi-hop routing ⏳ (Week 5-6)
+
+Phase 2: Scrubbing Engine ⏳
+└── Library research in progress (harold-researcher)
+
+Phase 3: User Applications ⏳
+└── Design phase pending
+```
+
+😐 Progress is steady. Harold smiles nervously at the roadmap.
+
+---
+
+## Contributing
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for:
+- Development workflow (local-first)
+- Quality gates and testing
+- Code style and Harold's voice
+- Agent usage patterns
+- Anonymized publishing
+
+**Philosophy**:
+1. 😐 Smile Locally (no cloud dependencies)
+2. ✅ Ship Pragmatically (working code > perfect plans)
+3. 📺 Document Cynically (assume future disasters)
+4. 🌑 Test Paranoidly (everything breaks eventually)
 
 ---
 
 ## Acknowledgments
 
-- **Hide the Pain Harold** (András Arató): For teaching us to smile through complexity
-- **Internet Historian**: For showing us how to narrate disasters with style
-- **Dark Harold**: For reminding us everything will fail eventually
-- **Effective Developers Everywhere**: For shipping code despite the pain
+- **Hide the Pain Harold** (András Arató) - For teaching us to smile through complexity
+- **Internet Historian** - For showing us how to narrate technical disasters with style
+- **Effective Developers Everywhere** - For shipping code despite the pain
 
 ---
 
-## Status
+## Contact
 
-```
-😐 Planning Phase: In progress
-😐 Anemochory Protocol: Researching (harold-researcher investigating)
-😐 Scrubbing Engine: Awaiting library research
-😐 Local Models: Evaluation in progress (harold-researcher)
-😐 Harold's Sanity: Critical (stable)
-```
+**Issues**: Use GitHub issues for bug reports and feature requests  
+**Security**: See [SECURITY.md](SECURITY.md) for vulnerability disclosure  
+**Philosophy**: Read [CONSTITUTION.md](CONSTITUTION.md) for Harold's principles
 
 ---
 
-*"I've made a career out of hiding pain. Now I'm hiding packet origins." — Harold, probably*
+*"I've made a career out of hiding pain. Now I'm hiding packet origins."* — Harold, probably
 
-🌱 **Anemochory**: Like seeds in the wind, your data's origin is lost to time. And Harold's smile remains eternal.
+😐 May your digital footprint fade like Harold's stock photography career never did.
