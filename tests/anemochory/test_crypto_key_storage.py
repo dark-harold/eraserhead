@@ -197,7 +197,7 @@ class TestEncryptedFileBackend:
             try:
                 mode = expected_path.stat().st_mode & 0o777
                 assert mode == 0o700
-            except OSError, AssertionError:
+            except (OSError, AssertionError):
                 pass  # Best-effort
 
 
