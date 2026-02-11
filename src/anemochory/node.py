@@ -16,14 +16,13 @@ import logging
 import secrets
 import time
 from dataclasses import dataclass, field
-from enum import StrEnum, auto
+from enum import StrEnum
 
 from anemochory.crypto_replay import ReplayProtectionManager
-from anemochory.models import NODE_ID_SIZE, NodeCapability, NodeInfo
+from anemochory.models import NodeInfo
 from anemochory.packet import (
     PACKET_SIZE,
     DecryptionError,
-    PacketHeader,
     ReplayError,
     decrypt_layer,
 )

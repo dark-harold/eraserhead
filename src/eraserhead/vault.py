@@ -16,9 +16,9 @@ from __future__ import annotations
 
 import base64
 import json
-import os
 import secrets
 from pathlib import Path
+from typing import Any
 
 from cryptography.fernet import Fernet, InvalidToken
 from cryptography.hazmat.primitives import hashes
@@ -125,6 +125,7 @@ class CredentialVault:
             self._salt = secrets.token_bytes(SALT_SIZE)
             self._vault_dir.mkdir(parents=True, exist_ok=True)
 
+        assert self._salt is not None  # 😐 Set by _load_salt or generated above
         self._fernet = self._derive_fernet(passphrase, self._salt)
 
         # If new vault, save empty credential store
@@ -180,7 +181,9 @@ class CredentialVault:
         if key not in creds_store:
             raise CredentialNotFoundError(f"No credentials for {platform}:{username}")
 
-        return PlatformCredentials.from_dict(creds_store[key])
+        raw = creds_store[key]
+        assert isinstance(raw, dict)  # 😐 Vault data is dict per _save_credentials
+        return PlatformCredentials.from_dict(raw)
 
     def remove(self, platform: Platform, username: str) -> bool:
         """
@@ -241,7 +244,7 @@ class CredentialVault:
         except (OSError, ValueError) as e:
             raise VaultCorruptedError(f"Cannot read vault: {e}") from e
 
-    def _load_credentials(self) -> dict:
+    def _load_credentials(self) -> dict[str, Any]:
         """Load and decrypt credential store."""
         assert self._fernet is not None
 
@@ -251,13 +254,14 @@ class CredentialVault:
             if not encrypted:
                 return {}
             decrypted = self._fernet.decrypt(encrypted)
-            return json.loads(decrypted.decode())
-        except InvalidToken:
-            raise VaultCorruptedError("Decryption failed — wrong passphrase or corrupted vault")
+            result: dict[str, Any] = json.loads(decrypted.decode())
+            return result
+        except InvalidToken as exc:
+            raise VaultCorruptedError("Decryption failed — wrong passphrase or corrupted vault") from exc
         except (json.JSONDecodeError, OSError) as e:
             raise VaultCorruptedError(f"Vault data corrupted: {e}") from e
 
-    def _save_credentials(self, creds_store: dict) -> None:
+    def _save_credentials(self, creds_store: dict[str, Any]) -> None:
         """Encrypt and save credential store."""
         assert self._fernet is not None
         assert self._salt is not None

@@ -12,8 +12,7 @@ behind a simple API.
 from __future__ import annotations
 
 import logging
-import secrets
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 import trio
 
@@ -23,7 +22,7 @@ from anemochory.packet import (
     calculate_max_payload_size,
     generate_session_id,
 )
-from anemochory.routing import PathSelector, RoutingPath
+from anemochory.routing import PathSelector
 from anemochory.transport import PacketSender, TransportError
 
 

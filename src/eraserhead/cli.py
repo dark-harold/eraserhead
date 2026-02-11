@@ -14,17 +14,13 @@ Usage:
 
 from __future__ import annotations
 
-import json
-import sys
-import time
 from pathlib import Path
+from typing import Annotated
 
 import trio
 import typer
-from typing import Annotated, Optional
 
 from eraserhead.adapters.platforms import (
-    SimulatedPlatformData,
     get_adapter,
 )
 from eraserhead.engine import EngineConfig, ScrubEngine
@@ -35,7 +31,7 @@ from eraserhead.models import (
     TaskPriority,
 )
 from eraserhead.vault import CredentialVault, VaultError
-from eraserhead.verification import VerificationService
+
 
 # ============================================================================
 # App Setup
@@ -57,9 +53,9 @@ DEFAULT_QUEUE_PATH = Path.home() / ".config" / "eraserhead" / "queue.json"
 # ============================================================================
 
 
-def _run_async(coro):
-    """Run an async function synchronously via trio."""
-    return trio.from_thread.run_sync(lambda: trio.lowlevel.current_trio_token())
+def _run_async() -> None:
+    """Placeholder for running async functions synchronously via trio."""
+    # 😐 Not currently used — trio.run() called directly in scrub command
 
 
 # ============================================================================
@@ -87,14 +83,14 @@ def vault_store(
     except ValueError:
         typer.echo(f"😐 Unknown platform: {platform}")
         typer.echo(f"   Available: {', '.join(p.value for p in Platform)}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     vault = CredentialVault(vault_dir)
     try:
         vault.unlock(passphrase)
     except VaultError as e:
         typer.echo(f"🌑 Vault error: {e}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     creds = PlatformCredentials(
         platform=plat,
@@ -119,7 +115,7 @@ def vault_list(
         vault.unlock(passphrase)
     except VaultError as e:
         typer.echo(f"🌑 Vault error: {e}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     platforms = vault.list_platforms()
     vault.lock()
@@ -145,14 +141,14 @@ def vault_remove(
         plat = Platform(platform.lower())
     except ValueError:
         typer.echo(f"😐 Unknown platform: {platform}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     vault = CredentialVault(vault_dir)
     try:
         vault.unlock(passphrase)
     except VaultError as e:
         typer.echo(f"🌑 Vault error: {e}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     removed = vault.remove(plat, username)
     vault.lock()
@@ -172,7 +168,7 @@ def vault_remove(
 def scrub(
     platform: Annotated[str, typer.Argument(help="Platform to scrub")],
     resource_type: Annotated[str, typer.Option("--type", "-t", help="Resource type (post, comment, like, photo, etc.)")] = "post",
-    resource_ids: Annotated[Optional[str], typer.Option("--ids", help="Comma-separated resource IDs")] = None,
+    resource_ids: Annotated[str | None, typer.Option("--ids", help="Comma-separated resource IDs")] = None,
     dry_run: Annotated[bool, typer.Option("--dry-run", help="Preview without deleting")] = False,
     priority: Annotated[str, typer.Option("--priority", help="Task priority (urgent/high/standard/low/background)")] = "standard",
     passphrase: Annotated[str, typer.Option("--passphrase", "-p", help="Vault passphrase", prompt=True, hide_input=True)] = "",
@@ -187,14 +183,14 @@ def scrub(
         plat = Platform(platform.lower())
     except ValueError:
         typer.echo(f"😐 Unknown platform: {platform}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     try:
         res_type = ResourceType(resource_type.lower())
     except ValueError:
         typer.echo(f"😐 Unknown resource type: {resource_type}")
         typer.echo(f"   Available: {', '.join(r.value for r in ResourceType)}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     try:
         prio = {
@@ -206,11 +202,11 @@ def scrub(
         }[priority.lower()]
     except KeyError:
         typer.echo(f"😐 Unknown priority: {priority}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     if not resource_ids:
         typer.echo("😐 No resource IDs provided. Use --ids tweet-1,tweet-2,...")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     ids = [rid.strip() for rid in resource_ids.split(",") if rid.strip()]
 
@@ -220,14 +216,14 @@ def scrub(
         vault.unlock(passphrase)
     except VaultError as e:
         typer.echo(f"🌑 Vault error: {e}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     try:
         creds = vault.get(plat, _find_username(vault, plat))
     except Exception as e:
         typer.echo(f"🌑 No credentials for {plat.value}: {e}")
         vault.lock()
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     vault.lock()
 
@@ -245,7 +241,7 @@ def scrub(
         verify_after_delete=not dry_run,
     )
 
-    async def _run():
+    async def _run() -> None:
         adapter = get_adapter(plat)
         await adapter.authenticate(creds)
 
@@ -270,7 +266,7 @@ def status(
     queue_path: Annotated[Path, typer.Option("--queue", help="Queue file path")] = DEFAULT_QUEUE_PATH,
 ) -> None:
     """Show current queue status."""
-    from eraserhead.queue import TaskQueue, QueueError
+    from eraserhead.queue import QueueError, TaskQueue
 
     if not queue_path.exists():
         typer.echo("😐 No queue file found. Nothing pending.")
@@ -280,7 +276,7 @@ def status(
         queue = TaskQueue.load(queue_path)
     except QueueError as e:
         typer.echo(f"🌑 Error loading queue: {e}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     stats = queue.get_stats()
     typer.echo("📊 Queue Status:")

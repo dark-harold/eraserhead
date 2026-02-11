@@ -196,3 +196,124 @@ class TestHelp:
     def test_scrub_help(self) -> None:
         result = runner.invoke(app, ["scrub", "--help"])
         assert result.exit_code == 0
+
+
+# ============================================================================
+# CLI Error Paths
+# ============================================================================
+
+
+class TestCLIErrorPaths:
+    """😐 Testing the many ways Harold's CLI can say 'no'."""
+
+    def test_vault_store_wrong_passphrase_on_list(self, tmp_path: Path) -> None:
+        vault_dir = tmp_path / "vault"
+        # Store with one passphrase
+        runner.invoke(app, [
+            "vault", "store", "twitter", "harold",
+            "--token", "tok",
+            "--passphrase", "correct-pass",
+            "--vault-dir", str(vault_dir),
+        ])
+        # List with different passphrase — VaultCorruptedError propagates
+        result = runner.invoke(app, [
+            "vault", "list",
+            "--passphrase", "wrong-pass",
+            "--vault-dir", str(vault_dir),
+        ])
+        # The exception may or may not be caught depending on vault behavior
+        # Wrong passphrase produces VaultCorruptedError from _load_credentials
+        assert result.exit_code != 0
+
+    def test_vault_remove_unknown_platform(self, tmp_path: Path) -> None:
+        result = runner.invoke(app, [
+            "vault", "remove", "myspace", "harold",
+            "--passphrase", "pass",
+            "--vault-dir", str(tmp_path / "vault"),
+        ])
+        assert result.exit_code == 1
+        assert "Unknown platform" in result.output
+
+    def test_vault_remove_nonexistent_creds(self, tmp_path: Path) -> None:
+        vault_dir = tmp_path / "vault"
+        # Create vault first
+        runner.invoke(app, [
+            "vault", "store", "twitter", "harold",
+            "--token", "tok",
+            "--passphrase", "pass",
+            "--vault-dir", str(vault_dir),
+        ])
+        # Remove non-existent user
+        result = runner.invoke(app, [
+            "vault", "remove", "twitter", "nobody",
+            "--passphrase", "pass",
+            "--vault-dir", str(vault_dir),
+        ])
+        assert result.exit_code == 0
+        assert "No credentials found" in result.output
+
+    def test_vault_list_empty(self, tmp_path: Path) -> None:
+        vault_dir = tmp_path / "vault"
+        # Create empty vault
+        vault = CredentialVault(vault_dir)
+        vault.unlock("pass")
+        vault.lock()
+
+        result = runner.invoke(app, [
+            "vault", "list",
+            "--passphrase", "pass",
+            "--vault-dir", str(vault_dir),
+        ])
+        assert result.exit_code == 0
+        assert "No credentials stored" in result.output
+
+    def test_scrub_unknown_resource_type(self, tmp_path: Path) -> None:
+        result = runner.invoke(app, [
+            "scrub", "twitter",
+            "--type", "quantum_state",
+            "--ids", "id-1",
+            "--passphrase", "pass",
+            "--vault-dir", str(tmp_path / "vault"),
+        ])
+        assert result.exit_code == 1
+        assert "Unknown resource type" in result.output
+
+    def test_scrub_unknown_priority(self, tmp_path: Path) -> None:
+        result = runner.invoke(app, [
+            "scrub", "twitter",
+            "--type", "post",
+            "--priority", "ludicrous",
+            "--ids", "id-1",
+            "--passphrase", "pass",
+            "--vault-dir", str(tmp_path / "vault"),
+        ])
+        assert result.exit_code == 1
+        assert "Unknown priority" in result.output
+
+    def test_scrub_no_creds_for_platform(self, tmp_path: Path) -> None:
+        vault_dir = tmp_path / "vault"
+        # Store creds for twitter, try to scrub facebook
+        runner.invoke(app, [
+            "vault", "store", "twitter", "harold",
+            "--token", "tok",
+            "--passphrase", "pass",
+            "--vault-dir", str(vault_dir),
+        ])
+        result = runner.invoke(app, [
+            "scrub", "facebook",
+            "--ids", "post-1",
+            "--passphrase", "pass",
+            "--vault-dir", str(vault_dir),
+        ])
+        assert result.exit_code == 1
+        assert "No credentials" in result.output
+
+    def test_status_corrupted_queue(self, tmp_path: Path) -> None:
+        queue_path = tmp_path / "queue.json"
+        queue_path.write_text("{{{invalid json")
+        result = runner.invoke(app, [
+            "status",
+            "--queue", str(queue_path),
+        ])
+        assert result.exit_code == 1
+        assert "Error loading queue" in result.output

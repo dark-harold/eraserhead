@@ -13,7 +13,8 @@ from __future__ import annotations
 import secrets
 import time
 from dataclasses import dataclass, field
-from enum import IntEnum, StrEnum, auto
+from enum import IntEnum, StrEnum
+from typing import Any
 
 
 # ============================================================================
@@ -103,7 +104,7 @@ class DeletionTask:
     created_at: float = field(default_factory=time.time)
     updated_at: float = field(default_factory=time.time)
     error_message: str | None = None
-    metadata: dict = field(default_factory=dict)
+    metadata: dict[str, str] = field(default_factory=dict)
 
     def can_retry(self) -> bool:
         """Check if task has retries remaining."""
@@ -131,7 +132,7 @@ class DeletionTask:
         self.status = TaskStatus.VERIFIED
         self.updated_at = time.time()
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, object]:
         """Serialize to dict."""
         return {
             "task_id": self.task_id,
@@ -149,7 +150,7 @@ class DeletionTask:
         }
 
     @classmethod
-    def from_dict(cls, data: dict) -> DeletionTask:
+    def from_dict(cls, data: dict[str, Any]) -> DeletionTask:
         """Deserialize from dict."""
         return cls(
             task_id=data["task_id"],
@@ -181,11 +182,11 @@ class DeletionResult:
     verified: bool = False
     verification_status: VerificationStatus = VerificationStatus.NOT_VERIFIED
     error_message: str | None = None
-    proof: dict = field(default_factory=dict)
+    proof: dict[str, str] | str = field(default_factory=dict)
     duration_seconds: float = 0.0
     completed_at: float = field(default_factory=time.time)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, object]:
         """Serialize to dict."""
         return {
             "task_id": self.task_id,
@@ -213,9 +214,9 @@ class PlatformCredentials:
     auth_token: str = ""
     api_key: str = ""
     api_secret: str = ""
-    extra: dict = field(default_factory=dict)
+    extra: dict[str, str] = field(default_factory=dict)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, object]:
         """Serialize to dict (for encrypted storage)."""
         return {
             "platform": self.platform,
@@ -227,7 +228,7 @@ class PlatformCredentials:
         }
 
     @classmethod
-    def from_dict(cls, data: dict) -> PlatformCredentials:
+    def from_dict(cls, data: dict[str, Any]) -> PlatformCredentials:
         """Deserialize from dict."""
         return cls(
             platform=Platform(data["platform"]),

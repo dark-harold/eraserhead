@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import logging
 import struct
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 import trio
 
@@ -155,7 +155,7 @@ class NodeServer:
     def __init__(
         self,
         node: AnemochoryNode,
-        host: str = "0.0.0.0",
+        host: str = "127.0.0.1",
         port: int = DEFAULT_LISTEN_PORT,
         max_connections: int = MAX_CONNECTIONS,
     ) -> None:

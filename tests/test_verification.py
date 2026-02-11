@@ -199,3 +199,112 @@ class TestVerificationStats:
 
         await service.verify(make_completed_task())
         assert len(service.history) == 1
+
+
+# ============================================================================
+# Edge Cases
+# ============================================================================
+
+
+class TestVerificationEdgeCases:
+    """🌑 The weird paths through verification."""
+
+    async def test_scan_re_verifies_already_verified(
+        self, twitter_verified, make_completed_task
+    ) -> None:
+        """VERIFIED tasks should also be re-scanned."""
+        adapter, creds = twitter_verified
+        await adapter.authenticate(creds)
+
+        service = VerificationService()
+        service.register_adapter(adapter)
+
+        task = make_completed_task(resource_id="deleted-tweet")
+        task.status = TaskStatus.VERIFIED
+
+        results = await service.scan([task])
+        assert len(results) == 1
+        assert results[0].status == VerificationStatus.CONFIRMED
+
+    async def test_verify_exception_in_adapter(
+        self, make_completed_task
+    ) -> None:
+        """Adapter that raises during verify should be handled gracefully.
+        
+        The adapter's verify_deletion catches all exceptions and returns
+        NOT_VERIFIED. The error detail is swallowed at the adapter layer.
+        """
+        from eraserhead.adapters import PlatformAdapter
+        from eraserhead.adapters import RateLimitConfig
+
+        class BrokenAdapter(PlatformAdapter):
+            def __init__(self):
+                super().__init__(
+                    platform=Platform.TWITTER,
+                    rate_limit=RateLimitConfig(requests_per_minute=60),
+                )
+                self._authenticated = True
+
+            @property
+            def is_authenticated(self) -> bool:
+                return True
+
+            def _get_supported_types(self) -> set[ResourceType]:
+                return {ResourceType.POST}
+
+            async def _do_authenticate(self, credentials) -> bool:
+                return True
+
+            async def _do_delete(self, task):
+                pass
+
+            async def _do_verify(self, task):
+                raise ConnectionError("💥 Network exploded")
+
+            async def _do_list_resources(self, resource_type):
+                return []
+
+        service = VerificationService()
+        service.register_adapter(BrokenAdapter())
+
+        task = make_completed_task()
+        result = await service.verify(task)
+        # Adapter catches exception → returns NOT_VERIFIED status
+        assert result.status == VerificationStatus.NOT_VERIFIED
+
+    async def test_stats_empty(self) -> None:
+        """Stats on fresh service should be all zeros."""
+        service = VerificationService()
+        stats = service.get_stats()
+        assert stats["total"] == 0
+        assert stats["confirmed"] == 0
+        assert stats["failed"] == 0
+
+    async def test_scan_mixed_statuses(
+        self, twitter_verified, make_completed_task
+    ) -> None:
+        """Scan skips PENDING, RUNNING, FAILED, CANCELLED tasks."""
+        adapter, creds = twitter_verified
+        await adapter.authenticate(creds)
+
+        service = VerificationService()
+        service.register_adapter(adapter)
+
+        tasks = []
+        for status_val in [TaskStatus.PENDING, TaskStatus.RUNNING,
+                           TaskStatus.FAILED, TaskStatus.CANCELLED]:
+            t = DeletionTask(
+                task_id=f"task-{status_val}",
+                platform=Platform.TWITTER,
+                resource_type=ResourceType.POST,
+                resource_id="x",
+            )
+            t.status = status_val
+            tasks.append(t)
+
+        # Add one completed task that should be scanned
+        tasks.append(make_completed_task("should-scan", "deleted-tweet"))
+
+        results = await service.scan(tasks)
+        assert len(results) == 1
+        assert results[0].task_id == "should-scan"

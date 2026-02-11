@@ -14,11 +14,9 @@ without making real network calls.
 
 from __future__ import annotations
 
-import secrets
 import time
 
 from eraserhead.adapters import (
-    AdapterStatus,
     PlatformAdapter,
     RateLimitConfig,
 )
@@ -46,18 +44,18 @@ class SimulatedPlatformData:
     """
 
     def __init__(self) -> None:
-        # {resource_type: {resource_id: metadata}}
-        self._resources: dict[ResourceType, dict[str, dict]] = {}
+        # Mapping of resource_type -> resource_id -> metadata
+        self._resources: dict[ResourceType, dict[str, dict[str, str]]] = {}
 
     def add_resource(
-        self, resource_type: ResourceType, resource_id: str, metadata: dict | None = None
+        self, resource_type: ResourceType, resource_id: str, metadata: dict[str, str] | None = None
     ) -> None:
         """Simulate a resource existing on the platform."""
         if resource_type not in self._resources:
             self._resources[resource_type] = {}
         self._resources[resource_type][resource_id] = metadata or {
             "id": resource_id,
-            "created_at": time.time(),
+            "created_at": str(time.time()),
         }
 
     def has_resource(self, resource_type: ResourceType, resource_id: str) -> bool:
@@ -72,7 +70,7 @@ class SimulatedPlatformData:
             return True
         return False
 
-    def list_resources(self, resource_type: ResourceType) -> list[dict]:
+    def list_resources(self, resource_type: ResourceType) -> list[dict[str, str]]:
         """List all resources of a type."""
         return list(self._resources.get(resource_type, {}).values())
 
@@ -142,7 +140,7 @@ class TwitterAdapter(PlatformAdapter):
             return VerificationStatus.CONFIRMED
         return VerificationStatus.FAILED
 
-    async def _do_list_resources(self, resource_type: ResourceType) -> list[dict]:
+    async def _do_list_resources(self, resource_type: ResourceType) -> list[dict[str, str]]:
         return self._data.list_resources(resource_type)
 
 
@@ -210,7 +208,7 @@ class FacebookAdapter(PlatformAdapter):
         exists = self._data.has_resource(task.resource_type, task.resource_id)
         return VerificationStatus.CONFIRMED if not exists else VerificationStatus.FAILED
 
-    async def _do_list_resources(self, resource_type: ResourceType) -> list[dict]:
+    async def _do_list_resources(self, resource_type: ResourceType) -> list[dict[str, str]]:
         return self._data.list_resources(resource_type)
 
 
@@ -277,7 +275,7 @@ class InstagramAdapter(PlatformAdapter):
         exists = self._data.has_resource(task.resource_type, task.resource_id)
         return VerificationStatus.CONFIRMED if not exists else VerificationStatus.FAILED
 
-    async def _do_list_resources(self, resource_type: ResourceType) -> list[dict]:
+    async def _do_list_resources(self, resource_type: ResourceType) -> list[dict[str, str]]:
         return self._data.list_resources(resource_type)
 
 
@@ -304,4 +302,4 @@ def get_adapter(
     adapter_cls = ADAPTER_REGISTRY.get(platform)
     if adapter_cls is None:
         raise KeyError(f"No adapter for platform: {platform}")
-    return adapter_cls(simulated_data=simulated_data)
+    return adapter_cls(simulated_data=simulated_data)  # type: ignore[call-arg]

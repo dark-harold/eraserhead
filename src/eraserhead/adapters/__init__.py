@@ -274,7 +274,7 @@ class PlatformAdapter(ABC):
 
     async def list_resources(
         self, resource_type: ResourceType
-    ) -> list[dict]:
+    ) -> list[dict[str, str]]:
         """
         List resources of a given type on the platform.
 
@@ -315,7 +315,7 @@ class PlatformAdapter(ABC):
     @abstractmethod
     async def _do_list_resources(
         self, resource_type: ResourceType
-    ) -> list[dict]:
+    ) -> list[dict[str, str]]:
         """Platform-specific resource listing."""
         ...
 
@@ -326,4 +326,4 @@ class PlatformAdapter(ABC):
 
     async def _do_disconnect(self) -> None:
         """Platform-specific cleanup. Override if needed."""
-        pass
+        # 😐 Default no-op — override if your adapter needs cleanup

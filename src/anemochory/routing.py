@@ -294,7 +294,7 @@ class PathSelector:
         session_id = secrets.token_bytes(16)
         routing_info: list[LayerRoutingInfo] = []
 
-        for i, node in enumerate(path.nodes):
+        for i, _node in enumerate(path.nodes):
             if i < path.hop_count - 1:
                 # Point to next hop
                 next_node = path.nodes[i + 1]

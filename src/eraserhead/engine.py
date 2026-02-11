@@ -11,24 +11,20 @@ Supports dry-run mode, progress tracking, and crash recovery.
 from __future__ import annotations
 
 import logging
-import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 
 from eraserhead.adapters import PlatformAdapter
-from eraserhead.adapters.platforms import get_adapter, SimulatedPlatformData
 from eraserhead.models import (
     DeletionResult,
     DeletionTask,
     Platform,
-    PlatformCredentials,
     ResourceType,
     ScrubProgress,
     TaskPriority,
     TaskStatus,
 )
-from eraserhead.queue import TaskQueue, QueueEmptyError
-from eraserhead.vault import CredentialVault
+from eraserhead.queue import QueueEmptyError, TaskQueue
 
 
 logger = logging.getLogger(__name__)
@@ -193,7 +189,7 @@ class ScrubEngine:
                 success=False,
                 error_message=f"No adapter for platform: {task.platform}",
             )
-            self._queue.fail_task(task.task_id, result.error_message)
+            self._queue.fail_task(task.task_id, result.error_message or "No adapter")
             return result
 
         if not adapter.is_authenticated:
@@ -202,7 +198,7 @@ class ScrubEngine:
                 success=False,
                 error_message=f"Adapter not authenticated: {task.platform}",
             )
-            self._queue.fail_task(task.task_id, result.error_message)
+            self._queue.fail_task(task.task_id, result.error_message or "Not authenticated")
             return result
 
         # Dry run: report what would be deleted

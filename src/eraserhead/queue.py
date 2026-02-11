@@ -18,7 +18,7 @@ import json
 import secrets
 import time
 from collections.abc import Iterator
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 
 from eraserhead.models import (
@@ -119,7 +119,7 @@ class TaskQueue:
         resource_type: ResourceType,
         resource_id: str,
         priority: TaskPriority = TaskPriority.STANDARD,
-        metadata: dict | None = None,
+        metadata: dict[str, str] | None = None,
     ) -> DeletionTask:
         """
         Add a new deletion task to the queue.
@@ -223,9 +223,8 @@ class TaskQueue:
             task.error_message = error
             task.mark_retry()
             return True
-        else:
-            task.mark_failed(error)
-            return False
+        task.mark_failed(error)
+        return False
 
     def cancel_task(self, task_id: str) -> None:
         """Cancel a task."""
@@ -246,7 +245,7 @@ class TaskQueue:
         # Add jitter: ±50%
         jitter_range = capped * JITTER_FACTOR
         jitter = (secrets.randbelow(1000) / 1000.0 - 0.5) * 2 * jitter_range
-        return max(0.1, capped + jitter)
+        return max(0.1, float(capped + jitter))
 
     def get_stats(self) -> QueueStats:
         """Get current queue statistics."""
