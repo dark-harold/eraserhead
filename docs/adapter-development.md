@@ -1,22 +1,26 @@
-# <img src="memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> Adapter Development Guide
+# Adapter Development Guide
+
+<p align="center">
+  <img src="memes/harold/emoji/harold-shipper-128.png" alt="Harold implements adapters">
+</p>
 
 *How to teach EraserHead to delete things from new platforms. Every platform API is a unique snowflake of documentation pain.*
 
-> <img src="memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> **The Adapter Origin Story**: In the early days, every platform deletion was hand-coded. Then Harold realized there would be *many* platforms. And each one would have its own authentication dance, its own rate limits, its own creative interpretation of "DELETE." The Adapter Pattern was born from Harold's exhaustion.
+> **The Adapter Origin Story**: In the early days, every platform deletion was hand-coded. Then Harold realized there would be *many* platforms. And each one would have its own authentication dance, its own rate limits, its own creative interpretation of "DELETE." The Adapter Pattern was born from Harold's exhaustion.
 
 ---
 
-## <img src="memes/harold/emoji/harold-shipper-24.png" height="24" alt="harold-shipper"> Overview
+## Overview
 
 EraserHead uses the **Adapter Pattern** to support multiple platforms. Each adapter implements the `PlatformAdapter` abstract base class, handling platform-specific API interactions while the engine manages orchestration, retries, and verification.
 
-> <img src="memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> The engine handles the hard parts (queuing, retries, crash recovery). Your adapter handles the *painful* parts (platform APIs).
+> The engine handles the hard parts (queuing, retries, crash recovery). Your adapter handles the *painful* parts (platform APIs).
 
 ---
 
-## <img src="memes/harold/emoji/harold-historian-24.png" height="24" alt="harold-historian"> Creating a New Adapter
+## Creating a New Adapter
 
-> <img src="memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> **Harold's Adapter Development Arc**: Step 1 — Read the platform's API docs. Step 2 — Realize they're incomplete. Step 3 — Reverse-engineer what "delete" actually does. Step 4 — Handle the 17 error codes they don't document. Step 5 — Ship it with a smile.
+> **Harold's Adapter Development Arc**: Step 1 — Read the platform's API docs. Step 2 — Realize they're incomplete. Step 3 — Reverse-engineer what "delete" actually does. Step 4 — Handle the 17 error codes they don't document. Step 5 — Ship it with a smile.
 
 ### Step 1: Subclass `PlatformAdapter`
 
@@ -43,7 +47,7 @@ class MyPlatformAdapter(PlatformAdapter):
 
     def __init__(self) -> None:
         super().__init__(
-            platform=Platform.TWITTER,  # Use existing or extend Platform enum
+            platform=Platform.TWITTER, # Use existing or extend Platform enum
             rate_limit=RateLimitConfig(
                 requests_per_minute=30,
                 burst_size=5,
@@ -62,7 +66,7 @@ class MyPlatformAdapter(PlatformAdapter):
         Returns:
             True if authentication succeeded.
             
-        🌑 Failure modes: Token expired, API key revoked, platform 
+        🌑 Failure modes: Token expired, API key revoked, platform
         is down, platform changed their auth flow without telling anyone.
         """
         try:
@@ -72,7 +76,7 @@ class MyPlatformAdapter(PlatformAdapter):
             )
             return await self._api_client.verify_token()
         except Exception:
-            return False  # 😐 Harold logs and moves on
+            return False # 😐 Harold logs and moves on
 
     async def _do_disconnect(self) -> None:
         """Clean up API connections. ✅ Always clean up after yourself."""
@@ -139,7 +143,7 @@ class MyPlatformAdapter(PlatformAdapter):
             )
             if not exists:
                 return VerificationStatus.CONFIRMED
-            return VerificationStatus.REAPPEARED  # 🌑 It's still there.
+            return VerificationStatus.REAPPEARED # 🌑 It's still there.
         except Exception:
             return VerificationStatus.NOT_VERIFIED
 
@@ -186,29 +190,29 @@ await adapter.authenticate(creds)
 
 ---
 
-## <img src="memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> Built-in Rate Limiting
+## Built-in Rate Limiting
 
-> <img src="memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Rate limits exist because platforms don't want you deleting 10,000 posts per second. Harold respects this. Harold also finds it ironic that platforms make it hard to delete data they collected without asking.
+> Rate limits exist because platforms don't want you deleting 10,000 posts per second. Harold respects this. Harold also finds it ironic that platforms make it hard to delete data they collected without asking.
 
 The base class provides token bucket rate limiting. Configure per-platform:
 
 ```python
 RateLimitConfig(
-    requests_per_minute=30,   # Sustained rate
-    burst_size=5,             # Allow short bursts
-    cooldown_seconds=60.0,    # Cooldown after rate limit hit
+    requests_per_minute=30, # Sustained rate
+    burst_size=5, # Allow short bursts
+    cooldown_seconds=60.0, # Cooldown after rate limit hit
 )
 ```
 
 When rate limited, `delete_resource()` returns a failed `DeletionResult` with "Rate limited" error. The engine's retry logic handles re-queuing with exponential backoff.
 
-> <img src="memes/harold/emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> **Best Practice**: Set conservative rate limits. A temporarily slow deletion is better than a permanently banned API key.
+> **Best Practice**: Set conservative rate limits. A temporarily slow deletion is better than a permanently banned API key.
 
 ---
 
-## <img src="memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> Testing Your Adapter
+## Testing Your Adapter
 
-> <img src="memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> **Harold's Testing Philosophy**: Every platform API call should be mockable. Harold-tester generates edge cases. You implement the mocks.
+> **Harold's Testing Philosophy**: Every platform API call should be mockable. Harold-tester generates edge cases. You implement the mocks.
 
 ```python
 import pytest
@@ -239,7 +243,7 @@ class TestMyAdapter:
 
         task = DeletionTask(...)
         result = await adapter.delete_resource(task)
-        assert result.success  # 404 = already deleted
+        assert result.success # 404 = already deleted
 
     async def test_delete_rate_limited(self):
         """😐 The platform pushed back. Harold waits patiently."""
@@ -255,7 +259,7 @@ class TestMyAdapter:
 
 ---
 
-## <img src="memes/harold/emoji/harold-historian-24.png" height="24" alt="harold-historian"> Adapter Statistics
+## Adapter Statistics
 
 The base class tracks operational stats automatically:
 
@@ -270,19 +274,19 @@ print(f"Rate limit hits: {stats.rate_limit_hits}")
 
 ---
 
-## <img src="memes/harold/emoji/harold-shipper-24.png" height="24" alt="harold-shipper"> Best Practices
+## Best Practices
 
-> <img src="memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> Harold has built adapters for five platforms. Here's what he learned, condensed into wisdom earned through suffering.
+> Harold has built adapters for five platforms. Here's what he learned, condensed into wisdom earned through suffering.
 
-1. **<img src="memes/harold/emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> Handle 404 as success**: If a resource is already deleted, return `success=True`. Don't retry the already-gone.
-2. **<img src="memes/harold/emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> Include proof**: Store API response codes or deletion confirmation IDs. <img src="memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> You may need evidence later.
-3. **<img src="memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Respect rate limits**: Set conservative `RateLimitConfig` values. Better slow than banned.
-4. **<img src="memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> Test error paths**: Rate limits, network errors, auth failures, unexpected JSON responses, the platform changing their API without notice on a Friday afternoon.
-5. **<img src="memes/harold/emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> Clean disconnection**: Release API connections in `_do_disconnect()`. Leaked connections are Harold's least favorite kind of leak (after credential leaks).
-6. **<img src="memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Metadata support**: Use `task.metadata` for platform-specific parameters that don't fit the standard model.
+1. ** Handle 404 as success**: If a resource is already deleted, return `success=True`. Don't retry the already-gone.
+2. ** Include proof**: Store API response codes or deletion confirmation IDs. You may need evidence later.
+3. ** Respect rate limits**: Set conservative `RateLimitConfig` values. Better slow than banned.
+4. ** Test error paths**: Rate limits, network errors, auth failures, unexpected JSON responses, the platform changing their API without notice on a Friday afternoon.
+5. ** Clean disconnection**: Release API connections in `_do_disconnect()`. Leaked connections are Harold's least favorite kind of leak (after credential leaks).
+6. ** Metadata support**: Use `task.metadata` for platform-specific parameters that don't fit the standard model.
 
 ---
 
-*<img src="memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Every platform API is a unique snowflake of documentation pain. Adapters absorb this suffering so the engine doesn't have to.*
+* Every platform API is a unique snowflake of documentation pain. Adapters absorb this suffering so the engine doesn't have to.*
 
-<img src="memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> *Harold has been through five platform APIs. Harold has the scars. Harold documented them so you don't have to earn your own.*
+ *Harold has been through five platform APIs. Harold has the scars. Harold documented them so you don't have to earn your own.*

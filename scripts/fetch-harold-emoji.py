@@ -36,6 +36,7 @@ import sys
 import urllib.request
 from pathlib import Path
 
+
 try:
     from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 except ImportError:

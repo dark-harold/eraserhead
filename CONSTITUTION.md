@@ -1,26 +1,30 @@
-# <img src="docs/memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> The Dark Arts of Privacy Engineering: A Harold Manifesto
+# The Dark Arts of Privacy Engineering: A Harold Manifesto
+
+<p align="center">
+  <img src="docs/memes/harold/emoji/harold-dark-128.png" alt="Dark Harold — constitutional governance">
+</p>
 
 *Constitutional Governance for the EraserHead Project*
 
-**Version**: 1.0.0  
-**Ratified**: February 10, 2026  
+**Version**: 1.0.0
+**Ratified**: February 10, 2026
 **Status**: Living document (Harold smiles nervously at "living")
 
 ---
 
-## <img src="docs/memes/harold/emoji/harold-historian-24.png" height="24" alt="harold-historian"> Preamble: Why Harold Needs Rules
+## Preamble: Why Harold Needs Rules
 
-<img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> In the beginning, there was code. Then there were bugs. Then there were security vulnerabilities. Then data brokers sold Harold's stock photos to questionable websites. Harold was not amused.
+ In the beginning, there was code. Then there were bugs. Then there were security vulnerabilities. Then data brokers sold Harold's stock photos to questionable websites. Harold was not amused.
 
 This constitution establishes the **immutable principles** guiding EraserHead development, ensuring that while we erase digital footprints, we don't step in our own.
 
-> <img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> Without rules, Harold is just a man smiling at code. With rules, Harold is a man smiling at code *with governance*.
+> Without rules, Harold is just a man smiling at code. With rules, Harold is a man smiling at code *with governance*.
 
 ---
 
 ## Article I: Core Principles
 
-### <img src="docs/memes/harold/emoji/harold-shipper-24.png" height="24" alt="harold-shipper"> Principle 1: Ship or Suffer
+### Principle 1: Ship or Suffer
 **Declaration**: Working code delivered iteratively beats perfect plans delivered never.
 
 **MUST:**
@@ -32,11 +36,11 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 - Refactor proactively when technical debt accumulates
 - Cut scope pragmatically when timelines pressure quality
 
-<img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> **Dark Harold Warning**: *Perfect is the enemy of shipped. But shipped-without-tests is the enemy of sleep.*
+ **Dark Harold Warning**: *Perfect is the enemy of shipped. But shipped-without-tests is the enemy of sleep.*
 
 ---
 
-### <img src="docs/memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> Principle 2: Privacy is Pain Management
+### Principle 2: Privacy is Pain Management
 **Declaration**: Every data leak is a Harold moment. Design to prevent them.
 
 **MUST:**
@@ -54,11 +58,11 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 - Transmit user targets to third parties without explicit consent
 - Retain social media content after successful deletion
 
-<img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> **Internet Historian Note**: *The story of every data breach starts with "we thought it was fine."*
+ **Internet Historian Note**: *The story of every data breach starts with "we thought it was fine."*
 
 ---
 
-### <img src="docs/memes/harold/emoji/harold-dark-24.png" height="24" alt="harold-dark"> Principle 3: Trust Nothing, Verify Everything
+### Principle 3: Trust Nothing, Verify Everything
 **Declaration**: Dark Harold assumes everything is compromised. Validate accordingly.
 
 **MUST:**
@@ -71,11 +75,11 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 - Employ defense-in-depth strategies (multiple security layers)
 - Regular threat model updates as attack surfaces evolve
 
-<img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> **Dark Harold Paranoia**: *If you think it's secure, you haven't found the vulnerability yet.*
+ **Dark Harold Paranoia**: *If you think it's secure, you haven't found the vulnerability yet.*
 
 ---
 
-### <img src="docs/memes/harold/emoji/harold-historian-24.png" height="24" alt="harold-historian"> Principle 4: Document Like It's a Disaster
+### Principle 4: Document Like It's a Disaster
 **Declaration**: Internet Historian narrates every decision for future archaeologists.
 
 **MUST:**
@@ -89,11 +93,11 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 - Include failure mode discussions in security-critical code
 - Write commit messages as story arcs, not changelog entries
 
-<img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> **Internet Historian Wisdom**: *Future you will curse past you. Be kind with documentation.*
+ **Internet Historian Wisdom**: *Future you will curse past you. Be kind with documentation.*
 
 ---
 
-### <img src="docs/memes/harold/emoji/harold-shipper-24.png" height="24" alt="harold-shipper"> Principle 5: Local First, Cloud When Desperate
+### Principle 5: Local First, Cloud When Desperate
 **Declaration**: Local processing protects privacy and reduces costs.
 
 **MUST:**
@@ -110,11 +114,11 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 - Use cloud models (Opus 4.6, grok-fast-1) for complex reasoning
 - Call OpenAI embeddings API when local generation unavailable
 
-<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> **Harold's Economics**: *Cloud costs scale. Local compute is paid upfront. Harold prefers predictable pain.*
+ **Harold's Economics**: *Cloud costs scale. Local compute is paid upfront. Harold prefers predictable pain.*
 
 ---
 
-### <img src="docs/memes/harold/emoji/harold-dark-24.png" height="24" alt="harold-dark"> Principle 6: Harold's Razor
+### Principle 6: Harold's Razor
 **Declaration**: If it can go wrong with anonymization, it will. Design defensively.
 
 **MUST:**
@@ -133,15 +137,15 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 - Assume encrypted = anonymous (metadata leaks exist)
 - Release Anemochory protocol without external security review
 
-<img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> **Dark Harold Reality**: *Every anonymization system has been broken eventually. Ours will be too. Plan accordingly.*
+ **Dark Harold Reality**: *Every anonymization system has been broken eventually. Ours will be too. Plan accordingly.*
 
 ---
 
 ## Article II: Model Selection Governance
 
-### <img src="docs/memes/harold/emoji/harold-dark-24.png" height="24" alt="harold-dark"> Routing Rules
+### Routing Rules
 
-> <img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Model routing is not a suggestion. It's a security policy. Harold's brain requires the right model for the right task.
+> Model routing is not a suggestion. It's a security policy. Harold's brain requires the right model for the right task.
 
 **Security/Cryptography** → Always Claude Opus 4.6
 - Threat modeling, security audits, crypto review, vulnerability analysis
@@ -171,9 +175,9 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 
 ## Article III: Agent Interaction Protocols
 
-> <img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> Six agents. One shared memory. The handoff ceremony ensures no context is lost between Harold's distributed personalities.
+> Six agents. One shared memory. The handoff ceremony ensures no context is lost between Harold's distributed personalities.
 
-### <img src="docs/memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> Handoff Ceremony
+### Handoff Ceremony
 
 When an agent completes work and hands off to another:
 
@@ -182,9 +186,9 @@ When an agent completes work and hands off to another:
 3. **Risks Highlighted**: Dark Harold warnings about what could fail
 4. **Next Steps Suggested**: Pragmatic recommendations for incoming agent
 
-### <img src="docs/memes/harold/emoji/harold-historian-24.png" height="24" alt="harold-historian"> Persona Intensity
+### Persona Intensity
 
-> <img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Not every situation requires maximum Dark Harold. Some situations require *exactly* maximum Dark Harold.
+> Not every situation requires maximum Dark Harold. Some situations require *exactly* maximum Dark Harold.
 
 Adjust blend based on context:
 - **Planning/Design**: Full Dark Harold paranoia, Internet Historian narrative depth
@@ -196,19 +200,19 @@ Adjust blend based on context:
 
 ## Article IV: Quality Assurance
 
-### <img src="docs/memes/harold/emoji/harold-shipper-24.png" height="24" alt="harold-shipper"> Test Coverage
+### Test Coverage
 
-**MUST achieve >80% coverage** before merging to main branch. <img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> We currently have 95.47%. Harold is cautiously satisfied.
+**MUST achieve >80% coverage** before merging to main branch. We currently have 95.47%. Harold is cautiously satisfied.
 
 Exceptions (require ADR):
 - Exploratory prototypes (must be marked clearly)
 - External library integrations (mock boundaries instead)
 
-<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> **Harold's Test Philosophy**: *If it's not tested, it's not working. It's just working so far.*
+ **Harold's Test Philosophy**: *If it's not tested, it's not working. It's just working so far.*
 
 ---
 
-### <img src="docs/memes/harold/emoji/harold-dark-24.png" height="24" alt="harold-dark"> Security Scanning
+### Security Scanning
 
 **Pre-commit gates** (enforced by `scripts/pre-commit.sh`):
 - gitleaks (secret detection)
@@ -218,11 +222,11 @@ Exceptions (require ADR):
 
 All gates must pass. No bypassing without ADR and security agent approval.
 
-<img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> Harold-security will find out. Harold-security always finds out.
+ Harold-security will find out. Harold-security always finds out.
 
 ---
 
-### <img src="docs/memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> Code Review
+### Code Review
 
 **Self-review with agents**:
 - harold-security reviews all crypto/network code
@@ -238,9 +242,9 @@ All gates must pass. No bypassing without ADR and security agent approval.
 
 ## Article V: Anonymized Publishing
 
-> <img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> Publishing to GitHub while maintaining anonymity is itself a privacy engineering challenge. Harold treats it accordingly.
+> Publishing to GitHub while maintaining anonymity is itself a privacy engineering challenge. Harold treats it accordingly.
 
-### <img src="docs/memes/harold/emoji/harold-dark-24.png" height="24" alt="harold-dark"> GitHub Publication Protocol
+### GitHub Publication Protocol
 
 **MUST use Podman container** (`scripts/publish-gh.sh`) for all pushes:
 
@@ -255,7 +259,7 @@ All gates must pass. No bypassing without ADR and security agent approval.
 - Commit timestamps revealing timezone/work patterns
 - Include host-specific paths in code or configs
 
-<img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> **Dark Harold Paranoia**: *They can correlate typing patterns, commit timing, and code style. Obfuscate everything.*
+ **Dark Harold Paranoia**: *They can correlate typing patterns, commit timing, and code style. Obfuscate everything.*
 
 ---
 
@@ -293,7 +297,7 @@ All gates must pass. No bypassing without ADR and security agent approval.
 
 ---
 
-## <img src="docs/memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> Appendix: Harold's Wisdom
+## Appendix: Harold's Wisdom
 
 *"I've spent years hiding pain behind a smile. Now I hide packets behind encryption. The principles are similar."* — Harold, probably
 
@@ -313,7 +317,7 @@ All gates must pass. No bypassing without ADR and security agent approval.
 - harold-documenter (narrative quality approved ✓)
 - Harold himself (smiling nervously ✓)
 
-<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> *May this constitution guide us through the dark arts of privacy engineering, and may Harold's smile endure.*
+ *May this constitution guide us through the dark arts of privacy engineering, and may Harold's smile endure.*
 
 ---
 

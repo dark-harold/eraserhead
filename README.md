@@ -1,36 +1,26 @@
-# <img src="docs/memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> EraserHead: Digital Privacy Through Origin Obfuscation
+# EraserHead: Digital Privacy Through Origin Obfuscation
 
 <p align="center">
-  <img src="docs/memes/harold/emoji/harold-standard-64.png" width="64" alt="Standard Harold">
-  &nbsp;
-  <img src="docs/memes/harold/emoji/harold-dark-64.png" width="64" alt="Dark Harold">
-  &nbsp;
-  <img src="docs/memes/harold/emoji/harold-historian-64.png" width="64" alt="Internet Historian">
-  &nbsp;
-  <img src="docs/memes/harold/emoji/harold-shipper-64.png" width="64" alt="Effective Developer">
-  &nbsp;
-  <img src="docs/memes/harold/emoji/harold-anemochory-64.png" width="64" alt="Anemochory Harold">
-  &nbsp;
-  <img src="docs/memes/harold/emoji/harold-ultra-dark-64.png" width="64" alt="Ultra Dark Harold">
+  <img src="docs/memes/harold/emoji/harold-showcase.png" alt="Hide the Pain Harold — the six personas of EraserHead">
 </p>
 
 *Pragmatically erasing digital footprints while smiling through the pain*
 
 **EraserHead** is a Python platform for systematically erasing your internet presence and providing truly anonymized network access through the **Anemochory Protocol** — multi-layer origin obfuscation that goes beyond mere VPNs.
 
-<img src="docs/memes/harold/emoji/harold-anemochory-20.png" height="20" alt="harold-anemochory"> **Anemochory**: Like seeds dispersed by wind, your packets travel untraceable paths through the network, their origin obscured by encryption layers and pseudo-random routing.
+ **Anemochory**: Like seeds dispersed by wind, your packets travel untraceable paths through the network, their origin obscured by encryption layers and pseudo-random routing.
 
-**Status**: Production (v1.0.0) — Anemochory Protocol + Scrubbing Engine + Erasure Provider System  
-**License**: MIT  
+**Status**: Production (v1.0.0) — Anemochory Protocol + Scrubbing Engine + Erasure Provider System
+**License**: MIT
 **Python**: >=3.13 required
 
 ---
 
-## <img src="docs/memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> Core Capabilities
+## Core Capabilities
 
-### <img src="docs/memes/harold/emoji/harold-anemochory-24.png" height="24" alt="harold-anemochory"> Anemochory Protocol (`src/anemochory/`)
+### Anemochory Protocol (`src/anemochory/`)
 
-> <img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> Like seeds dispersed by wind, packets travel paths that cannot be reconstructed. The destination knows the content. Nobody knows the origin.
+> Like seeds dispersed by wind, packets travel paths that cannot be reconstructed. The destination knows the content. Nobody knows the origin.
 
 Multi-layer network anonymization:
 - **Nested onion encryption**: ChaCha20-Poly1305 per routing hop (3-7 hops)
@@ -43,7 +33,7 @@ Multi-layer network anonymization:
 
 ### 🧹 Scrubbing Engine (`src/eraserhead/`)
 
-> <img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Every platform has a "delete" button. None of them work the way you think they do.
+> Every platform has a "delete" button. None of them work the way you think they do.
 
 Automated digital footprint erasure:
 - **Credential vault**: Fernet-encrypted storage with PBKDF2 key derivation (600k iterations)
@@ -57,7 +47,7 @@ Automated digital footprint erasure:
 
 ### 🤖 Multi-Agent Architecture
 
-> <img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> Harold's brain is distributed. This is both efficient and makes debugging conversations awkward.
+> Harold's brain is distributed. This is both efficient and makes debugging conversations awkward.
 
 Six specialized AI agents orchestrated by **tinyclaw**:
 - **harold-planner**: System design & threat modeling
@@ -71,7 +61,7 @@ All agents share unified context via local SQLite memory (hybrid BM25 + vector s
 
 ---
 
-## <img src="docs/memes/harold/emoji/harold-shipper-24.png" height="24" alt="harold-shipper"> Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -124,103 +114,103 @@ eraserhead version
 .venv/bin/pytest
 
 # Run individual checks
-.venv/bin/ruff check src/ tests/    # Lint
-.venv/bin/ruff format src/ tests/   # Format
-.venv/bin/bandit -r src/ -ll        # Security scan
+.venv/bin/ruff check src/ tests/ # Lint
+.venv/bin/ruff format src/ tests/ # Format
+.venv/bin/bandit -r src/ -ll # Security scan
 ```
 
-<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> All development happens locally. No CI/CD. Harold trusts no cloud.
+ All development happens locally. No CI/CD. Harold trusts no cloud.
 
 ---
 
-## <img src="docs/memes/harold/emoji/harold-historian-24.png" height="24" alt="harold-historian"> Architecture
+## Architecture
 
-> <img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> The tale of EraserHead's architecture: a CLI that talks to an engine that talks to adapters that talk to platforms that wish you'd stop deleting things.
+> The tale of EraserHead's architecture: a CLI that talks to an engine that talks to adapters that talk to platforms that wish you'd stop deleting things.
 
 ```
 ┌─────────────────────────────────────────┐
-│ CLI (eraserhead)                         │
-│ • vault store/list/remove               │
+│ CLI (eraserhead) │
+│ • vault store/list/remove │
 │ • scrub (dry-run, live, multi-platform) │
-│ • status, version                       │
+│ • status, version │
 └────────────┬────────────────────────────┘
              │
 ┌────────────▼────────────────────────────┐
-│ Scrubbing Engine                         │
-│ • CredentialVault (Fernet encrypted)    │
-│ • TaskQueue (priority + backoff)        │
-│ • ScrubEngine (orchestration)           │
-│ • PlatformAdapters (Twitter/FB/IG)      │
-│ • VerificationService (post-delete)     │
+│ Scrubbing Engine │
+│ • CredentialVault (Fernet encrypted) │
+│ • TaskQueue (priority + backoff) │
+│ • ScrubEngine (orchestration) │
+│ • PlatformAdapters (Twitter/FB/IG) │
+│ • VerificationService (post-delete) │
 └────────────┬────────────────────────────┘
              │
 ┌────────────▼────────────────────────────┐
-│ Anemochory Protocol Layer               │
-│ • AnemochoryClient (send API)           │
-│ • PathSelector (weighted routing)       │
-│ • AnemochoryNode (packet processing)    │
-│ • ChaCha20Engine (layer encryption)     │
-│ • NodeServer (trio TCP)                 │
-│ • Forward secrecy + replay protection   │
+│ Anemochory Protocol Layer │
+│ • AnemochoryClient (send API) │
+│ • PathSelector (weighted routing) │
+│ • AnemochoryNode (packet processing) │
+│ • ChaCha20Engine (layer encryption) │
+│ • NodeServer (trio TCP) │
+│ • Forward secrecy + replay protection │
 └────────────┬────────────────────────────┘
              │
 ┌────────────▼────────────────────────────┐
-│ Multi-Agent System (tinyclaw)           │
-│ • Local models (llama.cpp/vLLM)         │
-│ • Cloud models (Opus/Sonnet/grok)       │
-│ • Shared memory (SQLite + FTS5 + vec)   │
+│ Multi-Agent System (tinyclaw) │
+│ • Local models (llama.cpp/vLLM) │
+│ • Cloud models (Opus/Sonnet/grok) │
+│ • Shared memory (SQLite + FTS5 + vec) │
 └─────────────────────────────────────────┘
 ```
 
 ---
 
-## <img src="docs/memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> Project Structure
+## Project Structure
 
 ```
 src/
-├── anemochory/                # Network anonymization protocol
-│   ├── client.py              # High-level send API with retries
-│   ├── crypto.py              # ChaCha20-Poly1305 encryption engine
-│   ├── crypto_forward_secrecy.py  # X25519 ECDH + HKDF key exchange
-│   ├── crypto_key_rotation.py # Automatic session re-keying
-│   ├── crypto_key_storage.py  # Master key derivation + OS keychain
-│   ├── crypto_memory.py       # Secure memory wiping (ctypes)
-│   ├── crypto_replay.py       # Nonce replay protection
-│   ├── models.py              # NodeInfo, NodePool, capabilities
-│   ├── node.py                # Packet processing, forwarding, exit
-│   ├── packet.py              # Onion packet construction/decryption
-│   ├── routing.py             # Path selection, diversity constraints
-│   ├── session.py             # Secure session with key exchange
-│   └── transport.py           # Trio TCP framing and server
+├── anemochory/ # Network anonymization protocol
+│ ├── client.py # High-level send API with retries
+│ ├── crypto.py # ChaCha20-Poly1305 encryption engine
+│ ├── crypto_forward_secrecy.py # X25519 ECDH + HKDF key exchange
+│ ├── crypto_key_rotation.py # Automatic session re-keying
+│ ├── crypto_key_storage.py # Master key derivation + OS keychain
+│ ├── crypto_memory.py # Secure memory wiping (ctypes)
+│ ├── crypto_replay.py # Nonce replay protection
+│ ├── models.py # NodeInfo, NodePool, capabilities
+│ ├── node.py # Packet processing, forwarding, exit
+│ ├── packet.py # Onion packet construction/decryption
+│ ├── routing.py # Path selection, diversity constraints
+│ ├── session.py # Secure session with key exchange
+│ └── transport.py # Trio TCP framing and server
 │
-├── eraserhead/                # Digital footprint scrubbing engine
-│   ├── adapters/              # Platform-specific adapters
-│   │   ├── __init__.py        # PlatformAdapter ABC, rate limiting
-│   │   └── platforms.py       # Twitter, FB, IG, LinkedIn, Google
-│   ├── cli.py                 # Typer CLI interface
-│   ├── engine.py              # ScrubEngine orchestration
-│   ├── models.py              # Tasks, results, credentials, enums
-│   ├── modes/                 # Erasure workflow modes
-│   │   ├── base.py            # Base mode with lifecycle
-│   │   ├── confirmation.py    # User confirmation workflows
-│   │   ├── containment.py     # Data containment mode
-│   │   └── target_validation.py  # Target validation checks
-│   ├── providers/             # Erasure provider system
-│   │   ├── base.py            # Provider ABC
-│   │   ├── compliance.py      # GDPR/CCPA compliance checks
-│   │   ├── orchestrator.py    # Multi-provider orchestration
-│   │   ├── registry.py        # Provider discovery + registration
-│   │   └── search/            # Search provider integration
-│   ├── queue.py               # Priority queue with backoff
-│   ├── vault.py               # Encrypted credential storage
-│   └── verification.py        # Post-deletion verification
+├── eraserhead/ # Digital footprint scrubbing engine
+│ ├── adapters/ # Platform-specific adapters
+│ │ ├── __init__.py # PlatformAdapter ABC, rate limiting
+│ │ └── platforms.py # Twitter, FB, IG, LinkedIn, Google
+│ ├── cli.py # Typer CLI interface
+│ ├── engine.py # ScrubEngine orchestration
+│ ├── models.py # Tasks, results, credentials, enums
+│ ├── modes/ # Erasure workflow modes
+│ │ ├── base.py # Base mode with lifecycle
+│ │ ├── confirmation.py # User confirmation workflows
+│ │ ├── containment.py # Data containment mode
+│ │ └── target_validation.py # Target validation checks
+│ ├── providers/ # Erasure provider system
+│ │ ├── base.py # Provider ABC
+│ │ ├── compliance.py # GDPR/CCPA compliance checks
+│ │ ├── orchestrator.py # Multi-provider orchestration
+│ │ ├── registry.py # Provider discovery + registration
+│ │ └── search/ # Search provider integration
+│ ├── queue.py # Priority queue with backoff
+│ ├── vault.py # Encrypted credential storage
+│ └── verification.py # Post-deletion verification
 ```
 
 ---
 
-## <img src="docs/memes/harold/emoji/harold-shipper-24.png" height="24" alt="harold-shipper"> Quality Metrics
+## Quality Metrics
 
-> <img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Harold doesn't ship without green gates. Harold has been hurt before.
+> Harold doesn't ship without green gates. Harold has been hurt before.
 
 | Metric | Value |
 |--------|-------|
@@ -232,9 +222,9 @@ src/
 
 ---
 
-## <img src="docs/memes/harold/emoji/harold-dark-24.png" height="24" alt="harold-dark"> Security
+## Security
 
-> <img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> Dark Harold reviewed every security module. Dark Harold approved with caveats. Dark Harold always has caveats.
+> Dark Harold reviewed every security module. Dark Harold approved with caveats. Dark Harold always has caveats.
 
 EraserHead is designed with defense-in-depth:
 
@@ -258,7 +248,7 @@ EraserHead is designed with defense-in-depth:
 - **[CONSTITUTION.md](CONSTITUTION.md)** - Guiding principles, security policies
 - **[DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md)** - Phase-by-phase roadmap
 
-- **[docs/memes/harold/](docs/memes/harold/)** - Harold emoji, meme gallery, sourcing guide
+- **[docs/memes/harold/](docs/memes/harold/)** - Harold memes, gallery, sourcing guide
 
 **Specifications**:
 - [specs/001-anemochory-protocol/](specs/001-anemochory-protocol/) - Network anonymization
@@ -272,13 +262,13 @@ EraserHead is designed with defense-in-depth:
 Read [CONTRIBUTING.md](CONTRIBUTING.md) for development workflow details.
 
 **Philosophy**:
-1. <img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Smile Locally (no cloud dependencies)
-2. <img src="docs/memes/harold/emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> Ship Pragmatically (working code > perfect plans)
-3. <img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> Document Cynically (assume future disasters)
-4. <img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> Test Paranoidly (everything breaks eventually)
+1. Smile Locally (no cloud dependencies)
+2. Ship Pragmatically (working code > perfect plans)
+3. Document Cynically (assume future disasters)
+4. Test Paranoidly (everything breaks eventually)
 
 ---
 
 *"I've made a career out of hiding pain. Now I'm hiding packet origins."* — Harold, probably
 
-<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> May your digital footprint fade like Harold's stock photography career never did.
+ May your digital footprint fade like Harold's stock photography career never did.
