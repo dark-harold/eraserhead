@@ -1,10 +1,24 @@
-# 😐 EraserHead: Digital Privacy Through Origin Obfuscation
+# <img src="docs/memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> EraserHead: Digital Privacy Through Origin Obfuscation
+
+<p align="center">
+  <img src="docs/memes/harold/emoji/harold-standard-64.png" width="64" alt="Standard Harold">
+  &nbsp;
+  <img src="docs/memes/harold/emoji/harold-dark-64.png" width="64" alt="Dark Harold">
+  &nbsp;
+  <img src="docs/memes/harold/emoji/harold-historian-64.png" width="64" alt="Internet Historian">
+  &nbsp;
+  <img src="docs/memes/harold/emoji/harold-shipper-64.png" width="64" alt="Effective Developer">
+  &nbsp;
+  <img src="docs/memes/harold/emoji/harold-anemochory-64.png" width="64" alt="Anemochory Harold">
+  &nbsp;
+  <img src="docs/memes/harold/emoji/harold-ultra-dark-64.png" width="64" alt="Ultra Dark Harold">
+</p>
 
 *Pragmatically erasing digital footprints while smiling through the pain*
 
 **EraserHead** is a Python platform for systematically erasing your internet presence and providing truly anonymized network access through the **Anemochory Protocol** — multi-layer origin obfuscation that goes beyond mere VPNs.
 
-🌱 **Anemochory**: Like seeds dispersed by wind, your packets travel untraceable paths through the network, their origin obscured by encryption layers and pseudo-random routing.
+<img src="docs/memes/harold/emoji/harold-anemochory-20.png" height="20" alt="harold-anemochory"> **Anemochory**: Like seeds dispersed by wind, your packets travel untraceable paths through the network, their origin obscured by encryption layers and pseudo-random routing.
 
 **Status**: Production (v1.0.0) — Anemochory Protocol + Scrubbing Engine + Erasure Provider System  
 **License**: MIT  
@@ -12,11 +26,11 @@
 
 ---
 
-## 😐 Core Capabilities
+## <img src="docs/memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> Core Capabilities
 
-### 🌱 Anemochory Protocol (`src/anemochory/`)
+### <img src="docs/memes/harold/emoji/harold-anemochory-24.png" height="24" alt="harold-anemochory"> Anemochory Protocol (`src/anemochory/`)
 
-> 📺 Like seeds dispersed by wind, packets travel paths that cannot be reconstructed. The destination knows the content. Nobody knows the origin.
+> <img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> Like seeds dispersed by wind, packets travel paths that cannot be reconstructed. The destination knows the content. Nobody knows the origin.
 
 Multi-layer network anonymization:
 - **Nested onion encryption**: ChaCha20-Poly1305 per routing hop (3-7 hops)
@@ -29,7 +43,7 @@ Multi-layer network anonymization:
 
 ### 🧹 Scrubbing Engine (`src/eraserhead/`)
 
-> 😐 Every platform has a "delete" button. None of them work the way you think they do.
+> <img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Every platform has a "delete" button. None of them work the way you think they do.
 
 Automated digital footprint erasure:
 - **Credential vault**: Fernet-encrypted storage with PBKDF2 key derivation (600k iterations)
@@ -43,7 +57,7 @@ Automated digital footprint erasure:
 
 ### 🤖 Multi-Agent Architecture
 
-> 📺 Harold's brain is distributed. This is both efficient and makes debugging conversations awkward.
+> <img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> Harold's brain is distributed. This is both efficient and makes debugging conversations awkward.
 
 Six specialized AI agents orchestrated by **tinyclaw**:
 - **harold-planner**: System design & threat modeling
@@ -57,7 +71,7 @@ All agents share unified context via local SQLite memory (hybrid BM25 + vector s
 
 ---
 
-## ✅ Quick Start
+## <img src="docs/memes/harold/emoji/harold-shipper-24.png" height="24" alt="harold-shipper"> Quick Start
 
 ### Prerequisites
 
@@ -115,13 +129,13 @@ eraserhead version
 .venv/bin/bandit -r src/ -ll        # Security scan
 ```
 
-😐 All development happens locally. No CI/CD. Harold trusts no cloud.
+<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> All development happens locally. No CI/CD. Harold trusts no cloud.
 
 ---
 
-## 📺 Architecture
+## <img src="docs/memes/harold/emoji/harold-historian-24.png" height="24" alt="harold-historian"> Architecture
 
-> 📺 The tale of EraserHead's architecture: a CLI that talks to an engine that talks to adapters that talk to platforms that wish you'd stop deleting things.
+> <img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> The tale of EraserHead's architecture: a CLI that talks to an engine that talks to adapters that talk to platforms that wish you'd stop deleting things.
 
 ```
 ┌─────────────────────────────────────────┐
@@ -160,7 +174,7 @@ eraserhead version
 
 ---
 
-## 😐 Project Structure
+## <img src="docs/memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> Project Structure
 
 ```
 src/
@@ -204,9 +218,9 @@ src/
 
 ---
 
-## ✅ Quality Metrics
+## <img src="docs/memes/harold/emoji/harold-shipper-24.png" height="24" alt="harold-shipper"> Quality Metrics
 
-> 😐 Harold doesn't ship without green gates. Harold has been hurt before.
+> <img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Harold doesn't ship without green gates. Harold has been hurt before.
 
 | Metric | Value |
 |--------|-------|
@@ -218,9 +232,9 @@ src/
 
 ---
 
-## 🌑 Security
+## <img src="docs/memes/harold/emoji/harold-dark-24.png" height="24" alt="harold-dark"> Security
 
-> 🌑 Dark Harold reviewed every security module. Dark Harold approved with caveats. Dark Harold always has caveats.
+> <img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> Dark Harold reviewed every security module. Dark Harold approved with caveats. Dark Harold always has caveats.
 
 EraserHead is designed with defense-in-depth:
 
@@ -258,13 +272,13 @@ EraserHead is designed with defense-in-depth:
 Read [CONTRIBUTING.md](CONTRIBUTING.md) for development workflow details.
 
 **Philosophy**:
-1. 😐 Smile Locally (no cloud dependencies)
-2. ✅ Ship Pragmatically (working code > perfect plans)
-3. 📺 Document Cynically (assume future disasters)
-4. 🌑 Test Paranoidly (everything breaks eventually)
+1. <img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Smile Locally (no cloud dependencies)
+2. <img src="docs/memes/harold/emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> Ship Pragmatically (working code > perfect plans)
+3. <img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> Document Cynically (assume future disasters)
+4. <img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> Test Paranoidly (everything breaks eventually)
 
 ---
 
 *"I've made a career out of hiding pain. Now I'm hiding packet origins."* — Harold, probably
 
-😐 May your digital footprint fade like Harold's stock photography career never did.
+<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> May your digital footprint fade like Harold's stock photography career never did.

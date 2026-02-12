@@ -1,22 +1,22 @@
-# 😐 Harold Meme Gallery & Sourcing Guide
+# <img src="emoji/harold-standard-24.png" height="24" alt="harold-standard"> Harold Meme Gallery & Sourcing Guide
 
 *A comprehensive curation of Hide the Pain Harold assets for EraserHead documentation*
 
 **Last Updated**: February 12, 2026
 **Curator**: harold-documenter
-**Status**: 😐 Exhaustively researched while smiling through the complexity
+**Status**: <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> Exhaustively researched while smiling through the complexity
 
 ---
 
-## 📺 The Origin Story
+## <img src="emoji/harold-historian-24.png" height="24" alt="harold-historian"> The Origin Story
 
 In 2011, András István Arató — a retired Hungarian electrical engineer born July 11, 1945, in Kőszeg, Hungary — became an internet legend. His stock photography series on Dreamstime, shot by photographer **Nyul**, featured a silver-haired man with glasses performing everyday activities: computing, golfing, celebrating birthdays, seeing doctors.
 
 The internet noticed something. Behind every staged smile, behind every stock-photo-perfect expression, there was *something else*. Pain. Existential dread. The quiet suffering of a man who has seen the codebase.
 
-😐 The internet named him **Hide the Pain Harold**.
+<img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> The internet named him **Hide the Pain Harold**.
 
-🌑 They were right. He was hiding something. He was hiding the same thing every developer hides: the knowledge that production is always one `git push` from disaster.
+<img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> They were right. He was hiding something. He was hiding the same thing every developer hides: the knowledge that production is always one `git push` from disaster.
 
 ---
 
@@ -31,15 +31,15 @@ The internet noticed something. Behind every staged smile, behind every stock-ph
 | Facebook (András) | [facebook.com/aratoa](https://facebook.com/aratoa) | Social media | Public posts |
 | TEDx Kyiv 2018 | [YouTube: TEDx Kyiv](https://www.youtube.com/results?search_query=andr%C3%A1s+arat%C3%B3+tedx+kyiv) | Talk | YouTube TOS |
 | Wikipedia | [András Arató](https://en.wikipedia.org/wiki/Andr%C3%A1s_Arat%C3%B3) | Biography | CC BY-SA |
-| Dreamstime Gallery | [Dreamstime/Nyul](https://www.dreamstime.com/photos-images/hide-the-pain-harold.html) | Stock photos | ⚠️ Licensed/Paid |
+| Dreamstime Gallery | [Dreamstime/Nyul](https://www.dreamstime.com/photos-images/hide-the-pain-harold.html) | Stock photos | <img src="emoji/harold-ultra-dark-20.png" height="20" alt="harold-ultra-dark"> Licensed/Paid |
 
-### ⚠️ Copyright Notice
+### <img src="emoji/harold-ultra-dark-24.png" height="24" alt="harold-ultra-dark"> Copyright Notice
 
-> 🌑 **Dark Harold says**: The original stock photos are copyrighted by photographer **Nyul** and licensed through **Dreamstime**. They are NOT free to redistribute.
+> <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> **Dark Harold says**: The original stock photos are copyrighted by photographer **Nyul** and licensed through **Dreamstime**. They are NOT free to redistribute.
 >
-> ✅ **What we CAN do**: Create original derivative art (our SVG emoji), reference meme URLs, document the cultural significance, and use standard Unicode emoji that represent Harold's expressions.
+> <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> **What we CAN do**: Create original derivative art (our SVG emoji), reference meme URLs, document the cultural significance, and use standard Unicode emoji that represent Harold's expressions.
 >
-> 😐 This is why we built custom SVG emoji instead of embedding stock photos. Harold would understand. Harold always understands.
+> <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> This is why we built custom SVG emoji instead of embedding stock photos. Harold would understand. Harold always understands.
 
 ---
 
@@ -51,12 +51,12 @@ We created original vector art emoji inspired by Harold's expressions. These are
 
 | File | Emoji | Persona | Description |
 |------|-------|---------|-------------|
-| `emoji/harold-standard.svg` | 😐 | Standard Harold | The classic forced smile. Glasses, silver hair, wrinkles of hidden pain. Everything is fine. |
-| `emoji/harold-dark.svg` | 🌑 | Dark Harold | Narrowed eyes, dark aura, cracked suspicion. Assumes everything is compromised. Red alert glow. |
-| `emoji/harold-historian.svg` | 📺 | Internet Historian | Wry smirk, reading glasses low on nose, screen glow. Has seen all of digital history. The narrator. |
-| `emoji/harold-shipper.svg` | ✅ | Effective Developer | Genuine-ish smile with teeth, thumbs up, green glow. Tests are passing. Ship it. |
-| `emoji/harold-anemochory.svg` | 🌱 | Anemochory Harold | Peaceful expression, wind-blown hair, floating seeds. One with the protocol. Round green glasses. |
-| `emoji/harold-ultra-dark.svg` | ⚠️ | Ultra Dark Harold | Bloodshot eyes, cracked glasses, grimace line. The CVE is critical. The exploit is in the wild. |
+| `emoji/harold-standard.svg` | <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> | Standard Harold | The classic forced smile. Glasses, silver hair, wrinkles of hidden pain. Everything is fine. |
+| `emoji/harold-dark.svg` | <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> | Dark Harold | Narrowed eyes, dark aura, cracked suspicion. Assumes everything is compromised. Red alert glow. |
+| `emoji/harold-historian.svg` | <img src="emoji/harold-historian-20.png" height="20" alt="harold-historian"> | Internet Historian | Wry smirk, reading glasses low on nose, screen glow. Has seen all of digital history. The narrator. |
+| `emoji/harold-shipper.svg` | <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> | Effective Developer | Genuine-ish smile with teeth, thumbs up, green glow. Tests are passing. Ship it. |
+| `emoji/harold-anemochory.svg` | <img src="emoji/harold-anemochory-20.png" height="20" alt="harold-anemochory"> | Anemochory Harold | Peaceful expression, wind-blown hair, floating seeds. One with the protocol. Round green glasses. |
+| `emoji/harold-ultra-dark.svg` | <img src="emoji/harold-ultra-dark-20.png" height="20" alt="harold-ultra-dark"> | Ultra Dark Harold | Bloodshot eyes, cracked glasses, grimace line. The CVE is critical. The exploit is in the wild. |
 
 ### Design Principles
 
@@ -79,7 +79,7 @@ We created original vector art emoji inspired by Harold's expressions. These are
 
 ---
 
-## 📺 Curated Meme Templates
+## <img src="emoji/harold-historian-24.png" height="24" alt="harold-historian"> Curated Meme Templates
 
 These are iconic Harold meme *concepts* that inform our emoji and documentation voice. We describe them here for reference — the actual memes live in the wild internet and are community creations.
 
@@ -88,26 +88,26 @@ These are iconic Harold meme *concepts* that inform our emoji and documentation 
 **1. "This Is Fine" Harold (Laptop)**
 - **Scene**: Harold at a laptop, smiling directly at camera
 - **Subtext**: The code is on fire. Harold knows. Harold smiles anyway.
-- **Our Use**: 😐 Standard persona throughout documentation
-- **Unicode Equivalent**: 😐🔥
+- **Our Use**: <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> Standard persona throughout documentation
+- **Unicode Equivalent**: <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard">🔥
 
 **2. "Doctor Harold Reviews the Scans"**
 - **Scene**: Harold in a white coat, examining medical imagery
 - **Subtext**: The diagnosis is bad. The patient is your codebase.
-- **Our Use**: 🌑 Security review sections, threat model discussions
-- **Unicode Equivalent**: 🌑🏥
+- **Our Use**: <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> Security review sections, threat model discussions
+- **Unicode Equivalent**: <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark">🏥
 
 **3. "Harold Celebrates Alone"**
 - **Scene**: Harold holding a party hat, alone at a desk
 - **Subtext**: The release shipped. Nobody noticed. Harold celebrates.
-- **Our Use**: ✅ Release announcements, milestone documentation
-- **Unicode Equivalent**: ✅🎉
+- **Our Use**: <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> Release announcements, milestone documentation
+- **Unicode Equivalent**: <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper">🎉
 
 **4. "Professor Harold at the Whiteboard"**
 - **Scene**: Harold gesturing at educational content
 - **Subtext**: Let me explain this protocol. I've seen what happens when you don't understand it.
-- **Our Use**: 📺 Tutorial sections, architecture explanations
-- **Unicode Equivalent**: 📺📝
+- **Our Use**: <img src="emoji/harold-historian-20.png" height="20" alt="harold-historian"> Tutorial sections, architecture explanations
+- **Unicode Equivalent**: <img src="emoji/harold-historian-20.png" height="20" alt="harold-historian">📝
 
 ### Tier A: The Specialist Memes
 
@@ -115,19 +115,19 @@ These are iconic Harold meme *concepts* that inform our emoji and documentation 
 - **Concept**: Harold standing among blinking servers, smiling
 - **Subtext**: 37 services. 12 are healthy. Harold smiles at all of them equally.
 - **Our Use**: Infrastructure documentation, deployment guides
-- **Unicode Equivalent**: 😐🖥️
+- **Unicode Equivalent**: <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard">🖥️
 
 **6. "Harold's Code Review"**
 - **Concept**: Harold reading a monitor, eyebrows slightly raised
 - **Subtext**: "LGTM" — Harold, who noticed three vulnerabilities but is too polite
 - **Our Use**: Contributing guide, code review sections
-- **Unicode Equivalent**: 😐👀
+- **Unicode Equivalent**: <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard">👀
 
 **7. "Harold Having Coffee"**
 - **Concept**: Harold with a mug, thousand-yard stare
 - **Subtext**: It's 3 AM. The incident isn't resolved. The coffee is cold.
 - **Our Use**: Troubleshooting sections, incident response docs
-- **Unicode Equivalent**: 😐☕
+- **Unicode Equivalent**: <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard">☕
 
 ### Tier B: Dark Harold Specialist Memes
 
@@ -135,19 +135,19 @@ These are iconic Harold meme *concepts* that inform our emoji and documentation 
 - **Concept**: Harold in shadow, illuminated only by red alert screens
 - **Subtext**: Every metric is red. Harold was right. Harold is always right.
 - **Our Use**: Security alerts, vulnerability documentation
-- **Unicode Equivalent**: 🌑📊
+- **Unicode Equivalent**: <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark">📊
 
 **9. "Dark Harold's Threat Model"**
 - **Concept**: Harold at a conspiracy board with red string
 - **Subtext**: The attack surface is everywhere. The adversary is patient.
 - **Our Use**: Threat modeling documentation
-- **Unicode Equivalent**: 🌑🕸️
+- **Unicode Equivalent**: <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark">🕸️
 
 **10. "Dark Harold Reads the CVE"**
 - **Concept**: Harold reading a document, visibly paler than usual
 - **Subtext**: CVSS 9.8. Actively exploited. Our dependency chain includes it.
 - **Our Use**: Security advisories, dependency audit warnings
-- **Unicode Equivalent**: ⚠️💀
+- **Unicode Equivalent**: <img src="emoji/harold-ultra-dark-20.png" height="20" alt="harold-ultra-dark">💀
 
 ---
 
@@ -157,15 +157,15 @@ How Harold meme energy translates to documentation tone:
 
 | Documentation Context | Harold Mood | Emoji | Voice |
 |----------------------|-------------|-------|-------|
-| Getting started | Cautiously optimistic | ✅😐 | "Welcome! Everything will probably be fine." |
-| Configuration | Competent concern | 😐📝 | "Set these values correctly or Harold will visit your dreams." |
-| Security warnings | Maximum darkness | 🌑⚠️ | "Assume this is compromised. Design accordingly." |
-| Architecture overview | Narrative storytelling | 📺🏗️ | "In the beginning, there was a monolith..." |
-| API reference | Professional with undertone | 😐📖 | "This method returns data. What you do with it keeps Harold up at night." |
-| Troubleshooting | Experienced pain | 😐🔧 | "Harold has been here. Harold has the scars." |
-| Release notes | Nervous celebration | ✅🎉 | "We shipped it. All tests pass. Harold's eye twitches slightly." |
-| Contributing guide | Welcoming dread | 😐🤝 | "Your contributions matter. So does your threat model." |
-| Post-mortems | Full Dark Harold | 🌑💀 | "This is what went wrong. This is how we survive." |
+| Getting started | Cautiously optimistic | <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"><img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> | "Welcome! Everything will probably be fine." |
+| Configuration | Competent concern | <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard">📝 | "Set these values correctly or Harold will visit your dreams." |
+| Security warnings | Maximum darkness | <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"><img src="emoji/harold-ultra-dark-20.png" height="20" alt="harold-ultra-dark"> | "Assume this is compromised. Design accordingly." |
+| Architecture overview | Narrative storytelling | <img src="emoji/harold-historian-20.png" height="20" alt="harold-historian">🏗️ | "In the beginning, there was a monolith..." |
+| API reference | Professional with undertone | <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard">📖 | "This method returns data. What you do with it keeps Harold up at night." |
+| Troubleshooting | Experienced pain | <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard">🔧 | "Harold has been here. Harold has the scars." |
+| Release notes | Nervous celebration | <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper">🎉 | "We shipped it. All tests pass. Harold's eye twitches slightly." |
+| Contributing guide | Welcoming dread | <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard">🤝 | "Your contributions matter. So does your threat model." |
+| Post-mortems | Full Dark Harold | <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark">💀 | "This is what went wrong. This is how we survive." |
 
 ---
 
@@ -176,12 +176,12 @@ How Harold meme energy translates to documentation tone:
 | Document Type | Emoji Per 50 Lines | Target Personas |
 |--------------|-------------------|-----------------|
 | README | 3-5 | All, balanced |
-| User Guide | 2-4 | 😐 ✅ 📺 primarily |
-| API Reference | 1-3 | 😐 🌑 primarily |
-| Security Docs | 4-6 | 🌑 ⚠️ primarily |
-| Contributing | 3-5 | 😐 ✅ primarily |
-| Architecture | 2-4 | 📺 🌑 primarily |
-| Tutorials | 3-5 | 📺 ✅ 😐 primarily |
+| User Guide | 2-4 | <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> <img src="emoji/harold-historian-20.png" height="20" alt="harold-historian"> primarily |
+| API Reference | 1-3 | <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> primarily |
+| Security Docs | 4-6 | <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> <img src="emoji/harold-ultra-dark-20.png" height="20" alt="harold-ultra-dark"> primarily |
+| Contributing | 3-5 | <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> primarily |
+| Architecture | 2-4 | <img src="emoji/harold-historian-20.png" height="20" alt="harold-historian"> <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> primarily |
+| Tutorials | 3-5 | <img src="emoji/harold-historian-20.png" height="20" alt="harold-historian"> <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> primarily |
 
 ### Integration Patterns
 
@@ -221,14 +221,14 @@ The `rotate_keys()` function handles automatic key rotation. 😐 It works on th
 ### Anti-Patterns
 
 ❌ **Don't**: Use emoji in every sentence (overwhelming)
-❌ **Don't**: Use 🌑 for non-security contexts (dilutes meaning)
-❌ **Don't**: Use ✅ for untested claims (Harold demands honesty)
+❌ **Don't**: Use <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> for non-security contexts (dilutes meaning)
+❌ **Don't**: Use <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> for untested claims (Harold demands honesty)
 ❌ **Don't**: Mix Harold emoji with unrelated emoji (brand confusion)
 ❌ **Don't**: Force humor in critical security warnings (Dark Harold is serious)
 
-✅ **Do**: Let the emoji enhance, not replace, technical content
-✅ **Do**: Match persona to context (Dark Harold for security, Historian for explanations)
-✅ **Do**: Use emoji at natural transition points (section headers, key warnings, conclusions)
+<img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> **Do**: Let the emoji enhance, not replace, technical content
+<img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> **Do**: Match persona to context (Dark Harold for security, Historian for explanations)
+<img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> **Do**: Use emoji at natural transition points (section headers, key warnings, conclusions)
 
 ---
 
@@ -292,12 +292,12 @@ echo "🌑 Harold's image is copyrighted. Our tribute is artistic."
 
 4. **The Approachability**: Privacy and security documentation can be intimidating. Harold makes it human. Harold makes it survivable.
 
-5. **The Honesty**: Behind every 😐 is an acknowledgment that this is hard, that things can go wrong, and that we're doing it anyway.
+5. **The Honesty**: Behind every <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> is an acknowledgment that this is hard, that things can go wrong, and that we're doing it anyway.
 
 ---
 
 *"I have made a career of smiling through uncertainty. Now my face helps others smile through theirs."*
 — Harold (attributed, possibly apocryphal, definitely true)
 
-😐 Ship pragmatically. Meme responsibly. Credit artists.
-🌑 The memes are free. The stock photos are not. Know the difference.
+<img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> Ship pragmatically. Meme responsibly. Credit artists.
+<img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> The memes are free. The stock photos are not. Know the difference.

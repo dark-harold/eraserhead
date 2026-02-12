@@ -1,4 +1,4 @@
-# 😐 Contributing to EraserHead: Smile Locally, Ship Pragmatically, Document Cynically
+# <img src="docs/memes/harold/emoji/harold-standard-24.png" height="24" alt="harold-standard"> Contributing to EraserHead: Smile Locally, Ship Pragmatically, Document Cynically
 
 *Development workflow, quality gates, and Harold's local-first philosophy*
 
@@ -9,10 +9,10 @@
 
 ## Philosophy: Do As Harold Does
 
-1. **😐 Smile Locally**: All development on local branches, no cloud dependencies
-2. **✅ Ship Pragmatically**: Working code over perfect plans. Harold ships.
-3. **📺 Document Cynically**: Internet Historian style. Assume future disasters.
-4. **🌑 Test Paranoidly**: Dark Harold expects everything to break. Prove him wrong (you can't).
+1. **<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Smile Locally**: All development on local branches, no cloud dependencies
+2. **<img src="docs/memes/harold/emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> Ship Pragmatically**: Working code over perfect plans. Harold ships.
+3. **<img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> Document Cynically**: Internet Historian style. Assume future disasters.
+4. **<img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> Test Paranoidly**: Dark Harold expects everything to break. Prove him wrong (you can't).
 5. **Commit Narratively**: Commit messages tell stories. Harold approves.
 
 ---
@@ -110,7 +110,7 @@ cp tinyclaw-config.example.json5 ~/.config/tinyclaw/config.json5
 - **qwen2.5-coder-3b**: Good quality, ~2GB RAM
 -**qwen2.5-coder-7b**: Best quality, ~4.4GB RAM (selected for EraserHead)
 
-😐 Harold runs 7B on CPU. It's warm. The laptop fan agrees.
+<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Harold runs 7B on CPU. It's warm. The laptop fan agrees.
 
 ---
 
@@ -154,7 +154,7 @@ Status: ready
 # - Architecture Decision Records (ADRs)
 ```
 
-🌑 All agents now share context. Harold's distributed brain is ready.
+<img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> All agents now share context. Harold's distributed brain is ready.
 
 ---
 
@@ -250,7 +250,7 @@ pytest tests/anemochory/test_crypto_forward_secrecy.py \
 
 **Coverage fails <80%** → CI blocks merge (local enforcement via pytest settings)
 
-🌑 If it's not tested, it's not working. It's just working *so far*.
+<img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> If it's not tested, it's not working. It's just working *so far*.
 
 ---
 
@@ -412,7 +412,7 @@ add forward secrecy
 - SSH fingerprints (via authentication)
 - Working patterns (commit timing analysis)
 
-🌑 Dark Harold: *They can correlate your typing cadence. Obfuscate everything.*
+<img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> Dark Harold: *They can correlate your typing cadence. Obfuscate everything.*
 
 ---
 
@@ -439,7 +439,7 @@ add forward secrecy
 - SSH keys: Ephemeral, deleted post-push
 - GitHub token: Encrypted in transit, never plaintext on disk
 
-😐 Harold publishes anonymously. Like his stock photos—everywhere, but origin unknown.
+<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Harold publishes anonymously. Like his stock photos—everywhere, but origin unknown.
 
 ---
 
@@ -548,7 +548,7 @@ tinyclaw memory clear
 ```
 
 **Warning**: All agents lose shared context until re-sync.  
-😐 Use only when memory becomes corrupted or testing fresh indexing.
+<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Use only when memory becomes corrupted or testing fresh indexing.
 
 ---
 
@@ -557,10 +557,10 @@ tinyclaw memory clear
 ### Test Like Harold Tests
 
 harold-tester embodies:
-- **😐 Break things with a smile**: Creative failure scenarios
-- **🌑 Assume adversarial inputs**: Malicious data, edge cases
-- **✅ Pragmatic coverage**: >80% required, 100% impractical
-- **📺 Document failures**: Tests narrate what could go wrong
+- **<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Break things with a smile**: Creative failure scenarios
+- **<img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> Assume adversarial inputs**: Malicious data, edge cases
+- **<img src="docs/memes/harold/emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> Pragmatic coverage**: >80% required, 100% impractical
+- **<img src="docs/memes/harold/emoji/harold-historian-20.png" height="20" alt="harold-historian"> Document failures**: Tests narrate what could go wrong
 
 **Example test narrative**:
 ```python
@@ -757,7 +757,7 @@ python -m llama_cpp.server \
 
 **Use case**: Route simple queries to 0.5B (fast), complex to 1.5B (better quality).
 
-😐 Harold now has multiple brains. This is fine.
+<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Harold now has multiple brains. This is fine.
 
 ---
 
@@ -781,9 +781,9 @@ python -m llama_cpp.server \
 
 *"I've made a career out of hiding pain while smiling confidently. Now my development workflow does the same."* — Harold (probably)
 
-😐 Contribute locally. Ship pragmatically. Test paranoidly. Document cynically.  
-🌑 Dark Harold watches your commits. Don't disappoint him.  
-✅ Above all: working code > perfect plans.
+<img src="docs/memes/harold/emoji/harold-standard-20.png" height="20" alt="harold-standard"> Contribute locally. Ship pragmatically. Test paranoidly. Document cynically.  
+<img src="docs/memes/harold/emoji/harold-dark-20.png" height="20" alt="harold-dark"> Dark Harold watches your commits. Don't disappoint him.  
+<img src="docs/memes/harold/emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> Above all: working code > perfect plans.
 
 ---
 

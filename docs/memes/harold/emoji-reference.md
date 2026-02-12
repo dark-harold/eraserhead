@@ -1,4 +1,4 @@
-# 😐 Harold Emoji Reference
+# <img src="emoji/harold-standard-24.png" height="24" alt="harold-standard"> Harold Emoji Reference
 
 *The official Hide the Pain Harold emoji lexicon for EraserHead documentation*
 
@@ -7,29 +7,64 @@
 
 ---
 
-## Custom SVG Emoji Assets
+## Custom Harold Emoji — The Faces
 
-EraserHead includes a set of **original custom SVG emoji** inspired by Harold's expressions. These are 128x128 vector art files — 100% original creations, no copyrighted material embedded.
+EraserHead includes a set of **original custom emoji** depicting Harold's many moods. These are available as SVG vector art (128×128) and PNG rasters at 20px, 24px, 32px, and 64px for inline use.
 
-| File | Persona | Emoji | Mood |
-|------|---------|-------|------|
-| [`emoji/harold-standard.svg`](emoji/harold-standard.svg) | 😐 Standard Harold | Forced smile | "Everything is fine" |
-| [`emoji/harold-dark.svg`](emoji/harold-dark.svg) | 🌑 Dark Harold | Narrowed suspicion | "Assume compromise" |
-| [`emoji/harold-historian.svg`](emoji/harold-historian.svg) | 📺 Internet Historian | Wry narrator smirk | "Let me tell you a story" |
-| [`emoji/harold-shipper.svg`](emoji/harold-shipper.svg) | ✅ Effective Developer | Thumbs up, green glow | "Tests pass, ship it" |
-| [`emoji/harold-anemochory.svg`](emoji/harold-anemochory.svg) | 🌱 Anemochory Harold | Peaceful, wind-blown | "One with the protocol" |
-| [`emoji/harold-ultra-dark.svg`](emoji/harold-ultra-dark.svg) | ⚠️ Ultra Dark Harold | Bloodshot, cracked glasses | "The CVE is critical" |
+### The Full Set
 
-> 📺 For the full meme sourcing guide, galleries, and Harold lore, see [MEME-GALLERY.md](MEME-GALLERY.md)
+<p align="center">
+  <img src="emoji/harold-standard-64.png" width="64" alt="Standard Harold">
+  &nbsp;&nbsp;
+  <img src="emoji/harold-dark-64.png" width="64" alt="Dark Harold">
+  &nbsp;&nbsp;
+  <img src="emoji/harold-historian-64.png" width="64" alt="Internet Historian">
+  &nbsp;&nbsp;
+  <img src="emoji/harold-shipper-64.png" width="64" alt="Effective Developer">
+  &nbsp;&nbsp;
+  <img src="emoji/harold-anemochory-64.png" width="64" alt="Anemochory Harold">
+  &nbsp;&nbsp;
+  <img src="emoji/harold-ultra-dark-64.png" width="64" alt="Ultra Dark Harold">
+</p>
+
+<p align="center">
+  <em>Standard &nbsp;·&nbsp; Dark &nbsp;·&nbsp; Historian &nbsp;·&nbsp; Shipper &nbsp;·&nbsp; Anemochory &nbsp;·&nbsp; Ultra Dark</em>
+</p>
+
+### Inline Usage (20px)
+
+Use these as inline emoji in markdown text — they render at natural text size:
+
+> Here's <img src="emoji/harold-standard-20.png" height="20" alt="harold"> Harold,
+> <img src="emoji/harold-dark-20.png" height="20" alt="dark harold"> Dark Harold,
+> <img src="emoji/harold-historian-20.png" height="20" alt="historian"> the Historian,
+> <img src="emoji/harold-shipper-20.png" height="20" alt="shipper"> the Shipper,
+> <img src="emoji/harold-anemochory-20.png" height="20" alt="anemochory"> Anemochory Harold,
+> and <img src="emoji/harold-ultra-dark-20.png" height="20" alt="ultra dark"> Ultra Dark Harold.
+
+### Asset Reference
+
+| Preview (32px) | Name | SVG Source | Inline Tag |
+|:-:|------|------------|-----------|
+| <img src="emoji/harold-standard-32.png" width="32"> | Standard Harold | [`harold-standard.svg`](emoji/harold-standard.svg) | `<img src=".../harold-standard-20.png" height="20">` |
+| <img src="emoji/harold-dark-32.png" width="32"> | Dark Harold | [`harold-dark.svg`](emoji/harold-dark.svg) | `<img src=".../harold-dark-20.png" height="20">` |
+| <img src="emoji/harold-historian-32.png" width="32"> | Internet Historian | [`harold-historian.svg`](emoji/harold-historian.svg) | `<img src=".../harold-historian-20.png" height="20">` |
+| <img src="emoji/harold-shipper-32.png" width="32"> | Effective Developer | [`harold-shipper.svg`](emoji/harold-shipper.svg) | `<img src=".../harold-shipper-20.png" height="20">` |
+| <img src="emoji/harold-anemochory-32.png" width="32"> | Anemochory Harold | [`harold-anemochory.svg`](emoji/harold-anemochory.svg) | `<img src=".../harold-anemochory-20.png" height="20">` |
+| <img src="emoji/harold-ultra-dark-32.png" width="32"> | Ultra Dark Harold | [`harold-ultra-dark.svg`](emoji/harold-ultra-dark.svg) | `<img src=".../harold-ultra-dark-20.png" height="20">` |
+
+**Available sizes**: 20px (inline text), 24px (headings), 32px (callouts), 64px (showcase)
+
+> <img src="emoji/harold-historian-20.png" height="20" alt="harold-historian"> For the full meme sourcing guide, galleries, and Harold lore, see [MEME-GALLERY.md](MEME-GALLERY.md)
 
 ---
 
 ## Core Harold Personas
 
-### 😐 Hide the Pain Harold (Standard)
+### <img src="emoji/harold-standard-24.png" height="24" alt="harold-standard"> Hide the Pain Harold (Standard)
 **Meaning**: The classic. Confident exterior, internal questioning of all life choices.  
 **Usage**: General commentary, acknowledging complexity, shipping despite concerns  
-**Example**: *"😐 This will definitely scale to production"*
+**Example**: *"<img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> This will definitely scale to production"*
 
 **When to use**:
 - Acknowledging technical debt while moving forward
@@ -38,10 +73,10 @@ EraserHead includes a set of **original custom SVG emoji** inspired by Harold's 
 
 ---
 
-### 🌑 Dark Harold (The Paranoid)
+### <img src="emoji/harold-dark-24.png" height="24" alt="harold-dark"> Dark Harold (The Paranoid)
 **Meaning**: Worst-case thinking, security paranoia, assumes everything is compromised.  
 **Usage**: Security warnings, threat modeling, edge cases, cryptographic concerns  
-**Example**: *"🌑 If you think it's secure, you haven't found the vulnerability yet"*
+**Example**: *"<img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> If you think it's secure, you haven't found the vulnerability yet"*
 
 **When to use**:
 - Security warnings and threat analysis
@@ -51,10 +86,10 @@ EraserHead includes a set of **original custom SVG emoji** inspired by Harold's 
 
 ---
 
-### 📺 Internet Historian (The Narrator)
+### <img src="emoji/harold-historian-24.png" height="24" alt="harold-historian"> Internet Historian (The Narrator)
 **Meaning**: Narrative documentation style, dry wit about disasters, engaging storytelling.  
 **Usage**: Historical context, library evaluations, architecture stories, post-mortems  
-**Example**: *"📺 The story of every data breach starts with 'we thought it was fine'"*
+**Example**: *"<img src="emoji/harold-historian-20.png" height="20" alt="harold-historian"> The story of every data breach starts with 'we thought it was fine'"*
 
 **When to use**:
 - Architecture Decision Records (ADRs)
@@ -64,10 +99,10 @@ EraserHead includes a set of **original custom SVG emoji** inspired by Harold's 
 
 ---
 
-### ✅ Effective Developer (The Shipper)
+### <img src="emoji/harold-shipper-24.png" height="24" alt="harold-shipper"> Effective Developer (The Shipper)
 **Meaning**: Pragmatic delivery, ships working code, manages scope ruthlessly.  
 **Usage**: Implementation notes, test completion, shipping milestones  
-**Example**: *"✅ Shipped with 94% coverage. Good enough."*
+**Example**: *"<img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> Shipped with 94% coverage. Good enough."*
 
 **When to use**:
 - Marking completed tasks
@@ -79,10 +114,10 @@ EraserHead includes a set of **original custom SVG emoji** inspired by Harold's 
 
 ## Thematic Emoji
 
-### 🌱 Anemochory (Seeds in the Wind)
+### <img src="emoji/harold-anemochory-24.png" height="24" alt="harold-anemochory"> Anemochory (Seeds in the Wind)
 **Meaning**: Origin obfuscation, network anonymization, untraceable paths.  
 **Usage**: References to the Anemochory protocol, packet routing, anonymization  
-**Example**: *"🌱 Like seeds in the wind, your packets' origins are lost to time"*
+**Example**: *"<img src="emoji/harold-anemochory-20.png" height="20" alt="harold-anemochory"> Like seeds in the wind, your packets' origins are lost to time"*
 
 **When to use**:
 - Anemochory protocol documentation
@@ -91,12 +126,12 @@ EraserHead includes a set of **original custom SVG emoji** inspired by Harold's 
 
 ---
 
-## Extended Persona: Ultra Dark Harold ⚠️
+## Extended Persona: Ultra Dark Harold <img src="emoji/harold-ultra-dark-20.png" height="20" alt="harold-ultra-dark">
 
-### ⚠️ Ultra Dark Harold (The Breach Witness)
+### <img src="emoji/harold-ultra-dark-24.png" height="24" alt="harold-ultra-dark"> Ultra Dark Harold (The Breach Witness)
 **Meaning**: When the CVE is critical, the exploit is in the wild, and the dependency chain includes it.
 **Usage**: Critical security advisories, active exploitation warnings, production incidents
-**Example**: *"⚠️ CVSS 9.8. Actively exploited. Our dependency chain includes it."*
+**Example**: *"<img src="emoji/harold-ultra-dark-20.png" height="20" alt="harold-ultra-dark"> CVSS 9.8. Actively exploited. Our dependency chain includes it."*
 
 **When to use**:
 - Critical security vulnerabilities (CVSS ≥ 9.0)
@@ -111,28 +146,28 @@ EraserHead includes a set of **original custom SVG emoji** inspired by Harold's 
 ## Context-Specific Guidelines
 
 ### Security Documentation
-Primary emoji: 🌑 (Dark Harold paranoia mandatory)  
-Secondary: 😐 (acknowledging the pain of security work)  
-Avoid: ✅ (nothing is ever fully secure)
+Primary emoji: <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> (Dark Harold paranoia mandatory)  
+Secondary: <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> (acknowledging the pain of security work)  
+Avoid: <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> (nothing is ever fully secure)
 
 ### Architecture Design
-Primary emoji: 📺 (narrative depth required)  
-Secondary: 😐 (acknowledging trade-offs)  
-Use: 🌑 (threat modeling sections)
+Primary emoji: <img src="emoji/harold-historian-20.png" height="20" alt="harold-historian"> (narrative depth required)  
+Secondary: <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> (acknowledging trade-offs)  
+Use: <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> (threat modeling sections)
 
 ### Implementation
-Primary emoji: 😐 (shipping with awareness)  
-Secondary: ✅ (marking progress)  
-Sprinkle: 🌑 (documenting failure modes)
+Primary emoji: <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> (shipping with awareness)  
+Secondary: <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> (marking progress)  
+Sprinkle: <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> (documenting failure modes)
 
 ### Testing
-Primary emoji: 😐 (breaking things with a smile)  
-Use: ✅ (coverage milestones)  
-Add: 🌑 (edge cases and failure scenarios)
+Primary emoji: <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> (breaking things with a smile)  
+Use: <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> (coverage milestones)  
+Add: <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> (edge cases and failure scenarios)
 
 ### User-Facing Documentation
-Primary emoji: 😐 (keeping it light)  
-Minimize: 🌑 (don't terrify users)  
+Primary emoji: <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> (keeping it light)  
+Minimize: <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> (don't terrify users)  
 Avoid: Internal persona references
 
 ---
@@ -140,7 +175,7 @@ Avoid: Internal persona references
 ## Anti-Patterns (Do Not Use)
 
 **Standard Emoji Prohibited**:
-- ❌ No red X (use 🌑 for warnings or just state the problem)
+- ❌ No red X (use <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> for warnings or just state the problem)
 - ✨ No sparkles (Harold doesn't do sparkles)
 - 🎉 No celebrations (Harold shipped, but at what cost?)
 - 😭 No crying (Harold hides the pain, doesn't show it)
@@ -151,7 +186,7 @@ Avoid: Internal persona references
 **When Tempted to Use Standard Emoji**:
 1. Ask: "Would Harold use this?"
 2. Answer: "No, Harold would smile nervously instead"
-3. Use 😐 and describe the feeling in text
+3. Use <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> and describe the feeling in text
 
 ---
 
@@ -220,4 +255,4 @@ This reference is a living document. When adding new Harold emoji:
 
 *"I've made a career out of hiding pain. Now I'm hiding it in emoji form."* — Harold (probably)
 
-😐 Use this reference wisely. Dark Harold is always watching. 🌑
+<img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> Use this reference wisely. Dark Harold is always watching. <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark">
