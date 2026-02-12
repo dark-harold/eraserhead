@@ -26,15 +26,13 @@ from typing import Any
 from eraserhead.modes.base import (
     ModeConfig,
     ModeManager,
-    ModeViolation,
     OperatingMode,
 )
-from eraserhead.modes.confirmation import ConfirmationCeremony, ConfirmationResult
-from eraserhead.modes.containment import ContainmentConfig, ContainmentViolation, NetworkContainment
+from eraserhead.modes.confirmation import ConfirmationCeremony
+from eraserhead.modes.containment import ContainmentConfig, NetworkContainment
 from eraserhead.modes.target_validation import TargetScope, TargetValidationError, TargetValidator
 from eraserhead.providers.base import (
     ComplianceCheckResult,
-    ProviderCapability,
     ProviderEvent,
     ProviderEventType,
     ScrubRequest,
@@ -317,7 +315,8 @@ class EraserHeadOrchestrator:
         # They're stored in the audit log entry for the initiation
         for entry in reversed(self._audit_log):
             if entry.action == "mode_change_initiated":
-                return entry.details.get("cidrs", [])
+                cidrs: list[str] = entry.details.get("cidrs", [])
+                return cidrs
         return []
 
     # ========================================================================
@@ -574,7 +573,7 @@ class EraserHeadOrchestrator:
         # Containment validation (pentest modes only)
         if self._containment and scope.has_ip_targets:
             containment_results = self._containment.validate_targets(scope.ip_targets)
-            for target, result in containment_results.items():
+            for _target, result in containment_results.items():
                 if result is not True:
                     report["valid"] = False
                     report["errors"].append(f"Containment: {result}")

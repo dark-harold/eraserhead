@@ -10,8 +10,6 @@ and internal dread about what we'll discover.
 
 from __future__ import annotations
 
-from typing import Any
-
 import pytest
 
 from eraserhead.providers.base import (
@@ -22,7 +20,6 @@ from eraserhead.providers.base import (
 from eraserhead.providers.search.providers import (
     CacheArchiveSearchProvider,
     DataBrokerSearchProvider,
-    SearchEngineConfig,
     SearchEngineProvider,
     SocialMediaSearchProvider,
     create_default_search_providers,

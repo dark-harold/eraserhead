@@ -5,8 +5,6 @@ Orchestrating deletion with confidence and mild existential dread.
 
 from __future__ import annotations
 
-from pathlib import Path
-
 import pytest
 
 from eraserhead.adapters.platforms import (
@@ -19,8 +17,6 @@ from eraserhead.models import (
     Platform,
     PlatformCredentials,
     ResourceType,
-    TaskPriority,
-    TaskStatus,
     VerificationStatus,
 )
 

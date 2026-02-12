@@ -13,8 +13,6 @@ from __future__ import annotations
 
 import secrets
 
-import pytest
-
 from anemochory.crypto import ChaCha20Engine
 from anemochory.models import NODE_ID_SIZE, NodeCapability, NodeInfo, NodePool
 from anemochory.node import AnemochoryNode, ExitNodeHandler, PacketAction
@@ -24,7 +22,7 @@ from anemochory.packet import (
     calculate_max_payload_size,
     generate_session_id,
 )
-from anemochory.routing import PathSelector, _pack_address
+from anemochory.routing import PathSelector
 
 
 # --- Helpers ---

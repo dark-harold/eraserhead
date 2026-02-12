@@ -6,11 +6,9 @@ Testing the interface that hides platform-specific pain.
 from __future__ import annotations
 
 import pytest
-import trio
 
 from eraserhead.adapters import (
     AdapterStatus,
-    PlatformAdapter,
     RateLimitConfig,
     RateLimiter,
 )

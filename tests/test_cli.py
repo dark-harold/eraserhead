@@ -7,11 +7,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
 from typer.testing import CliRunner
 
 from eraserhead.cli import app
-from eraserhead.models import Platform, PlatformCredentials
+from eraserhead.models import Platform
 from eraserhead.vault import CredentialVault
 
 

@@ -11,11 +11,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
-
 from eraserhead.adapters.platforms import (
     FacebookAdapter,
-    InstagramAdapter,
     SimulatedPlatformData,
     TwitterAdapter,
 )

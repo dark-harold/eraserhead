@@ -18,7 +18,6 @@ actions against known legal frameworks before they are executed.
 
 from __future__ import annotations
 
-import time
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -290,47 +289,50 @@ class LegalComplianceProvider(ComplianceProvider):
             # Check if target type is applicable
             if target_type in framework.applicable_to:
                 # GDPR applies to EU data subjects regardless of company location
-                if fid == "GDPR" and jurisdiction in (
-                    "",
-                    "EU",
-                    "EEA",
-                    "UK",
-                    *[  # All EU member states
-                        "AT",
-                        "BE",
-                        "BG",
-                        "HR",
-                        "CY",
-                        "CZ",
-                        "DK",
-                        "EE",
-                        "FI",
-                        "FR",
-                        "DE",
-                        "GR",
-                        "HU",
-                        "IE",
-                        "IT",
-                        "LV",
-                        "LT",
-                        "LU",
-                        "MT",
-                        "NL",
-                        "PL",
-                        "PT",
-                        "RO",
-                        "SK",
-                        "SI",
-                        "ES",
-                        "SE",
-                    ],
+                if (
+                    (
+                        fid == "GDPR"
+                        and jurisdiction
+                        in (
+                            "",
+                            "EU",
+                            "EEA",
+                            "UK",
+                            *[  # All EU member states
+                                "AT",
+                                "BE",
+                                "BG",
+                                "HR",
+                                "CY",
+                                "CZ",
+                                "DK",
+                                "EE",
+                                "FI",
+                                "FR",
+                                "DE",
+                                "GR",
+                                "HU",
+                                "IE",
+                                "IT",
+                                "LV",
+                                "LT",
+                                "LU",
+                                "MT",
+                                "NL",
+                                "PL",
+                                "PT",
+                                "RO",
+                                "SK",
+                                "SI",
+                                "ES",
+                                "SE",
+                            ],
+                        )
+                    )
+                    or (fid == "CCPA" and jurisdiction in ("", "US", "CA", "California"))
+                    or (fid == "PIPEDA" and jurisdiction in ("", "CA", "Canada"))
+                    or (fid == "LGPD" and jurisdiction in ("", "BR", "Brazil"))
                 ):
-                    applicable.append(fid)
-                elif fid == "CCPA" and jurisdiction in ("", "US", "CA", "California"):
-                    applicable.append(fid)
-                elif fid == "PIPEDA" and jurisdiction in ("", "CA", "Canada"):
-                    applicable.append(fid)
-                elif fid == "LGPD" and jurisdiction in ("", "BR", "Brazil"):
                     applicable.append(fid)
                 elif jurisdiction == "":  # Unknown jurisdiction — apply all
                     if fid not in applicable:

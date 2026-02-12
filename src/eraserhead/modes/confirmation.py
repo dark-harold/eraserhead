@@ -21,9 +21,9 @@ from __future__ import annotations
 import hashlib
 import secrets
 import time
-from dataclasses import dataclass, field
-from enum import StrEnum, auto
-from typing import Any, Callable
+from dataclasses import dataclass
+from enum import StrEnum
+from typing import Any
 
 
 # ============================================================================
@@ -324,7 +324,7 @@ class ConfirmationCeremony:
                 prompt=(
                     "🌑🌑🌑 UNRESTRICTED PENTEST MODE — CONFIRMATION 2 of 5 🌑🌑🌑\n"
                     "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-                    f"Declared targets:\n" + "\n".join(f"  • {t}" for t in self._targets) + "\n\n"
+                    "Declared targets:\n" + "\n".join(f"  • {t}" for t in self._targets) + "\n\n"
                     "Confirm that EACH target listed above is:\n"
                     "  1. Owned by you OR you have written authorization\n"
                     "  2. Within the declared CIDR ranges\n"
@@ -526,7 +526,7 @@ class ConfirmationCeremony:
         """Get timeout for current ceremony type."""
         if self._mode == "unrestricted_pentest":
             return self.UNRESTRICTED_TIMEOUT_MINUTES
-        elif self._mode == "contained_pentest":
+        if self._mode == "contained_pentest":
             return self.CONTAINED_TIMEOUT_MINUTES
         return self.STANDARD_TIMEOUT_MINUTES
 

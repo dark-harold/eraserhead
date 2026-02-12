@@ -125,7 +125,8 @@ class CredentialVault:
             self._salt = secrets.token_bytes(SALT_SIZE)
             self._vault_dir.mkdir(parents=True, exist_ok=True)
 
-        assert self._salt is not None  # 😐 Set by _load_salt or generated above
+        if self._salt is None:  # 😐 Set by _load_salt or generated above
+            raise VaultError("Salt not initialized")
         self._fernet = self._derive_fernet(passphrase, self._salt)
 
         # If new vault, save empty credential store
@@ -182,7 +183,8 @@ class CredentialVault:
             raise CredentialNotFoundError(f"No credentials for {platform}:{username}")
 
         raw = creds_store[key]
-        assert isinstance(raw, dict)  # 😐 Vault data is dict per _save_credentials
+        if not isinstance(raw, dict):  # 😐 Vault data is dict per _save_credentials
+            raise VaultCorruptedError(f"Credential entry for {key} is not a dict")
         return PlatformCredentials.from_dict(raw)
 
     def remove(self, platform: Platform, username: str) -> bool:
@@ -246,7 +248,8 @@ class CredentialVault:
 
     def _load_credentials(self) -> dict[str, Any]:
         """Load and decrypt credential store."""
-        assert self._fernet is not None
+        if self._fernet is None:
+            raise VaultLockedError("Vault must be unlocked before loading credentials")
 
         try:
             raw = self._vault_path.read_bytes()
@@ -265,8 +268,10 @@ class CredentialVault:
 
     def _save_credentials(self, creds_store: dict[str, Any]) -> None:
         """Encrypt and save credential store."""
-        assert self._fernet is not None
-        assert self._salt is not None
+        if self._fernet is None:
+            raise VaultLockedError("Vault must be unlocked before saving credentials")
+        if self._salt is None:
+            raise VaultError("Salt not initialized")
 
         plaintext = json.dumps(creds_store).encode()
         encrypted = self._fernet.encrypt(plaintext)

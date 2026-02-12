@@ -17,6 +17,7 @@ import secrets
 from dataclasses import dataclass, field
 from enum import StrEnum
 from pathlib import Path
+from typing import Any
 
 
 # 😐 Constants
@@ -112,7 +113,7 @@ class NodeInfo:
         """Check if node can serve as exit node."""
         return NodeCapability.EXIT in self.capabilities
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, object]:
         """Serialize to JSON-compatible dict."""
         return {
             "node_id": self.node_id.hex(),
@@ -124,7 +125,7 @@ class NodeInfo:
         }
 
     @classmethod
-    def from_dict(cls, data: dict) -> NodeInfo:
+    def from_dict(cls, data: dict[str, Any]) -> NodeInfo:
         """Deserialize from JSON-compatible dict."""
         return cls(
             node_id=bytes.fromhex(data["node_id"]),

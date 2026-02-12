@@ -20,7 +20,6 @@ from __future__ import annotations
 import ipaddress
 import logging
 from dataclasses import dataclass, field
-from enum import StrEnum
 from typing import Any
 
 
@@ -264,7 +263,7 @@ class NetworkContainment:
         """
         for nuclear in self._nuclear_denied_networks:
             if network == nuclear or (
-                network.version == nuclear.version and network.supernet_of(nuclear)
+                network.version == nuclear.version and network.supernet_of(nuclear)  # type: ignore[arg-type]
             ):
                 msg = (
                     f"🌑🌑🌑 NUCLEAR CONTAINMENT VIOLATION 🌑🌑🌑\n"
@@ -320,7 +319,7 @@ class NetworkContainment:
             if network.overlaps(denied):
                 # Exception: if the target is explicitly in allowed_cidrs
                 explicitly_allowed = any(
-                    network.subnet_of(allowed)
+                    network.subnet_of(allowed)  # type: ignore[arg-type]
                     for allowed in self._allowed_networks
                     if network.version == allowed.version
                 )
@@ -373,7 +372,7 @@ class NetworkContainment:
             )
 
         is_allowed = any(
-            network.subnet_of(allowed)
+            network.subnet_of(allowed)  # type: ignore[arg-type]
             for allowed in self._allowed_networks
             if network.version == allowed.version
         )

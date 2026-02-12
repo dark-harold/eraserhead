@@ -43,6 +43,6 @@ __all__ = [
     "ProviderRegistry",
     "ProviderStatus",
     "ProviderType",
-    "SearchProvider",
     "ScrubProvider",
+    "SearchProvider",
 ]

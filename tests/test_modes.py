@@ -22,8 +22,6 @@ from eraserhead.modes.base import (
 )
 from eraserhead.modes.confirmation import (
     ConfirmationCeremony,
-    ConfirmationResult,
-    ConfirmationStepType,
 )
 from eraserhead.modes.containment import (
     ContainmentConfig,

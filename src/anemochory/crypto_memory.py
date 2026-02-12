@@ -100,7 +100,7 @@ class _PlatformInfo:
 
         # Fallback: msvcrt memset
         try:
-            msvcrt = ctypes.cdll.msvcrt  # type: ignore[attr-defined]
+            msvcrt = ctypes.cdll.msvcrt
             if hasattr(msvcrt, "memset"):
                 self.has_memset = True
                 self._libc = msvcrt
@@ -113,7 +113,7 @@ class _PlatformInfo:
 # ============================================================================
 
 
-def secure_zero_memory(data: bytearray | memoryview) -> bool:
+def secure_zero_memory(data: bytearray | memoryview | bytes) -> bool:
     """
     Securely zero memory containing sensitive data.
 

@@ -305,7 +305,7 @@ class TestPacketPadding:
         padded2 = pad_packet(data, target_size=256)
 
         # Same data, different padding (because Random)
-        assert padded1[:len(data)+2] == padded2[:len(data)+2]  # Data + length same
+        assert padded1[: len(data) + 2] == padded2[: len(data) + 2]  # Data + length same
         assert padded1 != padded2  # But full packets differ (random padding)
 
     def test_pad_packet_raises_error_if_data_too_large(self):
@@ -323,7 +323,7 @@ class TestPacketPadding:
         # Length prefix says 1000 bytes, but packet is only 100
         bad_packet = struct.pack(">H", 1000) + b"X" * 98
 
-        with pytest.raises(ValueError, match="Invalid length prefix"):
+        with pytest.raises(ValueError, match="Padding validation failed"):
             unpad_packet(bad_packet)
 
     def test_unpad_packet_rejects_too_short_packets(self):

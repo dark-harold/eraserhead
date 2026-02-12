@@ -14,7 +14,6 @@ import pytest
 
 from eraserhead.adapters import (
     AdapterStatus,
-    PlatformAdapter,
     RateLimitConfig,
 )
 from eraserhead.adapters.platforms import (

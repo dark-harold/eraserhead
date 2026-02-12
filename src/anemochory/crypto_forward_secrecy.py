@@ -178,13 +178,10 @@ class ForwardSecrecyManager:
                 )
 
             # Deserialize peer's public key
-            peer_public_key = x25519.X25519PublicKey.from_public_bytes(
-                their_public_key
-            )
+            peer_public_key = x25519.X25519PublicKey.from_public_bytes(their_public_key)
 
             # Perform ECDH
             return our_private_key.exchange(peer_public_key)
-
 
         except Exception as e:
             raise ForwardSecrecyError(f"ECDH key exchange failed: {e}") from e
@@ -240,7 +237,7 @@ class ForwardSecrecyManager:
                 timestamp = int(time.time())
 
             # Construct HKDF info string with session binding
-            # Format: "context|session_id_hex|timestamp"  # noqa: ERA001
+            # Format: "context|session_id_hex|timestamp"
             info = f"{context}|{session_id.hex()}|{timestamp}".encode()
 
             # Derive key using HKDF-SHA256
@@ -254,7 +251,6 @@ class ForwardSecrecyManager:
             )
 
             return kdf.derive(shared_secret)
-
 
         except Exception as e:
             raise ForwardSecrecyError(f"Key derivation failed: {e}") from e

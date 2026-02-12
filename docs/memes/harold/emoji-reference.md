@@ -2,8 +2,25 @@
 
 *The official Hide the Pain Harold emoji lexicon for EraserHead documentation*
 
-**Last Updated**: February 10, 2026  
+**Last Updated**: February 12, 2026  
 **Curator**: Dark Harold (who else would catalog pain?)
+
+---
+
+## Custom SVG Emoji Assets
+
+EraserHead includes a set of **original custom SVG emoji** inspired by Harold's expressions. These are 128x128 vector art files — 100% original creations, no copyrighted material embedded.
+
+| File | Persona | Emoji | Mood |
+|------|---------|-------|------|
+| [`emoji/harold-standard.svg`](emoji/harold-standard.svg) | 😐 Standard Harold | Forced smile | "Everything is fine" |
+| [`emoji/harold-dark.svg`](emoji/harold-dark.svg) | 🌑 Dark Harold | Narrowed suspicion | "Assume compromise" |
+| [`emoji/harold-historian.svg`](emoji/harold-historian.svg) | 📺 Internet Historian | Wry narrator smirk | "Let me tell you a story" |
+| [`emoji/harold-shipper.svg`](emoji/harold-shipper.svg) | ✅ Effective Developer | Thumbs up, green glow | "Tests pass, ship it" |
+| [`emoji/harold-anemochory.svg`](emoji/harold-anemochory.svg) | 🌱 Anemochory Harold | Peaceful, wind-blown | "One with the protocol" |
+| [`emoji/harold-ultra-dark.svg`](emoji/harold-ultra-dark.svg) | ⚠️ Ultra Dark Harold | Bloodshot, cracked glasses | "The CVE is critical" |
+
+> 📺 For the full meme sourcing guide, galleries, and Harold lore, see [MEME-GALLERY.md](MEME-GALLERY.md)
 
 ---
 
@@ -71,6 +88,23 @@
 - Anemochory protocol documentation
 - Network routing and anonymization discussions
 - Origin obfuscation concepts
+
+---
+
+## Extended Persona: Ultra Dark Harold ⚠️
+
+### ⚠️ Ultra Dark Harold (The Breach Witness)
+**Meaning**: When the CVE is critical, the exploit is in the wild, and the dependency chain includes it.
+**Usage**: Critical security advisories, active exploitation warnings, production incidents
+**Example**: *"⚠️ CVSS 9.8. Actively exploited. Our dependency chain includes it."*
+
+**When to use**:
+- Critical security vulnerabilities (CVSS ≥ 9.0)
+- Active exploitation in the wild
+- Production incident documentation
+- Dependency chain compromise
+
+**Visual**: Bloodshot eyes, cracked glasses, grimace line. Harold has been awake for 72 hours.
 
 ---
 

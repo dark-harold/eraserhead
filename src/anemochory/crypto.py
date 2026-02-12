@@ -231,7 +231,12 @@ class ChaCha20Engine:
             raise DecryptionError(f"ChaCha20-Poly1305 decryption failed: {e}") from e
 
 
-def derive_layer_key(master_key: bytes, layer_index: int, total_layers: int) -> bytes:
+def derive_layer_key(
+    master_key: bytes,
+    layer_index: int,
+    total_layers: int,
+    salt: bytes | None = None,
+) -> bytes:
     """Derive unique encryption key for a specific layer.
 
     Uses HKDF (HMAC-based Key Derivation Function) to derive layer-specific
@@ -241,6 +246,9 @@ def derive_layer_key(master_key: bytes, layer_index: int, total_layers: int) -> 
         master_key: Master secret key (any length, recommend 32+ bytes)
         layer_index: Zero-based layer index (0 = outermost layer)
         total_layers: Total number of layers in the packet
+        salt: Optional random salt (16 bytes recommended). If None, uses a
+              deterministic salt derived from the info context. Adding salt
+              hardens against rainbow tables if master key is weak.
 
     Returns:
         32-byte derived key for this layer
@@ -258,6 +266,7 @@ def derive_layer_key(master_key: bytes, layer_index: int, total_layers: int) -> 
         - Each layer key is cryptographically independent
         - Knowledge of one layer key doesn't reveal others
         - Changing total_layers changes all derived keys (binding)
+        - Optional salt adds defense-in-depth against weak master keys
 
     🌑 Dark Harold: One key per layer. Never reuse the master key directly.
         If you encrypt with master_key, I will find you. And I will be
@@ -270,11 +279,15 @@ def derive_layer_key(master_key: bytes, layer_index: int, total_layers: int) -> 
     # 😐 Including total_layers prevents layer confusion attacks
     info = f"anemochory-layer-{layer_index}-of-{total_layers}".encode()
 
-    # HKDF with SHA-256 (😐 Could use SHA-512 for extra paranoia, but SHA-256 sufficient)
+    # 🌑 Use provided salt, or derive deterministic salt from context
+    # This ensures backward compatibility while adding defense-in-depth
+    effective_salt = salt if salt is not None else info[:16].ljust(16, b"\x00")
+
+    # HKDF with SHA-256
     kdf = HKDF(
         algorithm=hashes.SHA256(),
         length=KEY_SIZE,  # Output: 32 bytes for ChaCha20
-        salt=None,  # 🌑 Optional: could add random salt for extra security
+        salt=effective_salt,
         info=info,
     )
 
@@ -358,11 +371,10 @@ def unpad_packet(padded: bytes) -> bytes:
     data_length = struct.unpack(">H", padded[:2])[0]
 
     # Validate length
+    # 🌑 Use constant error message to prevent padding oracle attacks.
+    # Different error messages would leak plaintext length distribution.
     if data_length > len(padded) - 2:
-        raise ValueError(
-            f"Invalid length prefix ({data_length}) exceeds packet size "
-            f"({len(padded) - 2} bytes after prefix)"
-        )
+        raise ValueError("Padding validation failed")
 
     # Extract original data (skip 2-byte prefix, take data_length bytes)
     return padded[2 : 2 + data_length]

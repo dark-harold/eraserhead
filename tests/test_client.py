@@ -13,14 +13,8 @@ from __future__ import annotations
 import secrets
 from unittest.mock import AsyncMock, patch
 
-import pytest
-import trio
-
 from anemochory.client import (
-    DEFAULT_HOP_COUNT,
-    MAX_RETRIES,
     AnemochoryClient,
-    SendResult,
 )
 from anemochory.models import NODE_ID_SIZE, NodeCapability, NodeInfo, NodePool
 from anemochory.transport import TransportError

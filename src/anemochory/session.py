@@ -375,7 +375,7 @@ class SecureSession:
             state=self._state.name,
             packets_sent=self._packets_sent,
             packets_received=self._packets_received,
-            key_rotations=rotation_stats.get("rotation_count", 0),
+            key_rotations=int(rotation_stats.get("rotation_count", 0)),
             replay_attempts_blocked=self._replay_blocks,
             session_started_at=self._started_at,
             session_duration_seconds=time.time() - self._started_at,

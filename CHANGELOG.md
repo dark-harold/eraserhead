@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.0] — 2026-02-11
+
+📺 *Harold reaches production. The smile is... almost genuine.*
+
+### Added
+- **Adversarial security test suite**: 27 tests covering nonce replay, key exchange attacks, key rotation exploitation, padding oracle probing, ciphertext tampering, session lifecycle abuse, and replay protection edge cases
+- **Platform fallback path tests**: 8 additional tests for secure memory wiping cross-platform behavior
+
+### Changed
+- **HKDF salt parameter**: `derive_layer_key()` now accepts an explicit `salt` parameter for stronger key isolation (backward compatible with deterministic default)
+- **Constant-time error messages**: `unpad_packet()` returns constant error message to prevent padding oracle attacks
+- **Version bump**: 0.1.0a1 → 1.0.0 (Production/Stable)
+
+### Fixed
+- Resolved TODO in `crypto_key_storage.py`: clarified session key independence from master key rotation
+- Resolved TODO in `crypto_key_rotation.py`: confirmed secure wipe implementation already present
+- Cleaned up 90+ lint issues via ruff auto-fix (unused imports, formatting)
+- Standardized ruff configuration with comprehensive per-file-ignores
+
+### Security
+- **HKDF salt binding** (SECURITY-REVIEW Issue #9): Layer keys now bound to unique salt material
+- **Padding oracle mitigation** (SECURITY-REVIEW Issue #10): Error messages no longer leak internal state
+- **Timing jitter** (Issue #7): Verified already implemented in node.py (5-50ms random delays)
+- Zero critical/high bandit findings
+- 901 tests, 94% coverage, all security review issues resolved
+
+### Quality
+- **901 tests** passing (up from 874)
+- **94.02% code coverage** (80% minimum enforced)
+- **Ruff lint**: Zero warnings (214 → 0)
+- **Ruff format**: All files formatted
+- **Bandit**: Zero actionable findings
+- **All security review issues**: RESOLVED
+
+---
+
 ## [0.1.0-alpha] — 2026-02-11
 
 📺 *The inaugural release. Harold's first public smile.*

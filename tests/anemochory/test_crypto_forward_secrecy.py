@@ -83,9 +83,7 @@ class TestForwardSecrecyManager:
         )
 
         # Bob computes shared secret with Alice's public key
-        bob_shared = manager.derive_shared_secret(
-            bob_keypair.private_key, alice_keypair.public_key
-        )
+        bob_shared = manager.derive_shared_secret(bob_keypair.private_key, alice_keypair.public_key)
 
         # Both should derive the SAME shared secret
         assert alice_shared == bob_shared
@@ -131,12 +129,8 @@ class TestForwardSecrecyManager:
         session_id = secrets.token_bytes(SESSION_ID_SIZE)
 
         # Derive keys with different timestamps
-        key1 = manager.derive_session_master_key(
-            shared_secret, session_id, timestamp=1000000
-        )
-        key2 = manager.derive_session_master_key(
-            shared_secret, session_id, timestamp=2000000
-        )
+        key1 = manager.derive_session_master_key(shared_secret, session_id, timestamp=1000000)
+        key2 = manager.derive_session_master_key(shared_secret, session_id, timestamp=2000000)
 
         assert key1 != key2, "Different timestamps must produce different keys"
 
@@ -145,7 +139,6 @@ class TestForwardSecrecyManager:
         manager = ForwardSecrecyManager()
 
         keypair = manager.generate_session_keypair()
-
 
         # Deserialize back
         public_key_obj = manager.deserialize_public_key(keypair.public_key)
@@ -162,7 +155,8 @@ class TestForwardSecrecyManager:
 
         with pytest.raises(ForwardSecrecyError, match="ECDH key exchange failed"):
             manager.derive_shared_secret(
-                keypair.private_key, b"wrong_size"  # Too short
+                keypair.private_key,
+                b"wrong_size",  # Too short
             )
 
     def test_invalid_shared_secret_size(self):
@@ -198,9 +192,7 @@ class TestIntegrationWithChaCha20:
         bob = manager.generate_session_keypair()
 
         alice_shared = manager.derive_shared_secret(alice.private_key, bob.public_key)
-        alice_master = manager.derive_session_master_key(
-            alice_shared, alice.session_id
-        )
+        alice_master = manager.derive_session_master_key(alice_shared, alice.session_id)
 
         # Use derived key with ChaCha20Engine
         engine = ChaCha20Engine(alice_master)
@@ -223,9 +215,7 @@ class TestIntegrationWithChaCha20:
         bob_shared = manager.derive_shared_secret(bob.private_key, alice.public_key)
 
         # Use Alice's session_id for consistency (both must agree)
-        alice_master = manager.derive_session_master_key(
-            alice_shared, alice.session_id
-        )
+        alice_master = manager.derive_session_master_key(alice_shared, alice.session_id)
         bob_master = manager.derive_session_master_key(bob_shared, alice.session_id)
 
         # Verify derived keys match
@@ -280,5 +270,6 @@ class TestSecurityProperties:
         total_bits = KEY_SIZE * 8
 
         # Expect roughly 50% of bits different (avalanche effect)
-        assert 0.4 * total_bits < diff_bits < 0.6 * total_bits, \
+        assert 0.4 * total_bits < diff_bits < 0.6 * total_bits, (
             f"Expected ~50% bit difference, got {diff_bits}/{total_bits}"
+        )

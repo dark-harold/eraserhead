@@ -13,19 +13,15 @@ from __future__ import annotations
 
 import secrets
 import struct
-from unittest.mock import MagicMock, patch
 
 import pytest
 import trio
 import trio.testing
 
 from anemochory.models import NodeCapability, NodeInfo
-from anemochory.node import AnemochoryNode, ExitNodeHandler, PacketAction, ProcessedPacket
+from anemochory.node import AnemochoryNode
 from anemochory.packet import PACKET_SIZE
 from anemochory.transport import (
-    CONNECTION_TIMEOUT,
-    DEFAULT_LISTEN_PORT,
-    FRAME_HEADER_SIZE,
     FramingError,
     NodeServer,
     PacketSender,

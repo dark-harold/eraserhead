@@ -188,7 +188,7 @@ class TestKeyRotationManager:
         assert manager1._current_session_key == manager2._current_session_key
 
     def test_initial_key_derivation_unique_per_master(self):
-        """Different master keys produce different session keys """
+        """Different master keys produce different session keys"""
         master_key1 = secrets.token_bytes(32)
         master_key2 = secrets.token_bytes(32)
 
@@ -481,15 +481,11 @@ class TestKeyRotationManager:
 
         # Derive shared secret
         shared_secret = fs_manager.derive_shared_secret(
-            keypair.private_key,
-            peer_keypair.public_key
+            keypair.private_key, peer_keypair.public_key
         )
 
         # Derive session master key
-        session_master_key = fs_manager.derive_session_master_key(
-            shared_secret,
-            keypair.session_id
-        )
+        session_master_key = fs_manager.derive_session_master_key(shared_secret, keypair.session_id)
 
         # Create rotation manager with ephemeral key
         rot_manager = KeyRotationManager(session_master_key)

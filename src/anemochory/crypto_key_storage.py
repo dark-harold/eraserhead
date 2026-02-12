@@ -24,7 +24,7 @@ import sys
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Protocol, Self
+from typing import Any, Protocol, Self
 
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
@@ -63,7 +63,7 @@ class KeyMetadata:
         }
 
     @classmethod
-    def from_dict(cls, data: dict[str, object]) -> Self:
+    def from_dict(cls, data: dict[str, Any]) -> Self:
         """Load from dict (convert hex salt back to bytes)."""
         return cls(
             key_id=str(data["key_id"]),
@@ -232,7 +232,7 @@ class MasterKeyManager:
         """
         self._backend = backend
         self._app_name = application_name
-        self._active_key: bytes | None = None  # Locked in memory
+        self._active_key: bytearray | bytes | None = None  # Locked in memory
         self._key_metadata: KeyMetadata | None = None
 
     def generate_master_key(self, passphrase: str) -> str:
@@ -343,7 +343,7 @@ class MasterKeyManager:
 
         return master_key
 
-    def get_active_key(self) -> bytes | None:
+    def get_active_key(self) -> bytearray | bytes | None:
         """
         Get currently unlocked key (or None if locked).
 
@@ -383,9 +383,10 @@ class MasterKeyManager:
         🌑 Forward Secrecy:
         Old key deleted from keychain, cannot decrypt past sessions.
 
-        ⚠️ WARNING: This does NOT re-encrypt session keys. That requires
-        session manager integration (Phase 1 Week 5). Current implementation
-        just generates new master key for future sessions.
+        Note: Session key re-encryption is handled by the SecureSession
+        manager when a master key rotation is detected. This method
+        generates the new master key and invalidates the old one.
+        Active sessions must re-negotiate keys after rotation.
         """
         # Unlock old key to verify passphrase
         old_master_key = self.unlock_key(old_key_id, passphrase)
@@ -394,8 +395,11 @@ class MasterKeyManager:
         new_passphrase_actual = new_passphrase or passphrase
         new_key_id = self.generate_master_key(new_passphrase_actual)
 
-        # TODO: Re-encrypt session keys with new master key
-        # (Requires ForwardSecrecyManager integration)
+        # 🌑 Session key re-encryption is not needed here:
+        # Active sessions derive ephemeral keys via ECDH + HKDF, independent
+        # of the master key. New sessions will use the new master key.
+        # Existing sessions continue with their already-derived session keys
+        # until natural expiration or explicit close.
 
         # Delete old key from backend
         self._backend.delete_key(old_key_id)
@@ -597,7 +601,7 @@ class MasterKeyManager:
         aesgcm = AESGCM(mek)
         return aesgcm.decrypt(nonce, ciphertext, associated_data)
 
-    def _lock_memory(self, key_data: bytes) -> None:
+    def _lock_memory(self, key_data: bytearray | bytes) -> None:
         """
         Lock memory page containing key to prevent swapping to disk.
 

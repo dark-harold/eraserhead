@@ -45,13 +45,9 @@ class PacketMetadata:
     def __post_init__(self) -> None:
         """Validate metadata fields"""
         if not 0 <= self.sequence_number < 2**64:
-            raise ValueError(
-                f"Sequence number must be 0-2^64, got {self.sequence_number}"
-            )
+            raise ValueError(f"Sequence number must be 0-2^64, got {self.sequence_number}")
         if len(self.session_id) < 16:
-            raise ValueError(
-                f"Session ID must be >=16 bytes, got {len(self.session_id)}"
-            )
+            raise ValueError(f"Session ID must be >=16 bytes, got {len(self.session_id)}")
 
 
 class ReplayProtectionManager:

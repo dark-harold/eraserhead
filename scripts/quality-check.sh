@@ -35,6 +35,12 @@ log_section() {
 
 cd "$PROJECT_ROOT"
 
+# Activate virtual environment if it exists
+if [ -d ".venv" ]; then
+    # shellcheck disable=SC1091
+    source .venv/bin/activate
+fi
+
 log_section "Harold's Full Quality Check"
 log_info "Running all checks. Harold prepares for the worst."
 echo ""

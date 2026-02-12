@@ -10,22 +10,18 @@ exit handling, replay detection, and timing jitter.
 from __future__ import annotations
 
 import secrets
-import time
 
 import pytest
 
 from anemochory.crypto import ChaCha20Engine
 from anemochory.models import NODE_ID_SIZE, NodeCapability, NodeInfo
 from anemochory.node import (
-    EXIT_REQUEST_TIMEOUT,
     MAX_EXIT_PAYLOAD_SIZE,
     MAX_JITTER_MS,
     MIN_JITTER_MS,
     AnemochoryNode,
     ExitNodeHandler,
-    ExitResponse,
     PacketAction,
-    ProcessedPacket,
     _calculate_jitter,
     _unpack_address,
 )
@@ -33,9 +29,8 @@ from anemochory.packet import (
     PACKET_SIZE,
     LayerRoutingInfo,
     build_onion_packet,
-    calculate_max_payload_size,
 )
-from anemochory.routing import PathSelector, _pack_address
+from anemochory.routing import _pack_address
 
 
 # --- Helpers ---

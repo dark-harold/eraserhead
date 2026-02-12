@@ -248,7 +248,7 @@ class KeyRotationManager:
         2. Store current key in grace period queue (60-second retention)
         3. Update engine with new key
         4. Reset packet counter and timestamp
-        5. (TODO: Securely wipe old key after implementation)
+        5. Securely wipe old key material from memory (best-effort)
 
         😐 Grace period allows in-flight packets to decrypt with previous keys
         """

@@ -16,7 +16,7 @@ from eraserhead.models import (
     TaskStatus,
     VerificationStatus,
 )
-from eraserhead.verification import VerificationResult, VerificationService
+from eraserhead.verification import VerificationService
 
 
 # ============================================================================

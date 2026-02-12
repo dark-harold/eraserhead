@@ -21,9 +21,7 @@ class TestPacketMetadata:
     def test_valid_metadata(self):
         """😐 Valid metadata creation succeeds"""
         session_id = secrets.token_bytes(32)
-        metadata = PacketMetadata(
-            timestamp=time.time(), sequence_number=1, session_id=session_id
-        )
+        metadata = PacketMetadata(timestamp=time.time(), sequence_number=1, session_id=session_id)
 
         assert metadata.timestamp > 0
         assert metadata.sequence_number == 1
@@ -53,9 +51,7 @@ class TestPacketMetadata:
     def test_session_id_min_size(self):
         """🌑 Session ID must be at least 16 bytes"""
         with pytest.raises(ValueError, match="Session ID must be"):
-            PacketMetadata(
-                timestamp=time.time(), sequence_number=1, session_id=b"too_short"
-            )
+            PacketMetadata(timestamp=time.time(), sequence_number=1, session_id=b"too_short")
 
 
 class TestTimestampValidation:
@@ -76,9 +72,7 @@ class TestTimestampValidation:
 
         # 70 seconds old (beyond 60 + 5s tolerance)
         old_time = time.time() - 70
-        metadata = PacketMetadata(
-            timestamp=old_time, sequence_number=1, session_id=session_id
-        )
+        metadata = PacketMetadata(timestamp=old_time, sequence_number=1, session_id=session_id)
 
         assert not manager.validate_packet_metadata(metadata)
 
@@ -89,9 +83,7 @@ class TestTimestampValidation:
 
         # 59 seconds old (within 60s window)
         recent_time = time.time() - 59
-        metadata = PacketMetadata(
-            timestamp=recent_time, sequence_number=1, session_id=session_id
-        )
+        metadata = PacketMetadata(timestamp=recent_time, sequence_number=1, session_id=session_id)
 
         assert manager.validate_packet_metadata(metadata)
 
@@ -102,9 +94,7 @@ class TestTimestampValidation:
 
         # 4 seconds in future (within 5s tolerance)
         future_time = time.time() + 4
-        metadata = PacketMetadata(
-            timestamp=future_time, sequence_number=1, session_id=session_id
-        )
+        metadata = PacketMetadata(timestamp=future_time, sequence_number=1, session_id=session_id)
 
         assert manager.validate_packet_metadata(metadata)
 
@@ -115,9 +105,7 @@ class TestTimestampValidation:
 
         # 10 seconds in future (beyond 5s tolerance)
         future_time = time.time() + 10
-        metadata = PacketMetadata(
-            timestamp=future_time, sequence_number=1, session_id=session_id
-        )
+        metadata = PacketMetadata(timestamp=future_time, sequence_number=1, session_id=session_id)
 
         assert not manager.validate_packet_metadata(metadata)
 
@@ -126,9 +114,7 @@ class TestTimestampValidation:
         manager = ReplayProtectionManager()
         session_id = secrets.token_bytes(16)
 
-        metadata = PacketMetadata(
-            timestamp=1000000.0, sequence_number=1, session_id=session_id
-        )
+        metadata = PacketMetadata(timestamp=1000000.0, sequence_number=1, session_id=session_id)
 
         # At timestamp 1000010, packet is 10 seconds old (fresh)
         assert manager.validate_packet_metadata(metadata, current_time=1000010.0)
@@ -225,12 +211,8 @@ class TestSequenceNumbers:
         manager = ReplayProtectionManager()
         session_id = secrets.token_bytes(16)
 
-        metadata1 = PacketMetadata(
-            timestamp=time.time(), sequence_number=1, session_id=session_id
-        )
-        metadata2 = PacketMetadata(
-            timestamp=time.time(), sequence_number=2, session_id=session_id
-        )
+        metadata1 = PacketMetadata(timestamp=time.time(), sequence_number=1, session_id=session_id)
+        metadata2 = PacketMetadata(timestamp=time.time(), sequence_number=2, session_id=session_id)
 
         assert manager.track_sequence_number(metadata1)
         assert manager.track_sequence_number(metadata2)

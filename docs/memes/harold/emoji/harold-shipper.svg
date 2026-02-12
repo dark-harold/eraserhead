@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- ✅ Effective Developer Harold — Ships Working Code With a Smile -->
+  <defs>
+    <radialGradient id="ed-skin" cx="50%" cy="42%" r="50%">
+      <stop offset="0%" stop-color="#dfc4a8"/>
+      <stop offset="85%" stop-color="#c4a888"/>
+      <stop offset="100%" stop-color="#b09070"/>
+    </radialGradient>
+    <radialGradient id="green-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Green success background -->
+  <circle cx="64" cy="64" r="63" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <!-- Face -->
+  <circle cx="64" cy="64" r="52" fill="url(#ed-skin)" stroke="#b09070" stroke-width="2"/>
+  <!-- Green glow overlay (all tests passing) -->
+  <circle cx="64" cy="64" r="52" fill="url(#green-glow)"/>
+  <!-- Hair (optimistic silver) -->
+  <ellipse cx="64" cy="25" rx="48" ry="18" fill="#c0c0c0"/>
+  <ellipse cx="64" cy="20" rx="44" ry="14" fill="#d0d0d0"/>
+  <!-- Minimal wrinkles (pragmatism reduces stress) -->
+  <path d="M 38 35 Q 52 32 66 35" stroke="#b09070" stroke-width="1" fill="none" opacity="0.4"/>
+  <!-- Eyes — alert, focused, shipping energy -->
+  <!-- Left eye (bright, engaged) -->
+  <ellipse cx="44" cy="54" rx="11" ry="8" fill="white" stroke="#7a6a5a" stroke-width="1.5"/>
+  <circle cx="44" cy="54" r="5" fill="#3a7a5a"/>
+  <circle cx="44" cy="54" r="2.8" fill="#1a3a2a"/>
+  <circle cx="46" cy="52" r="1.5" fill="white" opacity="0.9"/>
+  <!-- Right eye -->
+  <ellipse cx="84" cy="54" rx="11" ry="8" fill="white" stroke="#7a6a5a" stroke-width="1.5"/>
+  <circle cx="84" cy="54" r="5" fill="#3a7a5a"/>
+  <circle cx="84" cy="54" r="2.8" fill="#1a3a2a"/>
+  <circle cx="86" cy="52" r="1.5" fill="white" opacity="0.9"/>
+  <!-- Eyebrows — confident, can-do attitude -->
+  <path d="M 30 45 Q 38 40 56 44" stroke="#999" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 72 44 Q 90 40 98 45" stroke="#999" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Nose -->
+  <path d="M 64 52 L 60 69 Q 64 73 68 69 Z" fill="#c4a888" stroke="#b09070" stroke-width="0.8"/>
+  <!-- THE SMILE — genuine-ish, "tests are passing" energy -->
+  <path d="M 40 78 Q 52 92 64 92 Q 76 92 88 78" stroke="#6a3a2c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Teeth showing (actual happiness, or excellent acting) -->
+  <path d="M 44 80 Q 64 94 84 80" fill="white" stroke="none"/>
+  <path d="M 40 78 Q 52 92 64 92 Q 76 92 88 78" stroke="#6a3a2c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Dimples -->
+  <circle cx="38" cy="80" r="2" fill="#c4a088" opacity="0.3"/>
+  <circle cx="90" cy="80" r="2" fill="#c4a088" opacity="0.3"/>
+  <!-- Glasses (professional, no-nonsense) -->
+  <rect x="30" y="48" width="28" height="16" rx="4" fill="none" stroke="#555" stroke-width="2"/>
+  <rect x="70" y="48" width="28" height="16" rx="4" fill="none" stroke="#555" stroke-width="2"/>
+  <line x1="58" y1="55" x2="70" y2="55" stroke="#555" stroke-width="1.5"/>
+  <!-- Thumbs up hand -->
+  <g transform="translate(95, 90) rotate(-15)">
+    <!-- Fist -->
+    <rect x="-6" y="0" width="18" height="14" rx="5" fill="#c4a888" stroke="#a88e72" stroke-width="1.5"/>
+    <!-- Thumb (up!) -->
+    <rect x="0" y="-14" width="8" height="18" rx="4" fill="#c4a888" stroke="#a88e72" stroke-width="1.5"/>
+    <!-- Thumb nail -->
+    <rect x="1.5" y="-12" width="5" height="4" rx="2" fill="#dab498" stroke="none"/>
+  </g>
+  <!-- ✅ Check mark in corner -->
+  <circle cx="18" cy="18" r="10" fill="#22c55e"/>
+  <polyline points="12,18 16,22 24,14" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

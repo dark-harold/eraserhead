@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- 🌱 Anemochory Harold — Seeds in the Wind, Origins Hidden -->
+  <defs>
+    <radialGradient id="an-skin" cx="50%" cy="42%" r="50%">
+      <stop offset="0%" stop-color="#dfc4a8"/>
+      <stop offset="85%" stop-color="#c4a888"/>
+      <stop offset="100%" stop-color="#b09070"/>
+    </radialGradient>
+    <radialGradient id="wind-glow" cx="30%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#a8e6cf" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#88c4aa" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Nature-themed background -->
+  <circle cx="64" cy="64" r="63" fill="#e8f5e9" stroke="#81c784" stroke-width="1.5"/>
+  <!-- Wind lines (dispersal, origin hidden) -->
+  <path d="M 5 25 Q 30 20 55 25 Q 70 28 80 22" stroke="#a5d6a7" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M 10 35 Q 40 30 70 35 Q 90 38 110 30" stroke="#a5d6a7" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M 0 100 Q 25 95 50 100 Q 75 103 95 96" stroke="#a5d6a7" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M 15 110 Q 45 105 80 110 Q 100 113 125 106" stroke="#a5d6a7" stroke-width="1" fill="none" opacity="0.4"/>
+  <!-- Face -->
+  <circle cx="64" cy="64" r="48" fill="url(#an-skin)" stroke="#b09070" stroke-width="2"/>
+  <!-- Wind overlay -->
+  <circle cx="64" cy="64" r="48" fill="url(#wind-glow)"/>
+  <!-- Hair (wind-blown, slightly disheveled) -->
+  <ellipse cx="64" cy="27" rx="44" ry="16" fill="#c0c0c0"/>
+  <ellipse cx="64" cy="22" rx="40" ry="12" fill="#d0d0d0"/>
+  <!-- Wind-blown hair strands -->
+  <path d="M 25 24 Q 15 18 10 22" stroke="#c8c8c8" stroke-width="2" fill="none"/>
+  <path d="M 30 20 Q 18 14 12 16" stroke="#b8b8b8" stroke-width="1.5" fill="none"/>
+  <path d="M 98 24 Q 108 18 115 20" stroke="#c8c8c8" stroke-width="2" fill="none"/>
+  <!-- Serene forehead wrinkles -->
+  <path d="M 38 35 Q 52 32 66 35" stroke="#b09070" stroke-width="0.8" fill="none" opacity="0.35"/>
+  <!-- Eyes — contemplative, watching seeds drift -->
+  <!-- Left eye -->
+  <ellipse cx="46" cy="54" rx="10" ry="7" fill="white" stroke="#7a6a5a" stroke-width="1.5"/>
+  <circle cx="46" cy="54" r="4.5" fill="#5a8a5a"/>
+  <circle cx="46" cy="54" r="2.5" fill="#2a4a2a"/>
+  <circle cx="48" cy="52" r="1.2" fill="white" opacity="0.8"/>
+  <!-- Right eye -->
+  <ellipse cx="82" cy="54" rx="10" ry="7" fill="white" stroke="#7a6a5a" stroke-width="1.5"/>
+  <circle cx="82" cy="54" r="4.5" fill="#5a8a5a"/>
+  <circle cx="82" cy="54" r="2.5" fill="#2a4a2a"/>
+  <circle cx="84" cy="52" r="1.2" fill="white" opacity="0.8"/>
+  <!-- Eyebrows — gentle, contemplative -->
+  <path d="M 33 46 Q 40 42 58 45" stroke="#999" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 70 45 Q 88 42 95 46" stroke="#999" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Nose -->
+  <path d="M 64 52 L 60 67 Q 64 71 68 67 Z" fill="#c4a888" stroke="#b09070" stroke-width="0.7"/>
+  <!-- THE SMILE — peaceful, knowing, one with the wind -->
+  <path d="M 44 78 Q 54 86 64 86 Q 74 86 84 78" stroke="#6a3a2c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Glasses (round, nature-observer style) -->
+  <circle cx="46" cy="54" r="14" fill="none" stroke="#6a8a6a" stroke-width="2"/>
+  <circle cx="82" cy="54" r="14" fill="none" stroke="#6a8a6a" stroke-width="2"/>
+  <line x1="60" y1="54" x2="68" y2="54" stroke="#6a8a6a" stroke-width="1.5"/>
+  <!-- Floating seeds/dandelion puffs (anemochory in action) -->
+  <!-- Seed 1 -->
+  <g transform="translate(15, 50)">
+    <circle cx="0" cy="0" r="2" fill="#a0d0a0"/>
+    <line x1="0" y1="0" x2="-4" y2="-6" stroke="#c0e0c0" stroke-width="0.5"/>
+    <line x1="0" y1="0" x2="0" y2="-7" stroke="#c0e0c0" stroke-width="0.5"/>
+    <line x1="0" y1="0" x2="4" y2="-5" stroke="#c0e0c0" stroke-width="0.5"/>
+    <line x1="0" y1="0" x2="-3" y2="-4" stroke="#c0e0c0" stroke-width="0.5"/>
+    <line x1="0" y1="0" x2="3" y2="-7" stroke="#c0e0c0" stroke-width="0.5"/>
+  </g>
+  <!-- Seed 2 -->
+  <g transform="translate(108, 42) scale(0.8)">
+    <circle cx="0" cy="0" r="2" fill="#a0d0a0"/>
+    <line x1="0" y1="0" x2="-4" y2="-6" stroke="#c0e0c0" stroke-width="0.6"/>
+    <line x1="0" y1="0" x2="1" y2="-7" stroke="#c0e0c0" stroke-width="0.6"/>
+    <line x1="0" y1="0" x2="5" y2="-5" stroke="#c0e0c0" stroke-width="0.6"/>
+  </g>
+  <!-- Seed 3 -->
+  <g transform="translate(20, 90) scale(0.6)">
+    <circle cx="0" cy="0" r="2" fill="#a0d0a0"/>
+    <line x1="0" y1="0" x2="-3" y2="-5" stroke="#c0e0c0" stroke-width="0.7"/>
+    <line x1="0" y1="0" x2="2" y2="-6" stroke="#c0e0c0" stroke-width="0.7"/>
+    <line x1="0" y1="0" x2="5" y2="-4" stroke="#c0e0c0" stroke-width="0.7"/>
+  </g>
+  <!-- Seed 4 -->
+  <g transform="translate(115, 85) scale(0.7)">
+    <circle cx="0" cy="0" r="2" fill="#a0d0a0"/>
+    <line x1="0" y1="0" x2="-4" y2="-6" stroke="#c0e0c0" stroke-width="0.6"/>
+    <line x1="0" y1="0" x2="3" y2="-7" stroke="#c0e0c0" stroke-width="0.6"/>
+  </g>
+  <!-- 🌱 Seedling icon -->
+  <g transform="translate(104, 98)">
+    <line x1="0" y1="0" x2="0" y2="10" stroke="#4caf50" stroke-width="2"/>
+    <path d="M 0 4 Q -8 -2 -4 -8 Q 0 -4 0 4" fill="#66bb6a" stroke="none"/>
+    <path d="M 0 0 Q 8 -6 4 -12 Q 0 -6 0 0" fill="#81c784" stroke="none"/>
+  </g>
+</svg>

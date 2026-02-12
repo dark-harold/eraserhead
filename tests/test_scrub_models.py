@@ -9,8 +9,6 @@ from __future__ import annotations
 
 import time
 
-import pytest
-
 from eraserhead.models import (
     DeletionResult,
     DeletionTask,
@@ -21,7 +19,6 @@ from eraserhead.models import (
     ScrubProgress,
     TaskPriority,
     TaskStatus,
-    VerificationStatus,
 )
 
 

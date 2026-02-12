@@ -10,18 +10,14 @@
 
 from __future__ import annotations
 
-import time
-from dataclasses import dataclass, field
 from typing import Any
-from unittest.mock import AsyncMock
 
 import pytest
 
-from eraserhead.modes.base import ModeViolation, OperatingMode
+from eraserhead.modes.base import OperatingMode
 from eraserhead.modes.confirmation import ConfirmationStepType
 from eraserhead.modes.target_validation import TargetScope
 from eraserhead.providers.base import (
-    BaseProvider,
     ComplianceCheckResult,
     ComplianceProvider,
     ProviderCapability,

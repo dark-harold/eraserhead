@@ -14,7 +14,6 @@ from typing import Any
 import pytest
 
 from eraserhead.providers.base import (
-    BaseProvider,
     ComplianceCheckResult,
     ComplianceProvider,
     ProviderCapability,
@@ -29,7 +28,6 @@ from eraserhead.providers.base import (
     SearchResult,
 )
 from eraserhead.providers.registry import (
-    NoProvidersAvailableError,
     ProviderAlreadyRegisteredError,
     ProviderEvent,
     ProviderEventType,

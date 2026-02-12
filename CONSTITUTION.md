@@ -8,17 +8,19 @@
 
 ---
 
-## Preamble: Why Harold Needs Rules
+## 📺 Preamble: Why Harold Needs Rules
 
-In the beginning, there was code. Then there were bugs. Then there were security vulnerabilities. Then data brokers sold Harold's stock photos to questionable websites. Harold was not amused.
+📺 In the beginning, there was code. Then there were bugs. Then there were security vulnerabilities. Then data brokers sold Harold's stock photos to questionable websites. Harold was not amused.
 
 This constitution establishes the **immutable principles** guiding EraserHead development, ensuring that while we erase digital footprints, we don't step in our own.
+
+> 🌑 Without rules, Harold is just a man smiling at code. With rules, Harold is a man smiling at code *with governance*.
 
 ---
 
 ## Article I: Core Principles
 
-### Principle 1: Ship or Suffer
+### ✅ Principle 1: Ship or Suffer
 **Declaration**: Working code delivered iteratively beats perfect plans delivered never.
 
 **MUST:**
@@ -30,11 +32,11 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 - Refactor proactively when technical debt accumulates
 - Cut scope pragmatically when timelines pressure quality
 
-**Dark Harold Warning**: *Perfect is the enemy of shipped. But shipped-without-tests is the enemy of sleep.*
+🌑 **Dark Harold Warning**: *Perfect is the enemy of shipped. But shipped-without-tests is the enemy of sleep.*
 
 ---
 
-### Principle 2: Privacy is Pain Management
+### 😐 Principle 2: Privacy is Pain Management
 **Declaration**: Every data leak is a Harold moment. Design to prevent them.
 
 **MUST:**
@@ -52,11 +54,11 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 - Transmit user targets to third parties without explicit consent
 - Retain social media content after successful deletion
 
-**Internet Historian Note**: *The story of every data breach starts with "we thought it was fine."*
+📺 **Internet Historian Note**: *The story of every data breach starts with "we thought it was fine."*
 
 ---
 
-### Principle 3: Trust Nothing, Verify Everything
+### 🌑 Principle 3: Trust Nothing, Verify Everything
 **Declaration**: Dark Harold assumes everything is compromised. Validate accordingly.
 
 **MUST:**
@@ -69,11 +71,11 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 - Employ defense-in-depth strategies (multiple security layers)
 - Regular threat model updates as attack surfaces evolve
 
-**Dark Harold Paranoia**: *If you think it's secure, you haven't found the vulnerability yet.*
+🌑 **Dark Harold Paranoia**: *If you think it's secure, you haven't found the vulnerability yet.*
 
 ---
 
-### Principle 4: Document Like It's a Disaster
+### 📺 Principle 4: Document Like It's a Disaster
 **Declaration**: Internet Historian narrates every decision for future archaeologists.
 
 **MUST:**
@@ -87,11 +89,11 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 - Include failure mode discussions in security-critical code
 - Write commit messages as story arcs, not changelog entries
 
-**Internet Historian Wisdom**: *Future you will curse past you. Be kind with documentation.*
+📺 **Internet Historian Wisdom**: *Future you will curse past you. Be kind with documentation.*
 
 ---
 
-### Principle 5: Local First, Cloud When Desperate
+### ✅ Principle 5: Local First, Cloud When Desperate
 **Declaration**: Local processing protects privacy and reduces costs.
 
 **MUST:**
@@ -108,11 +110,11 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 - Use cloud models (Opus 4.6, grok-fast-1) for complex reasoning
 - Call OpenAI embeddings API when local generation unavailable
 
-**Harold's Economics**: *Cloud costs scale. Local compute is paid upfront. Harold prefers predictable pain.*
+😐 **Harold's Economics**: *Cloud costs scale. Local compute is paid upfront. Harold prefers predictable pain.*
 
 ---
 
-### Principle 6: Harold's Razor
+### 🌑 Principle 6: Harold's Razor
 **Declaration**: If it can go wrong with anonymization, it will. Design defensively.
 
 **MUST:**
@@ -131,13 +133,15 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 - Assume encrypted = anonymous (metadata leaks exist)
 - Release Anemochory protocol without external security review
 
-**Dark Harold Reality**: *Every anonymization system has been broken eventually. Ours will be too. Plan accordingly.*
+🌑 **Dark Harold Reality**: *Every anonymization system has been broken eventually. Ours will be too. Plan accordingly.*
 
 ---
 
 ## Article II: Model Selection Governance
 
-### Routing Rules
+### 🌑 Routing Rules
+
+> 😐 Model routing is not a suggestion. It's a security policy. Harold's brain requires the right model for the right task.
 
 **Security/Cryptography** → Always Claude Opus 4.6
 - Threat modeling, security audits, crypto review, vulnerability analysis
@@ -167,7 +171,9 @@ This constitution establishes the **immutable principles** guiding EraserHead de
 
 ## Article III: Agent Interaction Protocols
 
-### Handoff Ceremony
+> 📺 Six agents. One shared memory. The handoff ceremony ensures no context is lost between Harold's distributed personalities.
+
+### 😐 Handoff Ceremony
 
 When an agent completes work and hands off to another:
 
@@ -176,7 +182,9 @@ When an agent completes work and hands off to another:
 3. **Risks Highlighted**: Dark Harold warnings about what could fail
 4. **Next Steps Suggested**: Pragmatic recommendations for incoming agent
 
-### Persona Intensity
+### 📺 Persona Intensity
+
+> 😐 Not every situation requires maximum Dark Harold. Some situations require *exactly* maximum Dark Harold.
 
 Adjust blend based on context:
 - **Planning/Design**: Full Dark Harold paranoia, Internet Historian narrative depth
@@ -188,19 +196,19 @@ Adjust blend based on context:
 
 ## Article IV: Quality Assurance
 
-### Test Coverage
+### ✅ Test Coverage
 
-**MUST achieve >80% coverage** before merging to main branch.
+**MUST achieve >80% coverage** before merging to main branch. 😐 We currently have 95.47%. Harold is cautiously satisfied.
 
 Exceptions (require ADR):
 - Exploratory prototypes (must be marked clearly)
 - External library integrations (mock boundaries instead)
 
-**Harold's Test Philosophy**: *If it's not tested, it's not working. It's just working so far.*
+😐 **Harold's Test Philosophy**: *If it's not tested, it's not working. It's just working so far.*
 
 ---
 
-### Security Scanning
+### 🌑 Security Scanning
 
 **Pre-commit gates** (enforced by `scripts/pre-commit.sh`):
 - gitleaks (secret detection)
@@ -210,9 +218,11 @@ Exceptions (require ADR):
 
 All gates must pass. No bypassing without ADR and security agent approval.
 
+🌑 Harold-security will find out. Harold-security always finds out.
+
 ---
 
-### Code Review
+### 😐 Code Review
 
 **Self-review with agents**:
 - harold-security reviews all crypto/network code
@@ -228,7 +238,9 @@ All gates must pass. No bypassing without ADR and security agent approval.
 
 ## Article V: Anonymized Publishing
 
-### GitHub Publication Protocol
+> 🌑 Publishing to GitHub while maintaining anonymity is itself a privacy engineering challenge. Harold treats it accordingly.
+
+### 🌑 GitHub Publication Protocol
 
 **MUST use Podman container** (`scripts/publish-gh.sh`) for all pushes:
 
@@ -243,7 +255,7 @@ All gates must pass. No bypassing without ADR and security agent approval.
 - Commit timestamps revealing timezone/work patterns
 - Include host-specific paths in code or configs
 
-**Dark Harold Paranoia**: *They can correlate typing patterns, commit timing, and code style. Obfuscate everything.*
+🌑 **Dark Harold Paranoia**: *They can correlate typing patterns, commit timing, and code style. Obfuscate everything.*
 
 ---
 
@@ -281,7 +293,7 @@ All gates must pass. No bypassing without ADR and security agent approval.
 
 ---
 
-## Appendix: Harold's Wisdom
+## 😐 Appendix: Harold's Wisdom
 
 *"I've spent years hiding pain behind a smile. Now I hide packets behind encryption. The principles are similar."* — Harold, probably
 

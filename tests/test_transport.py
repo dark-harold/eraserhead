@@ -18,7 +18,6 @@ import trio.testing
 
 from anemochory.packet import PACKET_SIZE
 from anemochory.transport import (
-    FRAME_HEADER_SIZE,
     FramingError,
     PacketSender,
     TransportError,

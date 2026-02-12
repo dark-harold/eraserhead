@@ -18,10 +18,9 @@ Subscribers attach to event streams and react accordingly.
 from __future__ import annotations
 
 import logging
-import time
 from collections import defaultdict
-from dataclasses import dataclass, field
-from typing import Any, Callable, Coroutine
+from collections.abc import Callable, Coroutine
+from typing import Any
 
 from eraserhead.providers.base import (
     BaseProvider,
@@ -30,8 +29,6 @@ from eraserhead.providers.base import (
     ProviderEvent,
     ProviderEventType,
     ProviderHealth,
-    ProviderInfo,
-    ProviderStatus,
     ProviderType,
     ScrubProvider,
     SearchProvider,

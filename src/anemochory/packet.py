@@ -95,7 +95,7 @@ class PacketHeader:
     flags: int  # Bit flags (1 byte, see PacketFlags)
     timestamp: int  # Unix epoch seconds (4 bytes, network byte order)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """Validate header fields."""
         if not 0 <= self.version <= 0xFF:
             raise ValueError(f"Invalid version: {self.version}")
@@ -154,7 +154,7 @@ class LayerRoutingInfo:
     session_id: bytes  # Session identifier UUID (16 bytes)
     padding_length: int  # Final payload padding (2 bytes, 0 for intermediate hops)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """Validate routing info fields."""
         if len(self.next_hop_address) != 16:
             raise ValueError(f"Invalid address length: {len(self.next_hop_address)} (expected 16)")

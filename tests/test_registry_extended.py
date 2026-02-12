@@ -14,7 +14,6 @@ from typing import Any
 import pytest
 
 from eraserhead.providers.base import (
-    BaseProvider,
     ProviderCapability,
     ProviderEvent,
     ProviderEventType,

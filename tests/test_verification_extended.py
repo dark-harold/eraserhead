@@ -9,8 +9,6 @@ concurrent scan behavior, and timing-sensitive checks.
 
 from __future__ import annotations
 
-import pytest
-
 from eraserhead.adapters import PlatformAdapter, RateLimitConfig
 from eraserhead.adapters.platforms import (
     FacebookAdapter,
