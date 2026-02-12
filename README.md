@@ -1,7 +1,7 @@
 # EraserHead: Digital Privacy Through Origin Obfuscation
 
 <p align="center">
-  <img src="docs/memes/harold/emoji/harold-showcase.png" alt="Hide the Pain Harold — the six personas of EraserHead">
+  <img src="docs/memes/harold/harold-laptop.png" alt="Hide the Pain Harold at his laptop — the EraserHead mascot" width="400">
 </p>
 
 *Pragmatically erasing digital footprints while smiling through the pain*

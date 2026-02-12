@@ -13,6 +13,7 @@ import re
 import sys
 from pathlib import Path
 
+
 ROOT = Path(__file__).parent.parent
 
 FILES = [
@@ -28,13 +29,13 @@ FILES = [
 
 # Match <img src="...harold..." ...> tags (greedy on attributes, but stop at >)
 HAROLD_IMG_RE = re.compile(
-    r'<img\s+[^>]*harold[^>]*>',
+    r"<img\s+[^>]*harold[^>]*>",
     re.IGNORECASE,
 )
 
 # Match the showcase composite image too
 SHOWCASE_IMG_RE = re.compile(
-    r'<img\s+[^>]*harold-showcase[^>]*>',
+    r"<img\s+[^>]*harold-showcase[^>]*>",
     re.IGNORECASE,
 )
 
@@ -63,15 +64,15 @@ def strip_file(filepath: Path) -> int:
         stripped = line.strip()
 
         # Remove lines that are now just "&nbsp;" or "&nbsp;&nbsp;" etc
-        if re.match(r'^(\s*&nbsp;\s*)+$', stripped):
+        if re.match(r"^(\s*&nbsp;\s*)+$", stripped):
             continue
 
         # Remove lines that are now just empty HTML tags like <p align="center"></p>
-        if re.match(r'^<p[^>]*>\s*</p>$', stripped):
+        if re.match(r"^<p[^>]*>\s*</p>$", stripped):
             continue
 
         # Remove lines that are now just <em>...</em> with only spacing content
-        if re.match(r'^<em>\s*(&nbsp;\s*[·]\s*(&nbsp;\s*)?)*</em>$', stripped):
+        if re.match(r"^<em>\s*(&nbsp;\s*[·]\s*(&nbsp;\s*)?)*</em>$", stripped):
             continue
 
         # Remove lines that are just ">" (empty blockquote) unless next line continues it
@@ -82,7 +83,7 @@ def strip_file(filepath: Path) -> int:
     text = "\n".join(cleaned)
 
     # Step 3: Clean up multiple consecutive blank lines (max 2)
-    text = re.sub(r'\n{4,}', '\n\n\n', text)
+    text = re.sub(r"\n{4,}", "\n\n\n", text)
 
     # Step 4: Clean up double+ spaces within lines (but not leading whitespace)
     lines = text.split("\n")
@@ -92,7 +93,7 @@ def strip_file(filepath: Path) -> int:
             # Preserve leading whitespace, collapse internal multiple spaces
             leading = len(line) - len(line.lstrip())
             content = line[leading:]
-            content = re.sub(r'  +', ' ', content)
+            content = re.sub(r"  +", " ", content)
             # Remove leading/trailing spaces from content (not indentation)
             content = content.strip()
             line = " " * leading + content
@@ -101,7 +102,7 @@ def strip_file(filepath: Path) -> int:
     text = "\n".join(final)
 
     # Step 5: Fix "**text** :" → "**text**:" and similar spacing artifacts
-    text = re.sub(r'\*\*\s+:', '**:', text)
+    text = re.sub(r"\*\*\s+:", "**:", text)
 
     filepath.write_text(text, encoding="utf-8")
     print(f"  ✓ {filepath.name}: removed {count} img tags")

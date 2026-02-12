@@ -1,7 +1,7 @@
 # Contributing to EraserHead: Smile Locally, Ship Pragmatically, Document Cynically
 
 <p align="center">
-  <img src="docs/memes/harold/emoji/harold-standard-128.png" alt="Harold welcomes contributors">
+  <img src="docs/memes/harold/harold-thumbsup.png" alt="Harold gives contributors a thumbs up" width="400">
 </p>
 
 *Development workflow, quality gates, and Harold's local-first philosophy*

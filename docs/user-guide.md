@@ -1,7 +1,7 @@
 # EraserHead User Guide
 
 <p align="center">
-  <img src="memes/harold/emoji/harold-standard-128.png" alt="Harold guides you through digital erasure">
+  <img src="memes/harold/harold-documentary.png" alt="Harold guides you through digital erasure" width="400">
 </p>
 
 *Step-by-step guide to erasing your digital footprint. Harold walked this path. Harold survived. You will too.*

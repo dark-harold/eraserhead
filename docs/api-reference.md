@@ -1,7 +1,7 @@
 # EraserHead API Reference
 
 <p align="center">
-  <img src="memes/harold/emoji/harold-historian-128.png" alt="Harold's API catalog">
+  <img src="memes/harold/harold-tedx.png" alt="Harold presents the API — TEDx Kyiv 2018" width="400">
 </p>
 
 *Your guide to systematic digital footprint elimination. Harold would be proud. Harold IS proud. Harold is also mildly concerned you'll misuse `secure_zero_memory`.*

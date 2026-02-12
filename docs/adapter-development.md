@@ -1,7 +1,7 @@
 # Adapter Development Guide
 
 <p align="center">
-  <img src="memes/harold/emoji/harold-shipper-128.png" alt="Harold implements adapters">
+  <img src="memes/harold/harold-buzzfeed.png" alt="Harold discusses adapter development" width="400">
 </p>
 
 *How to teach EraserHead to delete things from new platforms. Every platform API is a unique snowflake of documentation pain.*

@@ -1,7 +1,7 @@
 # The Dark Arts of Privacy Engineering: A Harold Manifesto
 
 <p align="center">
-  <img src="docs/memes/harold/emoji/harold-dark-128.png" alt="Dark Harold — constitutional governance">
+  <img src="docs/memes/harold/harold-imgflip.png" alt="Harold contemplates the constitution" width="300">
 </p>
 
 *Constitutional Governance for the EraserHead Project*
