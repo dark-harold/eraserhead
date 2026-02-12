@@ -88,3 +88,6 @@ htmlcov/
 
 # Harold originals (too powerful to commit)
 docs/memes/harold/originals/
+
+# Harold source image cache (downloaded by scripts/fetch-harold-emoji.py)
+.cache/harold-source/

@@ -9,7 +9,7 @@
 
 ## Custom Harold Emoji — The Faces
 
-EraserHead includes a set of **original custom emoji** depicting Harold's many moods. These are available as SVG vector art (128×128) and PNG rasters at 20px, 24px, 32px, and 64px for inline use.
+EraserHead includes **real Harold photo emoji** — Discord-style face crops from the iconic stock photos, with persona-specific color treatments. Available at 20px, 24px, 32px, 64px, and 128px.
 
 ### The Full Set
 
@@ -44,16 +44,18 @@ Use these as inline emoji in markdown text — they render at natural text size:
 
 ### Asset Reference
 
-| Preview (32px) | Name | SVG Source | Inline Tag |
-|:-:|------|------------|-----------|
-| <img src="emoji/harold-standard-32.png" width="32"> | Standard Harold | [`harold-standard.svg`](emoji/harold-standard.svg) | `<img src=".../harold-standard-20.png" height="20">` |
-| <img src="emoji/harold-dark-32.png" width="32"> | Dark Harold | [`harold-dark.svg`](emoji/harold-dark.svg) | `<img src=".../harold-dark-20.png" height="20">` |
-| <img src="emoji/harold-historian-32.png" width="32"> | Internet Historian | [`harold-historian.svg`](emoji/harold-historian.svg) | `<img src=".../harold-historian-20.png" height="20">` |
-| <img src="emoji/harold-shipper-32.png" width="32"> | Effective Developer | [`harold-shipper.svg`](emoji/harold-shipper.svg) | `<img src=".../harold-shipper-20.png" height="20">` |
-| <img src="emoji/harold-anemochory-32.png" width="32"> | Anemochory Harold | [`harold-anemochory.svg`](emoji/harold-anemochory.svg) | `<img src=".../harold-anemochory-20.png" height="20">` |
-| <img src="emoji/harold-ultra-dark-32.png" width="32"> | Ultra Dark Harold | [`harold-ultra-dark.svg`](emoji/harold-ultra-dark.svg) | `<img src=".../harold-ultra-dark-20.png" height="20">` |
+| Preview (32px) | Name | Color Treatment | Inline Tag |
+|:-:|------|-----------------|-----------|
+| <img src="emoji/harold-standard-32.png" width="32"> | Standard Harold | Original colors | `<img src=".../harold-standard-20.png" height="20">` |
+| <img src="emoji/harold-dark-32.png" width="32"> | Dark Harold | Desaturated + darkened | `<img src=".../harold-dark-20.png" height="20">` |
+| <img src="emoji/harold-historian-32.png" width="32"> | Internet Historian | Warm sepia tone | `<img src=".../harold-historian-20.png" height="20">` |
+| <img src="emoji/harold-shipper-32.png" width="32"> | Effective Developer | Brightened + saturated | `<img src=".../harold-shipper-20.png" height="20">` |
+| <img src="emoji/harold-anemochory-32.png" width="32"> | Anemochory Harold | Green nature tint | `<img src=".../harold-anemochory-20.png" height="20">` |
+| <img src="emoji/harold-ultra-dark-32.png" width="32"> | Ultra Dark Harold | High contrast + desaturated | `<img src=".../harold-ultra-dark-20.png" height="20">` |
 
-**Available sizes**: 20px (inline text), 24px (headings), 32px (callouts), 64px (showcase)
+**Available sizes**: 20px (inline text), 24px (headings), 32px (callouts), 64px (showcase), 128px (Discord-native)
+
+**Regenerate**: `python scripts/fetch-harold-emoji.py`
 
 > <img src="emoji/harold-historian-20.png" height="20" alt="harold-historian"> For the full meme sourcing guide, galleries, and Harold lore, see [MEME-GALLERY.md](MEME-GALLERY.md)
 

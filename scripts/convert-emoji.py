@@ -9,6 +9,7 @@ import re
 import sys
 from pathlib import Path
 
+
 ROOT = Path(__file__).parent.parent
 
 # Emoji → Harold filename mapping
@@ -49,30 +50,30 @@ def replace_in_text(text: str, base_path: str) -> str:
 
 def process_file(filepath: Path, base_path: str) -> int:
     """Process a markdown file, replacing emoji outside code blocks.
-    
+
     Returns the number of replacements made.
     """
     content = filepath.read_text(encoding="utf-8")
-    
+
     # Count existing emoji
     count_before = sum(content.count(e) for e in EMOJI_MAP)
-    
+
     # Split on fenced code blocks (```...```) and inline code (`...`)
     # Pattern: match fenced blocks first, then inline code
     code_pattern = re.compile(r"(```[\s\S]*?```|`[^`\n]+`)")
-    
+
     parts = code_pattern.split(content)
     result_parts = []
-    
+
     for part in parts:
         if part.startswith("```") or part.startswith("`"):
             # Inside code — leave untouched
             result_parts.append(part)
         else:
             result_parts.append(replace_in_text(part, base_path))
-    
+
     new_content = "".join(result_parts)
-    
+
     if new_content != content:
         filepath.write_text(new_content, encoding="utf-8")
         return count_before
@@ -88,7 +89,7 @@ def main():
         count = process_file(filepath, base_path)
         print(f"  {filepath.name}: {count} emoji → Harold faces")
         total += count
-    
+
     print(f"\nTotal: {total} emoji converted to inline Harold images")
 
 

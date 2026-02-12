@@ -33,46 +33,46 @@ The internet noticed something. Behind every staged smile, behind every stock-ph
 | Wikipedia | [András Arató](https://en.wikipedia.org/wiki/Andr%C3%A1s_Arat%C3%B3) | Biography | CC BY-SA |
 | Dreamstime Gallery | [Dreamstime/Nyul](https://www.dreamstime.com/photos-images/hide-the-pain-harold.html) | Stock photos | <img src="emoji/harold-ultra-dark-20.png" height="20" alt="harold-ultra-dark"> Licensed/Paid |
 
-### <img src="emoji/harold-ultra-dark-24.png" height="24" alt="harold-ultra-dark"> Copyright Notice
+### <img src="emoji/harold-ultra-dark-24.png" height="24" alt="harold-ultra-dark"> Copyright & Attribution
 
-> <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> **Dark Harold says**: The original stock photos are copyrighted by photographer **Nyul** and licensed through **Dreamstime**. They are NOT free to redistribute.
+> <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> **Dark Harold says**: The original stock photos are copyrighted by **H20.photo** (photographer **Nyul**) and licensed through **Dreamstime**. The source images used for our emoji are low-resolution crops used as tiny inline commentary emoji — transformative use for project documentation.
 >
-> <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> **What we CAN do**: Create original derivative art (our SVG emoji), reference meme URLs, document the cultural significance, and use standard Unicode emoji that represent Harold's expressions.
+> <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> **Attribution**: Subject is **András István Arató** (b. 1945), Hungarian electrical engineer. Source: [Wikipedia](https://en.wikipedia.org/wiki/Hide_the_Pain_Harold). Original photos: [Dreamstime Gallery](https://www.dreamstime.com/same-stock-photo-model-image16618166).
 >
-> <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> This is why we built custom SVG emoji instead of embedding stock photos. Harold would understand. Harold always understands.
+> <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> These emoji are tiny face crops (20-128px) used inline in documentation, similar to Discord custom emoji. Harold would understand. Harold always understands.
 
 ---
 
-## 🎨 Custom SVG Emoji Set
+## <img src="emoji/harold-standard-24.png" height="24" alt="harold-standard"> Real Photo Emoji Set
 
-We created original vector art emoji inspired by Harold's expressions. These are **100% original creations** — no copyrighted material is embedded or traced.
+Discord-style custom emoji made from actual Harold photos. Each persona variant uses color treatment processing on the iconic forced-smile face crop.
 
 ### The Collection
 
-| File | Emoji | Persona | Description |
-|------|-------|---------|-------------|
-| `emoji/harold-standard.svg` | <img src="emoji/harold-standard-20.png" height="20" alt="harold-standard"> | Standard Harold | The classic forced smile. Glasses, silver hair, wrinkles of hidden pain. Everything is fine. |
-| `emoji/harold-dark.svg` | <img src="emoji/harold-dark-20.png" height="20" alt="harold-dark"> | Dark Harold | Narrowed eyes, dark aura, cracked suspicion. Assumes everything is compromised. Red alert glow. |
-| `emoji/harold-historian.svg` | <img src="emoji/harold-historian-20.png" height="20" alt="harold-historian"> | Internet Historian | Wry smirk, reading glasses low on nose, screen glow. Has seen all of digital history. The narrator. |
-| `emoji/harold-shipper.svg` | <img src="emoji/harold-shipper-20.png" height="20" alt="harold-shipper"> | Effective Developer | Genuine-ish smile with teeth, thumbs up, green glow. Tests are passing. Ship it. |
-| `emoji/harold-anemochory.svg` | <img src="emoji/harold-anemochory-20.png" height="20" alt="harold-anemochory"> | Anemochory Harold | Peaceful expression, wind-blown hair, floating seeds. One with the protocol. Round green glasses. |
-| `emoji/harold-ultra-dark.svg` | <img src="emoji/harold-ultra-dark-20.png" height="20" alt="harold-ultra-dark"> | Ultra Dark Harold | Bloodshot eyes, cracked glasses, grimace line. The CVE is critical. The exploit is in the wild. |
+| Emoji | Persona | Color Treatment | Description |
+|-------|---------|-----------------|-------------|
+| <img src="emoji/harold-standard-32.png" height="32" alt="harold-standard"> | Standard Harold | Original colors | The classic forced smile. Everything is fine. |
+| <img src="emoji/harold-dark-32.png" height="32" alt="harold-dark"> | Dark Harold | Desaturated + darkened | Brooding paranoia. Assumes everything is compromised. |
+| <img src="emoji/harold-historian-32.png" height="32" alt="harold-historian"> | Internet Historian | Warm sepia tone | The narrator. Has seen all of digital history. |
+| <img src="emoji/harold-shipper-32.png" height="32" alt="harold-shipper"> | Effective Developer | Brightened + saturated | Tests are passing. Ship it. |
+| <img src="emoji/harold-anemochory-32.png" height="32" alt="harold-anemochory"> | Anemochory Harold | Green nature tint | Seed dispersal vibes. One with the protocol. |
+| <img src="emoji/harold-ultra-dark-32.png" height="32" alt="harold-ultra-dark"> | Ultra Dark Harold | High contrast + desaturated | Maximum paranoia. The CVE is critical. |
 
-### Design Principles
+### Showcase (128px)
 
-1. **128x128 SVG**: Vector art scales to any size without quality loss
-2. **Harold's Signature Features**: Silver/white hair, glasses, wrinkles, and THE SMILE (or lack thereof)
-3. **Persona-Specific Elements**: Each variant includes visual cues matching its role:
-   - Standard: Strained smile with effort indicators
-   - Dark: Shadow overlay, red alert glow, narrowed suspicious eyes
-   - Historian: Screen glow, wry smirk, TV icon
-   - Shipper: Green success glow, thumbs up, checkmark badge
-   - Anemochory: Floating seeds, wind lines, nature palette
-   - Ultra Dark: Bloodshot eyes, cracked lens, warning triangle
+<img src="emoji/harold-showcase.png" alt="All six Harold personas at 128px">
 
-4. **Color Palettes**:
-   - Skin tones: `#dfc4a8` → `#c4a888` → `#b09070` (gradient)
-   - Hair: `#c0c0c0` → `#d0d0d0` (silver)
+### Pipeline
+
+Generated by `scripts/fetch-harold-emoji.py`:
+
+1. **Source**: Downloads the iconic Harold stock photo (face crop)
+2. **Crop**: Extracts face region, makes square
+3. **Treatment**: Applies persona-specific color grading (brightness, contrast, saturation, warmth, tint)
+4. **Sizes**: Generates 20px (inline), 24px (headings), 32px (tables), 64px (gallery), 128px (showcase)
+5. **Sharpen**: Small sizes get sharpening to preserve face detail
+
+Regenerate with: `python scripts/fetch-harold-emoji.py`
    - Dark variant: `#0d1117` background, red `#ff4444` accents
    - Anemochory: `#e8f5e9` background, green `#81c784` accents
    - Shipper: `#f0fdf4` background, green `#22c55e` accents
